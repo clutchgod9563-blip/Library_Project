@@ -143,24 +143,25 @@
         .t-warn { color: #fbbf24; background: rgba(251, 191, 137, 0.12); border-color: rgba(251, 191, 137, 0.2); }
 
         #app { display: none; width: 100%; height: 100%; }
-        .sidebar { width: var(--sidebar-width); background: #040712; border-right: var(--glass-border); display: flex; flex-direction: column; padding: 24px 0; z-index: 90; overflow-y: auto; transition: transform 0.3s ease; }
-        .brand { font-size: 24px; font-weight: 800; color: #fff; padding: 0 24px 24px; display: flex; align-items: center; gap: 12px; letter-spacing: 1px; font-family: var(--font-head); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .sidebar { width: var(--sidebar-width); background: #040712; border-right: var(--glass-border); display: flex; flex-direction: column; padding: 24px 0; z-index: 90; overflow-y: auto; transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease, transform 0.3s ease; }
+        .sidebar.collapsed { width: 0px; padding: 24px 0; overflow: hidden; border-right: none; pointer-events: none; }
+        .brand { font-size: 24px; font-weight: 800; color: #fff; padding: 0 24px 24px; display: flex; align-items: center; gap: 12px; letter-spacing: 1px; font-family: var(--font-head); border-bottom: 1px solid rgba(255,255,255,0.05); white-space: nowrap; }
         .brand i { color: var(--accent-blue); }
         .nav-container { padding: 12px 0; }
-        .nav-head { font-size: 11px; color: var(--accent-blue); text-transform: uppercase; margin: 16px 0 6px 24px; font-weight: 700; opacity: 0.8; letter-spacing: 1px; }
-        .nav-item { padding: 10px 24px; color: var(--text-mute); cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; justify-content: space-between; font-weight: 500; font-size: 13px; margin-bottom: 1px; border-left: 4px solid transparent; }
+        .nav-head { font-size: 11px; color: var(--accent-blue); text-transform: uppercase; margin: 16px 0 6px 24px; font-weight: 700; opacity: 0.8; letter-spacing: 1px; white-space: nowrap; }
+        .nav-item { padding: 10px 24px; color: var(--text-mute); cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; justify-content: space-between; font-weight: 500; font-size: 13px; margin-bottom: 1px; border-left: 4px solid transparent; white-space: nowrap; }
         .nav-item .nav-link-content { display: flex; align-items: center; gap: 12px; }
         .nav-item:hover { color: #fff; background: rgba(255,255,255,0.02); }
         .nav-item.active { color: var(--accent-blue); background: rgba(56, 189, 248, 0.06); border-left-color: var(--accent-blue); font-weight: 600; }
         .nav-badge { font-size: 10px; background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 10px; color: var(--text-mute); font-family: var(--font-code); }
         .nav-item.active .nav-badge { background: var(--accent-blue); color: #000; font-weight: 700; }
 
-        .main { flex: 1; display: flex; flex-direction: column; overflow: hidden; position: relative; }
+        .main { flex: 1; display: flex; flex-direction: column; overflow: hidden; position: relative; width: 100%; }
         .top-bar { height: 70px; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; border-bottom: var(--glass-border); background: rgba(7, 11, 25, 0.8); backdrop-filter: blur(12px); z-index: 80; }
         .content { padding: 40px; overflow-y: auto; height: calc(100% - 70px); scroll-behavior: smooth; }
         
         .mobile-header { display: none; height: 60px; background: #040712; border-bottom: var(--glass-border); align-items: center; justify-content: space-between; padding: 0 20px; z-index: 100; }
-        .menu-toggle { background: transparent; border: none; color: #fff; font-size: 26px; cursor: pointer; display: none; }
+        .menu-toggle { background: transparent; border: none; color: #fff; font-size: 26px; cursor: pointer; display: block; }
 
         .view { display: none; animation: viewReveal 0.35s cubic-bezier(0.16, 1, 0.3, 1); } 
         .view.active { display: block; }
@@ -190,6 +191,8 @@
         .barcode-bar { background: #000; width: 2px; }
         .barcode-bar.space { background: transparent; }
         
+        #print-zone { display: none; }
+
         @media (min-width: 2000px) {
             body { font-size: 16px; }
             :root { --sidebar-width: 340px; }
@@ -205,7 +208,6 @@
         @media (max-width: 768px) {
             body { flex-direction: column; }
             .mobile-header { display: flex; }
-            .menu-toggle { display: block; }
             .sidebar { position: fixed; left: 0; top: 60px; bottom: 0; width: 280px; transform: translateX(-100%); box-shadow: 10px 0 30px rgba(0,0,0,0.5); }
             .sidebar.mobile-open { transform: translateX(0); }
             .top-bar { display: none; }
@@ -217,8 +219,8 @@
         }
 
         @media print { 
-            body * { visibility: hidden; } 
-            #print-zone, #print-zone * { visibility: visible; } 
+            body * { display: none !important; } 
+            #print-zone, #print-zone * { display: block !important; visibility: visible !important; } 
             #print-zone { position: absolute; left: 0; top: 0; width: 100%; color: #000; background: #fff; padding: 20mm; } 
         }
     </style>
@@ -228,7 +230,7 @@
     <div id="toast-feed"></div>
 
     <div class="mobile-header">
-        <button class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('mobile-open')">
+        <button class="menu-toggle" onclick="AmanLib.UI.toggleSidebar()">
             <i class="ph ph-list"></i>
         </button>
         <h2 style="font-size: 18px; letter-spacing: 1px;">Aman's Library</h2>
@@ -328,7 +330,12 @@
 
         <main class="main">
             <header class="top-bar">
-                <div class="flex"><h2 id="page-title" style="font-size:24px; font-family: var(--font-head);">Dashboard Overview</h2></div>
+                <div class="flex" style="gap:16px;">
+                    <button class="btn btn-sec" onclick="AmanLib.UI.toggleSidebar()" title="Toggle Sidebar" style="padding: 10px 14px;">
+                        <i class="ph ph-list" style="font-size: 18px;"></i>
+                    </button>
+                    <h2 id="page-title" style="font-size:24px; font-family: var(--font-head);">Dashboard Overview</h2>
+                </div>
                 <div class="flex" style="gap:16px;">
                     <button id="tts-toggle-btn" class="btn btn-sec" onclick="AmanLib.Diagnostics.toggleTTS()" title="Toggle Voice Alerts"><i id="tts-icon" class="ph ph-speaker-high"></i> <span id="tts-label">Voice: ON</span></button>
                     <span id="sys-date" class="mono text-sm" style="background: rgba(255,255,255,0.04); padding: 8px 16px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);"></span>
@@ -835,6 +842,7 @@
             
             <div class="flex" style="margin-top:32px;">
                 <button id="nb-btn" class="btn btn-pri full-w" onclick="AmanLib.Catalog.save()">Commit Ingestion Payload</button>
+                <button id="nb-del-btn" class="btn btn-dan full-w hidden" onclick="AmanLib.Catalog.deleteBook($('nb-isbn').value)">Delete Entire Book</button>
                 <button class="btn btn-sec full-w" onclick="AmanLib.UI.closeM('m-book')">Cancel</button>
             </div>
         </div>
@@ -864,6 +872,7 @@
             
             <div class="flex" style="margin-top:32px;">
                 <button id="nm-btn" class="btn btn-pri full-w" onclick="AmanLib.Members.save()">Confirm Registration</button>
+                <button id="nm-del-btn" class="btn btn-dan full-w hidden" onclick="AmanLib.Members.deleteMember($('nm-id').value)">Delete Member</button>
                 <button class="btn btn-sec full-w" onclick="AmanLib.UI.closeM('m-mem')">Cancel Process</button>
             </div>
         </div>
@@ -921,6 +930,23 @@
             <h3><i class="ph ph-copy"></i> Manage Individual Book Copies</h3>
             <input type="hidden" id="copy-mgmt-isbn">
             
+            <div style="margin-bottom: 20px; background: rgba(0,0,0,0.2); padding: 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.04);" class="grid-2">
+                <div>
+                    <label>Bulk Add Stock Quantity</label>
+                    <div class="flex">
+                        <input type="number" id="copy-bulk-qty" value="1" min="1" style="margin:0;">
+                        <button class="btn btn-pri" style="white-space: nowrap;" onclick="AmanLib.Catalog.adjustStock(1)">Add Stock</button>
+                    </div>
+                </div>
+                <div>
+                    <label>Bulk Subtract Stock Quantity</label>
+                    <div class="flex">
+                        <input type="number" id="copy-bulk-sub-qty" value="1" min="1" style="margin:0;">
+                        <button class="btn btn-dan" style="white-space: nowrap;" onclick="AmanLib.Catalog.adjustStock(-1)">Remove Stock</button>
+                    </div>
+                </div>
+            </div>
+
             <div style="margin-bottom: 20px; background: rgba(0,0,0,0.2); padding: 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.04);" class="flex">
                 <div style="flex:1;">
                     <label>Target Copy ID Identification Token</label>
@@ -940,6 +966,18 @@
                 </table>
             </div>
             <button class="btn btn-sec full-w" onclick="AmanLib.UI.closeM('m-copy-mgmt')">Close Copy Allocation Panel</button>
+        </div>
+    </div>
+
+    <div id="m-print-preview" class="modal-mask">
+        <div class="modal" style="width:420px; text-align:center;">
+            <h3><i class="ph ph-printer"></i> Label Print Center</h3>
+            <p class="text-mute" style="margin-bottom: 20px;">Review document output architecture metrics before spooling data streams to desktop interfaces.</p>
+            <div id="print-preview-content" style="background:#fff; padding:20px; border-radius:12px; display:inline-block; margin-bottom:24px; box-shadow:inset 0 0 10px rgba(0,0,0,0.1);"></div>
+            <div class="grid-2">
+                <button class="btn btn-pri full-w" onclick="window.print()"><i class="ph ph-printer"></i> Execute Print</button>
+                <button class="btn btn-sec full-w" onclick="AmanLib.UI.closeM('m-print-preview')">Dismiss View</button>
+            </div>
         </div>
     </div>
 
@@ -1036,7 +1074,9 @@
             Nav: (v) => {
                 $$('.view').forEach(e => e.classList.remove('active'));
                 $$('.nav-item').forEach(e => e.classList.remove('active'));
-                document.querySelector('.sidebar').classList.remove('mobile-open');
+                if(window.innerWidth <= 768) {
+                    document.querySelector('.sidebar').classList.remove('mobile-open');
+                }
                 $(`v-${v}`).classList.add('active');
                 
                 $$(`.nav-item`).forEach(e => { 
@@ -1345,7 +1385,7 @@
                             <td style="color:var(--accent-gold); font-weight:600; cursor:pointer;" onclick="AmanLib.Catalog.prepReview('${b.isbn}')">${avg}</td>
                             <td>
                                 <div class="flex" style="gap:6px">
-                                    <button class="btn btn-sec" style="padding:6px 10px; font-size:11px; height:auto; text-transform:none;" onclick="AmanLib.Catalog.openCopyMgmt('${b.isbn}')"><i class="ph ph-copy"></i> Manage Copies</button>
+                                    <button class="btn btn-sec" style="padding:6px 10px; font-size:11px; height:auto; text-transform:none;" onclick="AmanLib.Catalog.openCopyMgmt('${b.isbn}')"><i class="ph ph-copy"></i> Manage Stock</button>
                                     <button class="btn btn-sec" style="padding:6px 8px; font-size:11px; height:auto;" onclick="AmanLib.Catalog.prepEdit('${b.isbn}')" title="Edit Parameters"><i class="ph ph-pencil-simple"></i></button>
                                     <button class="btn btn-sec" style="padding:6px 8px; font-size:11px; height:auto; color:var(--accent-purple);" onclick="AmanLib.Catalog.genQR('${b.isbn}')" title="Print Book QR Label"><i class="ph ph-qr-code"></i></button>
                                     <button class="btn btn-sec" style="padding:6px 8px; font-size:11px; height:auto; color:var(--accent-gold);" onclick="AmanLib.Catalog.prepReview('${b.isbn}')" title="Review Feed Comments"><i class="ph ph-star"></i></button>
@@ -1360,6 +1400,7 @@
                     $('nb-header').innerHTML = '<i class="ph ph-book-open"></i> Add New Book Entry Setup';
                     $('nb-btn').innerText = 'Save Book Details'; $('nb-mode').value = 'add';
                     $('nb-qty-wrap').classList.remove('hidden'); $('nb-isbn').disabled = false;
+                    $('nb-del-btn').classList.add('hidden');
                     ['nb-isbn','nb-title','nb-auth','nb-shelf','nb-subgen','nb-series-link','nb-ill-location','nb-custom-meta'].forEach(id => $(id).value = '');
                     $('nb-qty').value = 1; $('nb-price').value = 500; $('nb-year').value = 2026; $('nb-gen').selectedIndex = 0;
                 },
@@ -1369,6 +1410,7 @@
                     $('nb-header').innerHTML = '<i class="ph ph-pencil"></i> Edit Book Information';
                     $('nb-btn').innerText = 'Save Modifications'; $('nb-mode').value = 'edit';
                     $('nb-qty-wrap').classList.add('hidden'); $('nb-isbn').value = b.isbn; $('nb-isbn').disabled = true;
+                    $('nb-del-btn').classList.remove('hidden');
                     $('nb-title').value = b.title; $('nb-auth').value = b.author; $('nb-shelf').value = b.shelf;
                     $('nb-price').value = b.price; $('nb-year').value = b.year || 2026; $('nb-gen').value = b.genre; $('nb-subgen').value = b.subgen || '';
                     $('nb-series-link').value = b.seriesLink || '';
@@ -1414,8 +1456,24 @@
                     AmanLib.UI.closeM('m-book');
                 },
 
+                deleteBook: (isbn) => {
+                    if(!isbn) return;
+                    if(confirm("Are you sure you want to completely delete this book title and all its associated copy listings from the library catalog?")) {
+                        AmanLib.data.books = AmanLib.data.books.filter(x => x.isbn !== isbn);
+                        AmanLib.data.copies = AmanLib.data.copies.filter(x => x.isbn !== isbn);
+                        AmanLib.data.reservations = AmanLib.data.reservations.filter(x => x.isbn !== isbn);
+                        AmanLib.logEvent('Inventory Control', `Completely deleted book entry and copies for ISBN: ${isbn}`, 'Book purged');
+                        AmanLib.UI.toast('Book entry cleanly purged from storage arrays.', 'warn');
+                        AmanLib.save();
+                        AmanLib.Catalog.render();
+                        AmanLib.UI.closeM('m-book');
+                    }
+                },
+
                 openCopyMgmt: (isbn) => {
                     $('copy-mgmt-isbn').value = isbn;
+                    $('copy-bulk-qty').value = 1;
+                    $('copy-bulk-sub-qty').value = 1;
                     const lc = AmanLib.data.copies.filter(c => c.isbn === isbn);
                     $('t-copy-ledger').querySelector('tbody').innerHTML = lc.map(c => {
                         return `<tr>
@@ -1425,12 +1483,43 @@
                             <td>
                                 <div class="flex" style="gap:6px;">
                                     <button class="btn btn-dan" style="padding:4px 8px; font-size:11px; height:auto; text-transform:none;" onclick="AmanLib.Catalog.scrapCopy('${c.id}')" ${c.status==='OUT'?'disabled':''}>Remove Copy</button>
-                                    <button class="btn btn-pri" style="padding:4px 8px; font-size:11px; height:auto; text-transform:none;" onclick="AmanLib.Catalog.mintAdditionalCopy('${isbn}')">+ Add Copy Instance</button>
                                 </div>
                             </td>
                         </tr>`;
-                    }).join('');
+                    }).join('') || '<tr><td colspan="4" class="text-mute mono text-center py-2">No individual structural copy instances allocated yet.</td></tr>';
                     AmanLib.UI.modal('m-copy-mgmt');
+                },
+
+                adjustStock: (direction) => {
+                    const isbn = $('copy-mgmt-isbn').value;
+                    if(!isbn) return;
+                    
+                    if (direction === 1) {
+                        const qty = parseInt($('copy-bulk-qty').value) || 0;
+                        if(qty <= 0) return AmanLib.UI.toast('Please input a valid addition quantity.', 'warn');
+                        for(let i = 0; i < qty; i++) {
+                            const nid = 'CP-' + Math.floor(1000 + Math.random() * 9000);
+                            AmanLib.data.copies.push({ id: nid, isbn: isbn, status: 'AV', condition: 'Good' });
+                        }
+                        AmanLib.logEvent('Inventory Control', `Bulk added ${qty} copy instances to book structure node: ${isbn}`);
+                        AmanLib.UI.toast(`Successfully added ${qty} copies to catalog files.`, 'good');
+                    } else {
+                        const qty = parseInt($('copy-bulk-sub-qty').value) || 0;
+                        if(qty <= 0) return AmanLib.UI.toast('Please input a valid subtraction quantity.', 'warn');
+                        let counter = 0;
+                        for(let i = AmanLib.data.copies.length - 1; i >= 0; i--) {
+                            if(AmanLib.data.copies[i].isbn === isbn && AmanLib.data.copies[i].status === 'AV') {
+                                AmanLib.data.copies.splice(i, 1);
+                                counter++;
+                                if(counter >= qty) break;
+                            }
+                        }
+                        AmanLib.logEvent('Inventory Control', `Bulk subtracted ${counter} available copies from book schema node: ${isbn}`);
+                        AmanLib.UI.toast(`Successfully pruned ${counter} available copies from catalog file registers.`, 'warn');
+                    }
+                    AmanLib.save();
+                    AmanLib.Catalog.openCopyMgmt(isbn);
+                    AmanLib.Catalog.render();
                 },
 
                 relocateCopySubmit: () => {
@@ -1447,13 +1536,6 @@
                         AmanLib.save();
                         AmanLib.Catalog.openCopyMgmt(cp.isbn);
                     }
-                },
-
-                mintAdditionalCopy: (isbn) => {
-                    const nid = 'CP-' + Math.floor(1000 + Math.random() * 9000);
-                    AmanLib.data.copies.push({ id: nid, isbn: isbn, status: 'AV', condition: 'Good' });
-                    AmanLib.logEvent('Inventory Control', `Allocated additional copy instance record key code: ${nid}`, 'New copy created');
-                    AmanLib.save(); AmanLib.Catalog.openCopyMgmt(isbn); AmanLib.Catalog.render();
                 },
 
                 scrapCopy: (id) => {
@@ -1514,9 +1596,16 @@
                         simulatedBarcode += `<div class="barcode-bar ${isSpace?'space':''}"></div>`;
                     }
                     simulatedBarcode += `</div>`;
-                    $('print-zone').innerHTML = `<div style="width:320px; border:3px double #000; padding:24px; font-family:sans-serif; text-align:center; color:#000; background:#fff; border-radius:8px;"><h3 style="margin:0 0 6px 0; font-size:18px; color:#000; text-transform:none; border:none; padding:0;">${b.title}</h3><div style="margin:4px 0 12px 0; font-size:13px; color:#444;">By ${b.author}</div><div id="qr-tg-book" style="margin:16px auto; width:110px; height:110px;"></div>${simulatedBarcode}<div style="font-weight:800; font-size:26px; margin-top:12px; letter-spacing:1px; font-family:monospace;">SHELF: ${b.shelf}</div><div style="font-size:10px; opacity:0.6; margin-top:6px;" class="mono">ISBN: ${b.isbn}</div></div>`;
-                    new QRCode($('qr-tg-book'), {text: `ISBN:${b.isbn}|SHELF:${b.shelf}`, width:110, height:110});
-                    setTimeout(() => window.print(), 600);
+                    
+                    const ticketHTML = `<div style="width:320px; border:3px double #000; padding:24px; font-family:sans-serif; text-align:center; color:#000; background:#fff; border-radius:8px; margin:0 auto;"><h3 style="margin:0 0 6px 0; font-size:18px; color:#000; text-transform:none; border:none; padding:0;">${b.title}</h3><div style="margin:4px 0 12px 0; font-size:13px; color:#444;">By ${b.author}</div><div id="qr-tg-book" style="margin:16px auto; width:110px; height:110px;"></div>${simulatedBarcode}<div style="font-weight:800; font-size:26px; margin-top:12px; letter-spacing:1px; font-family:monospace;">SHELF: ${b.shelf}</div><div style="font-size:10px; opacity:0.6; margin-top:6px;" class="mono">ISBN: ${b.isbn}</div></div>`;
+                    
+                    $('print-zone').innerHTML = ticketHTML;
+                    $('print-preview-content').innerHTML = ticketHTML;
+                    
+                    new QRCode(document.querySelector('#print-zone #qr-tg-book'), {text: `ISBN:${b.isbn}|SHELF:${b.shelf}`, width:110, height:110});
+                    new QRCode(document.querySelector('#print-preview-content #qr-tg-book'), {text: `ISBN:${b.isbn}|SHELF:${b.shelf}`, width:110, height:110});
+                    
+                    AmanLib.UI.modal('m-print-preview');
                 },
 
                 locate: () => {
@@ -1746,15 +1835,16 @@
                                 <button class="btn btn-sec" style="font-size:11px; padding:6px; height:auto; flex:1;" onclick="AmanLib.Members.card('${m.id}')" title="Print Membership Card Badge"><i class="ph ph-identification-card"></i> Badge Card</button>
                                 <button class="btn btn-sec" style="font-size:11px; padding:6px; height:auto;" onclick="AmanLib.Members.prepEdit('${m.id}')" title="Edit Demographic Information Properties"><i class="ph ph-pencil"></i></button>
                                 <button class="btn btn-sec" style="font-size:11px; padding:6px; height:auto; color:var(--accent-pink);" onclick="AmanLib.Members.toggleSuspension('${m.id}')" title="Lock / Unlock Member Account Status Code Matrix"><i class="ph ph-prohibit"></i></button>
-                                <button class="btn btn-sec" style="font-size:11px; padding:6px; height:auto; color:var(--accent-green);" onclick="AmanLib.Members.prolongLifespan('${m.id}')" title="Renew Card Validation for +1 Year"><i class="ph ph-calendar-plus"></i> +1 Year</button>
+                                <button class="btn btn-sec" style="font-size:11px; padding:6px; height:auto; color:var(--accent-green);" onclick="AmanLib.Members.prolongLifespan('${m.id}')" title="Renew Card Validation for +1 Year"><i class="ph ph-calendar-plus"></i> +1 Yr</button>
                                 <button class="btn btn-pri" style="font-size:11px; padding:6px 10px; height:auto; flex:1; text-transform:none;" onclick="AmanLib.Members.bulkRenew('${m.id}')">Extend Loans</button>
                             </div>
                         </div>`;
-                    }).join('');
+                    }).join('') || '<div class="text-mute mono text-center py-2">No library members registered in local tracks.</div>';
                 },
                 prepAdd: () => {
                     $('nm-header').innerHTML = '<i class="ph ph-user-plus"></i> Register New Library Member Profile';
                     $('nm-btn').innerText = 'Save Registration'; $('nm-mode').value = 'add';
+                    $('nm-del-btn').classList.add('hidden');
                     ['nm-name','nm-phone','nm-email'].forEach(id => $(id).value='');
                     $('nm-type').selectedIndex = 0; $('nm-duration').value = 12;
                 },
@@ -1763,6 +1853,7 @@
                     $('nm-header').innerHTML = '<i class="ph ph-pencil"></i> Modify Member Information Details';
                     $('nm-btn').innerText = 'Save Profile Changes'; $('nm-mode').value = 'edit';
                     $('nm-id').value = id; $('nm-name').value = m.name; $('nm-phone').value = m.phone; $('nm-email').value = m.email; $('nm-type').value = m.type; $('nm-duration').value = 12;
+                    $('nm-del-btn').classList.remove('hidden');
                     AmanLib.UI.modal('m-mem');
                 },
                 prolongLifespan: (id) => {
@@ -1792,6 +1883,19 @@
                     }
                     AmanLib.save(); AmanLib.Members.render(); AmanLib.UI.closeM('m-mem');
                 },
+                deleteMember: (id) => {
+                    if(!id) return;
+                    if(confirm("Are you sure you want to completely delete this member profile from the registry system database?")) {
+                        AmanLib.data.members = AmanLib.data.members.filter(x => x.id !== id);
+                        AmanLib.data.attendance = AmanLib.data.attendance.filter(x => x.memId !== id);
+                        AmanLib.data.reservations = AmanLib.data.reservations.filter(x => x.memId !== id);
+                        AmanLib.logEvent('Membership Management', `Completely deleted member registration profile trace token: ${id}`, 'Member purged');
+                        AmanLib.UI.toast('Profile entry cleanly stripped from system registers.', 'warn');
+                        AmanLib.save();
+                        AmanLib.Members.render();
+                        AmanLib.UI.closeM('m-mem');
+                    }
+                },
                 toggleSuspension: (id) => {
                     const m = AmanLib.data.members.find(x => x.id === id);
                     if(m) { m.status = m.status === 'Suspended' ? 'Active' : 'Suspended'; AmanLib.logEvent('Membership Management', `Toggled suspension state settings profile status flag row node: ${id} to ${m.status}`, 'Member status modified'); AmanLib.save(); AmanLib.Members.render(); }
@@ -1808,10 +1912,17 @@
                     else { AmanLib.UI.toast('No matching active open loans found tracking context definitions for this member.', 'warn'); }
                 },
                 card: (id) => {
-                    const m = AmanLib.data.members.find(x=>x.id===id);
-                    $('print-zone').innerHTML = `<div style="width:360px; border:2px solid #000; padding:24px; font-family:sans-serif; border-radius:12px; color:#000; background:#fff; box-shadow:0 4px 10px rgba(0,0,0,0.1);"><div style="text-align:center; border-bottom:3px double #000; padding-bottom:12px; margin-bottom:16px;"><h2 style="margin:0; font-size:22px; color:#000; border:none; padding:0; letter-spacing:1px;">AMAN'S LIBRARY</h2><div style="font-size:10px; letter-spacing:3px; font-weight:bold; margin-top:3px; color:#555;">SECURE MEMBERSHIP ACCESS BADGE</div></div><div style="display:flex; justify-content:space-between; align-items:center;"><div><h3 style="margin:0; font-size:20px; color:#000; border:none; padding:0; text-transform:none;">${m.name}</h3><div style="color:#666; font-size:13px; font-weight:600; margin-top:2px;">Classification: ${m.type}</div><div style="font-family:monospace; margin-top:12px; font-size:15px; font-weight:bold; background:#000; color:#fff; padding:2px 8px; border-radius:4px; width:fit-content;">ID: ${m.id}</div></div><div id="qr-tg" style="width:85px; height:85px;"></div></div><div style="margin-top:16px; font-size:9px; border-top:1px dashed #ccc; padding-top:8px; text-align:center; color:#777;" class="mono">Sandbox Secure Verification Trace Profile Element Matrix</div></div>`;
-                    new QRCode($('qr-tg'), {text:m.id, width:85, height:85});
-                    setTimeout(() => window.print(), 600);
+                    const m = AmanLib.data.members.find(x=>x.id===id); if(!m) return;
+                    
+                    const cardHTML = `<div style="width:360px; border:2px solid #000; padding:24px; font-family:sans-serif; border-radius:12px; color:#000; background:#fff; box-shadow:0 4px 10px rgba(0,0,0,0.1); margin:0 auto;"><div style="text-align:center; border-bottom:3px double #000; padding-bottom:12px; margin-bottom:16px;"><h2 style="margin:0; font-size:22px; color:#000; border:none; padding:0; letter-spacing:1px;">AMAN'S LIBRARY</h2><div style="font-size:10px; letter-spacing:3px; font-weight:bold; margin-top:3px; color:#555;">SECURE MEMBERSHIP ACCESS BADGE</div></div><div style="display:flex; justify-content:space-between; align-items:center;"><div><h3 style="margin:0; font-size:20px; color:#000; border:none; padding:0; text-transform:none;">${m.name}</h3><div style="color:#666; font-size:13px; font-weight:600; margin-top:2px;">Classification: ${m.type}</div><div style="font-family:monospace; margin-top:12px; font-size:15px; font-weight:bold; background:#000; color:#fff; padding:2px 8px; border-radius:4px; width:fit-content;">ID: ${m.id}</div></div><div id="qr-tg" style="width:85px; height:85px;"></div></div><div style="margin-top:16px; font-size:9px; border-top:1px dashed #ccc; padding-top:8px; text-align:center; color:#777;" class="mono">Sandbox Secure Verification Trace Profile Element Matrix</div></div>`;
+                    
+                    $('print-zone').innerHTML = cardHTML;
+                    $('print-preview-content').innerHTML = cardHTML;
+                    
+                    new QRCode(document.querySelector('#print-zone #qr-tg'), {text:m.id, width:85, height:85});
+                    new QRCode(document.querySelector('#print-preview-content #qr-tg'), {text:m.id, width:85, height:85});
+                    
+                    AmanLib.UI.modal('m-print-preview');
                 }
             },
 
@@ -1975,6 +2086,14 @@
                     if(id === 'm-wishlist-view') AmanLib.Wishlist.renderModal();
                 },
                 closeM: (id) => $(id).style.display = 'none',
+                toggleSidebar: () => {
+                    const s = document.querySelector('.sidebar');
+                    if(window.innerWidth <= 768) {
+                        s.classList.toggle('mobile-open');
+                    } else {
+                        s.classList.toggle('collapsed');
+                    }
+                },
                 toast: (msg, type='info') => {
                     const c = { good:'var(--accent-green)', bad:'var(--accent-pink)', warn:'var(--accent-gold)', info:'var(--accent-blue)' };
                     const t = document.createElement('div'); t.className = 'toast'; t.style.borderLeftColor = c[type]; t.innerHTML = `<i class="ph-bold ph-info"></i> <span>${msg}</span>`;
