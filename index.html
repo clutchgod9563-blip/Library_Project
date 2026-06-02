@@ -617,15 +617,25 @@
                     </div>
                 </div>
 
-                <div id="v-return" class="view">
+               <div id="v-return" class="view">
                     <div class="glass" style="max-width:850px; margin:0 auto;">
                         <h3><i class="ph ph-arrow-u-down-left"></i> Process Book Return</h3>
-                        <p style="color:var(--text-mute); margin-bottom:24px;">Enter the copy ID number (found on the book label, e.g., CP-1001) or scan the barcode.</p>
+                        <p style="color:var(--text-mute); margin-bottom:24px;">Enter the Copy ID (e.g., CP-1001) OR a Member ID (e.g., M-9901) to find active loans.</p>
                         <div class="flex">
-                            <input id="ret-id" placeholder="Copy ID (e.g., CP-1001)" style="font-size: 16px; font-family: var(--font-code);" onkeydown="if(event.key==='Enter') AmanLib.Return.check()">
+                            <input id="ret-id" placeholder="Scan/Type Copy ID or Member ID" style="font-size: 16px; font-family: var(--font-code);" onkeydown="if(event.key==='Enter') AmanLib.Return.check()">
                             <button class="btn btn-pri" onclick="AmanLib.Return.check()">Find Loan Info</button>
                         </div>
                         
+                        <div id="ret-multi-panel" class="hidden" style="margin-top:32px; border-top:1px dashed rgba(255,255,255,0.1); padding-top:24px;">
+                            <h4 style="margin-bottom: 16px; color: var(--accent-blue); font-size: 15px;">Active Loans Found for Member</h4>
+                            <div class="table-wrap">
+                                <table id="t-ret-multi">
+                                    <thead><tr><th>Copy ID</th><th>Book Title</th><th>Due Date</th><th>Action</th></tr></thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+
                         <div id="ret-panel" class="hidden" style="margin-top:32px; border-top:1px dashed rgba(255,255,255,0.1); padding-top:32px;">
                             <div class="grid-2">
                                 <div>
@@ -1748,54 +1758,88 @@
                 }
             },
 
-         Return: {
-            check: () => {
-                let inp = $('ret-id').value.trim().toUpperCase();
-                if (!inp) return AmanLib.UI.toast('Please enter a Copy ID or ISBN.', 'warn');
-                
-                // 1. Fix: Parse the scanned QR code format if it contains ISBN and SHELF data
-                if (inp.includes("ISBN:") && inp.includes("SHELF:")) {
-                    inp = inp.split('|')[0].split(':')[1].trim();
-                }
-                
-                // 2. Fix: Multi-match across active open transactions by either Copy ID OR ISBN
-                const tx = AmanLib.data.txns.find(t => 
-                    t.status === 'OPEN' && 
-                    ((t.copyId && t.copyId.toUpperCase() === inp) || (t.isbn && t.isbn.toUpperCase() === inp))
-                );
-                
-                if(!tx) return AmanLib.UI.toast('No active borrowed record found matching this Copy ID or ISBN.', 'bad');
-                
-                AmanLib.temp.retTxn = tx;
-                const b = AmanLib.data.books.find(x => x.isbn === tx.isbn); 
-                const m = AmanLib.data.members.find(x => x.id === tx.memId);
-                
-                $('rp-title').innerText = b ? b.title : 'Book info unmapped'; 
-                $('rp-mem').innerText = m ? m.name : 'Member record unmapped'; 
-                $('rp-due').innerText = tx.dueDate;
-                
-                const due = new Date(tx.dueDate); 
-                const today = new Date(); 
-                let fine = 0;
-                if(today > due) {
-                    let days = Math.floor((today - due) / (1000*60*60*24));
-                    if(AmanLib.data.holidays && AmanLib.data.holidays.length > 0) {
-                        let ptr = new Date(due);
-                        while(ptr <= today) {
-                            let str = ptr.toISOString().split('T')[0];
-                            if(AmanLib.data.holidays.includes(str)) days--;
-                            ptr.setDate(ptr.getDate() + 1);
-                        }
-                        days = Math.max(0, days);
+       Return: {
+                check: () => {
+                    const inputVal = $('ret-id').value.trim(); 
+                    if(!inputVal) return;
+
+                    // Hide both panels initially
+                    $('ret-multi-panel').classList.add('hidden');
+                    $('ret-panel').classList.add('hidden');
+
+                    // 1. Try to find a direct Copy ID match
+                    const tx = AmanLib.data.txns.find(t => t.copyId.toLowerCase() === inputVal.toLowerCase() && t.status === 'OPEN');
+                    if(tx) {
+                        AmanLib.Return.loadTransaction(tx);
+                        return;
                     }
-                    let rate = AmanLib.data.settings.fineTiers[m?.type || "Student"] || AmanLib.data.settings.fine;
-                    fine = days * rate;
-                }
-                $('rp-fine').innerText = AmanLib.data.settings.curr + fine; 
-                $('rp-paid').value = fine; 
-                $('rp-waived').value = 0;
-                $('ret-panel').classList.remove('hidden');
-            },
+
+                    // 2. Try to find a Member ID match
+                    const m = AmanLib.data.members.find(x => x.id.toLowerCase() === inputVal.toLowerCase() || x.name.toLowerCase().includes(inputVal.toLowerCase()));
+                    if(m) {
+                        const memberTxns = AmanLib.data.txns.filter(t => t.memId === m.id && t.status === 'OPEN');
+                        
+                        if(memberTxns.length === 0) {
+                            return AmanLib.UI.toast('This member has no active book loans.', 'warn');
+                        } else if (memberTxns.length === 1) {
+                            AmanLib.UI.toast(`Found 1 active loan for ${m.name}.`, 'good');
+                            AmanLib.Return.loadTransaction(memberTxns[0]);
+                        } else {
+                            AmanLib.UI.toast(`Found ${memberTxns.length} active loans for ${m.name}. Please select one.`, 'info');
+                            const tbody = $('t-ret-multi').querySelector('tbody');
+                            tbody.innerHTML = memberTxns.map(t => {
+                                const b = AmanLib.data.books.find(x => x.isbn === t.isbn);
+                                return `<tr>
+                                    <td class="mono font-bold" style="color:var(--accent-purple)">${t.copyId}</td>
+                                    <td>${b ? b.title : 'Unknown Book'}</td>
+                                    <td class="mono">${t.dueDate}</td>
+                                    <td><button class="btn btn-sec" style="padding:4px 10px; font-size:11px; height:auto; text-transform:none;" onclick="AmanLib.Return.selectTransaction('${t.id}')">Return This</button></td>
+                                </tr>`;
+                            }).join('');
+                            $('ret-multi-panel').classList.remove('hidden');
+                        }
+                        return;
+                    }
+
+                    return AmanLib.UI.toast('No active record found for that Copy ID or Member ID.', 'bad');
+                },
+
+                selectTransaction: (txId) => {
+                    const tx = AmanLib.data.txns.find(t => t.id === txId);
+                    if(tx) {
+                        $('ret-multi-panel').classList.add('hidden');
+                        AmanLib.Return.loadTransaction(tx);
+                    }
+                },
+
+                loadTransaction: (tx) => {
+                    AmanLib.temp.retTxn = tx;
+                    const b = AmanLib.data.books.find(x => x.isbn === tx.isbn); 
+                    const m = AmanLib.data.members.find(x => x.id === tx.memId);
+                    
+                    // Display Copy ID next to the title so you know exactly which book it is
+                    $('rp-title').innerHTML = `${b ? b.title : 'Book info unmapped'} <span class="tag t-info" style="font-size:12px; margin-left:8px;">${tx.copyId}</span>`; 
+                    $('rp-mem').innerText = m ? m.name : 'Member record unmapped'; 
+                    $('rp-due').innerText = tx.dueDate;
+                    
+                    const due = new Date(tx.dueDate); const today = new Date(); let fine = 0;
+                    if(today > due) {
+                        let days = Math.floor((today - due) / (1000*60*60*24));
+                        if(AmanLib.data.holidays && AmanLib.data.holidays.length > 0) {
+                            let ptr = new Date(due);
+                            while(ptr <= today) {
+                                let str = ptr.toISOString().split('T')[0];
+                                if(AmanLib.data.holidays.includes(str)) days--;
+                                ptr.setDate(ptr.getDate() + 1);
+                            }
+                            days = Math.max(0, days);
+                        }
+                        let rate = AmanLib.data.settings.fineTiers[m?.type || "Student"] || AmanLib.data.settings.fine;
+                        fine = days * rate;
+                    }
+                    $('rp-fine').innerText = AmanLib.data.settings.curr + fine; $('rp-paid').value = fine; $('rp-waived').value = 0;
+                    $('ret-panel').classList.remove('hidden');
+                },
                 calcWaiver: () => {
                     const f = parseFloat($('rp-fine').innerText.replace(/[^0-9.]/g,'')) || 0;
                     const w = parseFloat($('rp-waived').value) || 0;
@@ -1812,7 +1856,7 @@
                         const bObj = AmanLib.data.books.find(x => x.isbn === tx.isbn);
                         let replacementCost = bObj ? bObj.price : 500;
                         AmanLib.data.ledger.push({ date: tx.retDate, type: 'LOST_BILL', desc: `Charged replacement fine cost fee details for permanently lost copy code: ${tx.copyId}`, amt: replacementCost });
-                        AmanLib.UI.toast(`Book flagged as lost. Replacement cost parameters loaded onto financial balance sheet arrays.`, 'bad');
+                        AmanLib.UI.toast(`Book flagged as lost. Replacement cost parameters loaded.`, 'bad');
                     }
 
                     if(paid > 0) AmanLib.data.ledger.push({ date: tx.retDate, type: 'FINE', desc: `Collected cash penalty late fee return processing check update for copy tracking index: ${tx.copyId}`, amt: paid });
@@ -1821,7 +1865,7 @@
                     const resIdx = AmanLib.data.reservations.findIndex(r => r.isbn === tx.isbn && r.status === 'Active');
                     if(resIdx > -1) { 
                         AmanLib.data.reservations[resIdx].status = 'Fulfilled/Alerted'; 
-                        alert(`RESERVATION NOTIFICATION HOLD TRIGGERED:\n\nA waitlisted member holds reservation tracking locks priority focus on this returned asset material: Member ID code ${AmanLib.data.reservations[resIdx].memId}`); 
+                        alert(`RESERVATION NOTIFICATION HOLD TRIGGERED:\n\nA waitlisted member holds priority focus on this returned asset material: Member ID code ${AmanLib.data.reservations[resIdx].memId}`); 
                     }
                     
                     AmanLib.logEvent('Circulation Desk', `Processed book inbound return cycle checks completed cleanly for tracker code: ${tx.copyId}`, 'Book returned successfully');
@@ -1830,7 +1874,7 @@
                 },
                 printReceipt: () => {
                     const { jsPDF } = window.jspdf; const doc = new jsPDF();
-                    doc.text("AMAN'S LIBRARY - RETURN TRANSACTION RECEIPT INVOICE LOG", 14, 20);
+                    doc.text("AMAN'S LIBRARY - RETURN TRANSACTION RECEIPT", 14, 20);
                     doc.text(`Status Code: Return Settle Process Clear`, 14, 30);
                     doc.text(`Book Copy ID Tracker Tag reference: ${AmanLib.temp.retTxn.copyId}`, 14, 40);
                     doc.text(`Late Fine Incurred Total: ${$('rp-fine').innerText}`, 14, 50);
