@@ -263,7 +263,7 @@
             
             <div style="text-align: left; margin-bottom: 20px;">
                 <label>System Access Key</label>
-                <input type="password" id="login-pass" placeholder="Enter security passphrase (try: aman)" style="text-align:center; font-family:var(--font-code); letter-spacing:3px;">
+                <input type="password" id="login-pass" placeholder="Enter security passphrase" style="text-align:center; font-family:var(--font-code); letter-spacing:3px;">
             </div>
             
             <button class="btn btn-pri full-w" onclick="AmanLib.Auth.login()">Initialize System</button>
@@ -623,7 +623,7 @@
                                     <input type="date" id="issue-date" style="width:220px; margin:0;">
                                 </div>
                             </div>
-                            <button class="btn btn-pri" style="height: 48px; padding: 0 44px;" onclick="AmanLib.Issue.submit()">Authorize Loan Out Contract</button>
+                            <button class="btn btn-pri" style="height: 48px; padding: 0 44px;" onclick="AmanLib.Issue.submit()">Authorize Book Contract</button>
                         </div>
                     </div>
                 </div>
@@ -634,7 +634,7 @@
                         <p style="color:var(--text-mute); margin-bottom:24px;">Scan external barcode interface tracking metrics or feed individual instance token identifiers (e.g. CP-1001).</p>
                         <div class="flex">
                             <input id="ret-id" placeholder="Copy ID Number (e.g., CP-XXXX)" style="font-size: 16px; font-family: var(--font-code);" onkeydown="if(event.key==='Enter') AmanLib.Return.check()">
-                            <button class="btn btn-pri" onclick="AmanLib.Return.check()">Query Context</button>
+                            <button class="btn btn-pri" onclick="AmanLib.Return.check()">Return</button>
                         </div>
                         
                         <div id="ret-panel" class="hidden" style="margin-top:32px; border-top:1px dashed rgba(255,255,255,0.1); padding-top:32px;">
