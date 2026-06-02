@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aman's Library Project | Advanced System Matrix</title>
+    <title>Aman's Library | Management Matrix v3.0</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -12,136 +12,150 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
-            --bg-deep: #0b1121;       
-            --bg-panel: #151e32;      
-            --accent-blue: #0ea5e9;   
-            --accent-purple: #8b5cf6; 
-            --accent-pink: #ec4899;   
-            --accent-green: #10b981;  
-            --accent-gold: #f59e0b;   
-            --text-main: #f1f5f9;     
-            --text-mute: #94a3b8;     
-            --glass-border: 1px solid rgba(255, 255, 255, 0.08);
-            --glass-bg: rgba(30, 41, 59, 0.65); 
+            --bg-deep: #030712;       
+            --bg-panel: #0b0f19;      
+            --accent-blue: #38bdf8;   
+            --accent-purple: #a855f7; 
+            --accent-pink: #f43f5e;   
+            --accent-green: #34d399;  
+            --accent-gold: #fbbf24;   
+            --text-main: #f3f4f6;     
+            --text-mute: #9ca3af;     
+            --glass-border: 1px solid rgba(255, 255, 255, 0.05);
+            --glass-bg: rgba(17, 24, 39, 0.7); 
             --font-ui: 'Inter', sans-serif; 
             --font-head: 'Rajdhani', sans-serif; 
             --font-code: 'JetBrains Mono', monospace;
-            --radius: 16px; 
+            --radius: 12px; 
         }
         body.theme-navy {
             --bg-deep: #0f172a;
             --bg-panel: #1e293b;
-            --accent-blue: #3b82f6;
-            --accent-purple: #6366f1;
-            --accent-pink: #f43f5e;
-            --accent-green: #22c55e;
-            --accent-gold: #eab308;
-            --glass-bg: rgba(15, 23, 42, 0.8);
+            --accent-blue: #2563eb;
+            --accent-purple: #4f46e5;
+            --accent-pink: #e11d48;
+            --accent-green: #16a34a;
+            --accent-gold: #ca8a04;
+            --glass-bg: rgba(15, 23, 42, 0.85);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; outline: none; -webkit-tap-highlight-color: transparent; }
         body { 
             background: var(--bg-deep);
-            background-image: radial-gradient(circle at 15% 50%, rgba(14, 165, 233, 0.08), transparent 25%), radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.08), transparent 25%);
-            color: var(--text-main); font-family: var(--font-ui); height: 100vh; overflow: hidden; display: flex; font-size: 14px;
+            background-image: radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.05), transparent 40%), radial-gradient(circle at 90% 80%, rgba(168, 85, 247, 0.05), transparent 40%);
+            color: var(--text-main); font-family: var(--font-ui); height: 100vh; overflow: hidden; display: flex; font-size: 13px; letter-spacing: -0.01em;
         }
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
-        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 10px; }
+        ::-webkit-scrollbar { width: 5px; height: 5px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--accent-blue); }
-        .flex { display: flex; gap: 12px; align-items: center; }
-        .flex-col { display: flex; flex-direction: column; gap: 12px; }
+        
+        .flex { display: flex; gap: 10px; align-items: center; }
+        .flex-col { display: flex; flex-direction: column; gap: 10px; }
         .between { justify-content: space-between; }
-        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 24px; }
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
-        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+        
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
         .full-w { width: 100%; }
         .hidden { display: none !important; }
-        .mono { font-family: var(--font-code); }
+        .mono { font-family: var(--font-code); font-size: 12px; }
+        
         .glass { 
-            background: var(--glass-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border: var(--glass-border); border-radius: var(--radius); padding: 24px; 
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); transition: transform 0.2s ease, box-shadow 0.2s ease;
+            background: var(--glass-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border: var(--glass-border); border-radius: var(--radius); padding: 20px; 
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3); transition: border-color 0.2s, transform 0.2s;
         }
-        .glass:hover { border-color: rgba(255,255,255,0.15); transform: translateY(-2px); box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2); }
-        h1, h2, h3 { font-family: var(--font-head); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #fff; }
-        h3 { font-size: 18px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 12px; }
-        h3 i { color: var(--accent-blue); font-size: 20px; }
-        th { cursor: pointer; user-select: none; }
-        th:hover { color: var(--accent-blue) !important; background: rgba(255,255,255,0.06) !important; }
-        .btn { padding: 10px 18px; border: none; border-radius: 8px; font-weight: 600; font-size: 13px; cursor: pointer; transition: all 0.2s ease; display: inline-flex; align-items: center; justify-content: center; gap: 8px; color: #fff; }
-        .btn-pri { background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple)); box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3); }
-        .btn-pri:hover { filter: brightness(1.1); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(14, 165, 233, 0.4); }
-        .btn-sec { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: var(--text-mute); }
-        .btn-sec:hover { background: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.2); }
-        .btn-dan { background: rgba(236, 72, 153, 0.1); color: var(--accent-pink); border: 1px solid rgba(236, 72, 153, 0.2); }
-        .btn-dan:hover { background: rgba(236, 72, 153, 0.2); box-shadow: 0 0 15px rgba(236, 72, 153, 0.2); }
-        input, select, textarea { width: 100%; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 12px 16px; border-radius: 8px; font-family: var(--font-ui); font-size: 13px; transition: 0.2s; margin-bottom: 8px; }
-        input:focus, select:focus, textarea:focus { border-color: var(--accent-blue); background: rgba(0,0,0,0.5); box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.1); }
-        label { font-size: 11px; color: var(--accent-blue); font-weight: 600; display: block; margin: 0 0 6px 2px; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.8; }
-        input[type="file"] { display: none; }
-        .table-wrap { overflow-x: auto; border-radius: 12px; border: var(--glass-border); background: rgba(0,0,0,0.2); }
+        .glass:hover { border-color: rgba(255,255,255,0.1); }
+        
+        h1, h2, h3, h4 { font-family: var(--font-head); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #fff; }
+        h3 { font-size: 16px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 10px; }
+        h3 i { color: var(--accent-blue); font-size: 18px; }
+        
+        .btn { padding: 8px 14px; border: none; border-radius: 6px; font-weight: 600; font-size: 12px; cursor: pointer; transition: all 0.2s ease; display: inline-flex; align-items: center; justify-content: center; gap: 6px; color: #fff; }
+        .btn-pri { background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple)); }
+        .btn-pri:hover { filter: brightness(1.1); transform: translateY(-1px); }
+        .btn-sec { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); color: var(--text-mute); }
+        .btn-sec:hover { background: rgba(255,255,255,0.08); color: #fff; }
+        .btn-dan { background: rgba(244, 63, 94, 0.1); color: var(--accent-pink); border: 1px solid rgba(244, 63, 94, 0.15); }
+        .btn-dan:hover { background: rgba(244, 63, 94, 0.2); }
+        
+        input, select, textarea { width: 100%; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.08); color: #fff; padding: 10px 14px; border-radius: 6px; font-family: var(--font-ui); font-size: 12px; transition: 0.2s; margin-bottom: 6px; }
+        input:focus, select:focus, textarea:focus { border-color: var(--accent-blue); background: rgba(0,0,0,0.6); box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.1); }
+        label { font-size: 10px; color: var(--accent-blue); font-weight: 700; display: block; margin: 0 0 4px 2px; text-transform: uppercase; letter-spacing: 0.5px; }
+        
+        .table-wrap { overflow-x: auto; border-radius: 8px; border: var(--glass-border); background: rgba(0,0,0,0.2); }
         table { width: 100%; border-collapse: collapse; white-space: nowrap; }
-        th { text-align: left; padding: 16px; background: rgba(255,255,255,0.03); color: var(--text-mute); font-family: var(--font-head); font-size: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        td { padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,0.03); color: var(--text-main); font-size: 13px; }
-        tr:hover td { background: rgba(255,255,255,0.02); }
-        .tag { padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 600; display: inline-block; font-family: var(--font-code); border: 1px solid transparent; }
-        .t-ok { color: #86efac; background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.2); } 
-        .t-bad { color: #f9a8d4; background: rgba(236, 72, 153, 0.15); border-color: rgba(236, 72, 153, 0.2); }
-        .t-info { color: #67e8f9; background: rgba(6, 182, 212, 0.15); border-color: rgba(6, 182, 212, 0.2); }
-        .t-warn { color: #fcd34d; background: rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.2); }
+        th { text-align: left; padding: 12px 16px; background: rgba(255,255,255,0.02); color: var(--text-mute); font-family: var(--font-head); font-size: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); cursor: pointer; user-select: none; }
+        th:hover { color: var(--accent-blue); background: rgba(255,255,255,0.04); }
+        td { padding: 10px 16px; border-bottom: 1px solid rgba(255,255,255,0.02); color: var(--text-main); font-size: 12px; vertical-align: middle; }
+        tr:hover td { background: rgba(255,255,255,0.01); }
+        
+        .tag { padding: 3px 8px; border-radius: 4px; font-size: 10px; font-weight: 600; display: inline-block; font-family: var(--font-code); }
+        .t-ok { color: #34d399; background: rgba(52, 211, 153, 0.1); border: 1px solid rgba(52, 211, 153, 0.15); } 
+        .t-bad { color: #f43f5e; background: rgba(244, 63, 94, 0.1); border: 1px solid rgba(244, 63, 94, 0.15); }
+        .t-info { color: #38bdf8; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.15); }
+        .t-warn { color: #fbbf24; background: rgba(251, 191, 36, 0.1); border: 1px solid rgba(251, 191, 36, 0.15); }
+        
         #app { display: none; width: 100%; height: 100%; }
-        .sidebar { width: 260px; background: #080c17; border-right: var(--glass-border); display: flex; flex-direction: column; padding: 24px 0; z-index: 10; }
-        .brand { font-size: 22px; font-weight: 800; color: #fff; padding: 0 24px 30px; display: flex; align-items: center; gap: 12px; letter-spacing: 1px; font-family: var(--font-head); }
-        .nav-head { font-size: 11px; color: var(--text-mute); text-transform: uppercase; margin: 16px 0 6px 24px; font-weight: 700; opacity: 0.5; letter-spacing: 1px; }
-        .nav-item { padding: 10px 24px; color: var(--text-mute); cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 14px; border-left: 3px solid transparent; font-weight: 500; font-size: 13px; margin-bottom: 2px; }
-        .nav-item:hover { color: #fff; background: rgba(255,255,255,0.03); }
-        .nav-item.active { color: var(--accent-blue); background: rgba(14, 165, 233, 0.08); border-left-color: var(--accent-blue); }
-        .main { flex: 1; display: flex; flex-direction: column; overflow: hidden; position: relative; }
-        .top-bar { height: 70px; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; border-bottom: var(--glass-border); background: rgba(11, 17, 32, 0.7); backdrop-filter: blur(12px); }
-        .content { padding: 40px; overflow-y: auto; height: calc(100% - 70px); scroll-behavior: smooth; }
-        .view { display: none; animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1); } 
+        .sidebar { width: 240px; background: #05070c; border-right: var(--glass-border); display: flex; flex-direction: column; padding: 20px 0; z-index: 10; }
+        .brand { font-size: 18px; font-weight: 800; color: #fff; padding: 0 20px 24px; display: flex; align-items: center; gap: 10px; letter-spacing: 0.5px; font-family: var(--font-head); border-bottom: 1px solid rgba(255,255,255,0.03); }
+        .nav-head { font-size: 10px; color: var(--text-mute); text-transform: uppercase; margin: 14px 0 4px 20px; font-weight: 700; opacity: 0.4; letter-spacing: 0.5px; }
+        .nav-item { padding: 8px 20px; color: var(--text-mute); cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 10px; border-left: 2px solid transparent; font-weight: 500; font-size: 12px; }
+        .nav-item:hover { color: #fff; background: rgba(255,255,255,0.02); }
+        .nav-item.active { color: var(--accent-blue); background: rgba(56, 189, 248, 0.05); border-left-color: var(--accent-blue); font-weight: 600; }
+        
+        .main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+        .top-bar { height: 60px; padding: 0 30px; display: flex; align-items: center; justify-content: space-between; border-bottom: var(--glass-border); background: rgba(3, 7, 18, 0.6); backdrop-filter: blur(8px); }
+        .content { padding: 30px; overflow-y: auto; height: calc(100% - 60px); }
+        
+        .view { display: none; animation: viewIn 0.3s cubic-bezier(0.16, 1, 0.3, 1); } 
         .view.active { display: block; }
-        @keyframes fadeIn { from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
-        .modal-mask { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 100; display: none; align-items: center; justify-content: center; backdrop-filter: blur(8px); }
-        .modal { width: 550px; max-width: 95%; background: #111827; border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 32px; max-height: 90vh; overflow-y: auto; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.6); animation: zoomIn 0.2s ease; }
-        @keyframes zoomIn { from{transform:scale(0.96); opacity:0;} to{transform:scale(1); opacity:1;} }
-        .stat-card { background: rgba(255,255,255,0.02); padding: 24px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.05); position: relative; overflow: hidden; transition: 0.2s; }
-        .stat-card:hover { transform: translateY(-3px); background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.1); }
-        .stat-val { font-size: 32px; font-weight: 800; color: #fff; font-family: var(--font-head); margin-bottom: 4px; }
-        .stat-lbl { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; opacity: 0.6; }
-        .suggestion-box { position: absolute; background: #1e293b; border: 1px solid var(--glass-border); width: 100%; max-height: 250px; overflow-y: auto; z-index: 50; top: 105%; left: 0; border-radius: 12px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5); }
-        .sug-item { padding: 12px 16px; cursor: pointer; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 13px; display: flex; justify-content: space-between; }
+        @keyframes viewIn { from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:translateY(0);} }
+        
+        .modal-mask { position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 100; display: none; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
+        .modal { width: 500px; max-width: 95%; background: #090d16; border: var(--glass-border); border-radius: 16px; padding: 24px; max-height: 85vh; overflow-y: auto; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        
+        .stat-card { background: rgba(255,255,255,0.01); padding: 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.03); position: relative; overflow: hidden; transition: 0.2s; }
+        .stat-card:hover { transform: translateY(-1px); background: rgba(255,255,255,0.02); }
+        .stat-val { font-size: 26px; font-weight: 700; color: #fff; font-family: var(--font-head); margin-bottom: 2px; }
+        .stat-lbl { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.5; }
+        
+        .suggestion-box { position: absolute; background: #0d121f; border: 1px solid rgba(255,255,255,0.1); width: 100%; max-height: 200px; overflow-y: auto; z-index: 50; top: 105%; left: 0; border-radius: 6px; }
+        .sug-item { padding: 10px 14px; cursor: pointer; border-bottom: 1px solid rgba(255,255,255,0.03); font-size: 12px; display: flex; justify-content: space-between; }
         .sug-item:hover { background: var(--accent-blue); color: #000; }
-        #toast-feed { position: fixed; bottom: 30px; right: 30px; z-index: 200; display: flex; flex-direction: column; gap: 10px; pointer-events: none; }
-        .toast { pointer-events: auto; background: #1e293b; color: #fff; padding: 14px 24px; border-radius: 12px; font-size: 13px; border-left: 4px solid var(--accent-blue); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5); animation: slideIn 0.3s; display: flex; align-items: center; gap: 12px; font-weight: 500; }
-        .barcode-container { display: flex; gap: 1px; background: #fff; padding: 10px; height: 60px; justify-content: center; align-items: stretch; border-radius: 4px; width: fit-content; margin: 10px auto; }
+        
+        #toast-feed { position: fixed; bottom: 20px; right: 20px; z-index: 200; display: flex; flex-direction: column; gap: 8px; pointer-events: none; }
+        .toast { pointer-events: auto; background: #0b0f19; color: #fff; padding: 10px 18px; border-radius: 6px; font-size: 12px; border-left: 3px solid var(--accent-blue); box-shadow: 0 10px 24px rgba(0,0,0,0.4); display: flex; align-items: center; gap: 8px; font-weight: 500; animation: slideIn 0.2s ease-out; }
+        @keyframes slideIn { from{transform:translateX(30px); opacity:0;} to{transform:translateX(0); opacity:1;} }
+        
+        .barcode-container { display: flex; gap: 1px; background: #fff; padding: 6px; height: 45px; justify-content: center; align-items: stretch; border-radius: 4px; width: fit-content; margin: 8px auto; }
         .barcode-bar { background: #000; width: 2px; }
         .barcode-bar.space { background: transparent; }
-        @keyframes slideIn { from{transform:translateX(50px); opacity:0;} to{transform:translateX(0); opacity:1;} }
-        @media print { body * { visibility: hidden; } #print-zone, #print-zone * { visibility: visible; } #print-zone { position: absolute; left: 0; top: 0; width: 100%; color: #000; background: #fff; padding: 20mm; } }
+        @media print { body * { visibility: hidden; } #print-zone, #print-zone * { visibility: visible; } #print-zone { position: absolute; left: 0; top: 0; width: 100%; background: #fff; padding: 10mm; } }
     </style>
 </head>
 <body>
     <div id="toast-feed"></div>
-    <div id="login-screen" style="position:fixed; inset:0; z-index:999; background:#020617; display:flex; align-items:center; justify-content:center; background-image: radial-gradient(circle at 50% 50%, #1e293b 0%, #020617 100%);">
-        <div style="width:400px; text-align:center; padding: 40px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 24px; backdrop-filter: blur(10px);">
-            <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple)); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; box-shadow: 0 10px 20px rgba(56, 189, 248, 0.3);">
-                <i class="ph-bold ph-books" style="font-size:40px; color:#fff;"></i>
+    
+    <div id="login-screen" style="position:fixed; inset:0; z-index:999; background:#030712; display:flex; align-items:center; justify-content:center; background-image: radial-gradient(circle at 50% 50%, #0b1329 0%, #030712 100%);">
+        <div style="width:360px; text-align:center; padding: 30px; background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.04); border-radius: 16px; backdrop-filter: blur(12px);">
+            <div style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple)); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; box-shadow: 0 8px 16px rgba(56, 189, 248, 0.2);">
+                <i class="ph-bold ph-books" style="font-size:30px; color:#fff;"></i>
             </div>
-            <h1 style="font-size:28px; margin-bottom:8px;">Aman's Library</h1>
-            <p style="color:var(--text-mute); margin-bottom:30px; font-size: 13px;">ADVANCED MANAGEMENT SYSTEM</p>
-            <input type="password" id="login-pass" placeholder="Enter Access Key" style="text-align:center; font-family:var(--font-code); letter-spacing:2px; background: rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.1);">
-            <button class="btn btn-pri full-w" onclick="AmanLib.Auth.login()" style="margin-top: 15px;">Unlock System</button>
-            <div style="margin-top: 20px; font-size: 11px; opacity: 0.4;">Secure • Local • Fast</div>
+            <h1 style="font-size:24px; margin-bottom:4px;">Aman's Library</h1>
+            <p style="color:var(--text-mute); margin-bottom:24px; font-size: 11px; tracking: 1px;">MANAGEMENT FRAMEWORK v3.0</p>
+            <input type="password" id="login-pass" placeholder="Access Key (try: aman)" style="text-align:center; font-family:var(--font-code); letter-spacing:2px;">
+            <button class="btn btn-pri full-w" onclick="AmanLib.Auth.login()" style="margin-top: 10px; height: 38px;">Unlock System</button>
         </div>
     </div>
+
     <div id="app">
         <aside class="sidebar">
             <div class="brand">
-                <div style="width:32px; height:32px; background:var(--accent-blue); border-radius:8px; display:flex; align-items:center; justify-content:center;">
-                    <i class="ph-bold ph-books" style="color:#000; font-size:18px;"></i>
+                <div style="width:28px; height:28px; background:var(--accent-blue); border-radius:6px; display:flex; align-items:center; justify-content:center;">
+                    <i class="ph-bold ph-books" style="color:#000; font-size:14px;"></i>
                 </div>
-                AMAN'S LIB
+                AMAN'S LIBRARY
             </div>
             <div class="nav-head">Dashboard</div>
             <div class="nav-item active" onclick="AmanLib.Nav('dash')"><i class="ph ph-squares-four"></i> Overview</div>
@@ -157,347 +171,356 @@
             <div class="nav-item" onclick="AmanLib.Nav('finance')"><i class="ph ph-currency-circle-dollar"></i> Finances</div>
             <div class="nav-item" onclick="AmanLib.Nav('audit')"><i class="ph ph-list-bullets"></i> System Logs</div>
             <div class="nav-item" onclick="AmanLib.Nav('settings')"><i class="ph ph-gear"></i> Settings</div>
-            <div style="margin-top:auto; padding:24px;">
-                <div style="background: rgba(255,255,255,0.03); padding: 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
-                    <div style="font-size: 11px; color: var(--text-mute); margin-bottom: 5px;">Project By</div>
-                    <div style="font-weight: 700; color: #fff;">Aman's Team</div>
-                    <button class="btn btn-sec full-w" onclick="AmanLib.Settings.seedMockData()" style="font-size: 10px; margin-top: 8px; padding: 4px;">Seed System Demo</button>
-                    <div style="font-size: 10px; color: var(--accent-green); margin-top: 5px;">● System Online</div>
+            
+            <div style="margin-top:auto; padding:16px;">
+                <div style="background: rgba(255,255,255,0.02); padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.04);">
+                    <div style="font-weight: 700; color: #fff; font-size:11px;">Aman's Production</div>
+                    <button class="btn btn-sec full-w" onclick="AmanLib.Settings.seedMockData()" style="font-size: 10px; margin-top: 6px; padding: 4px;">Seed System Demo</button>
                 </div>
             </div>
-            <div class="nav-item" onclick="location.reload()" style="color:var(--accent-pink); margin-top: 5px;"><i class="ph ph-power"></i> Log Out</div>
+            <div class="nav-item" onclick="location.reload()" style="color:var(--accent-pink);"><i class="ph ph-power"></i> Log Out</div>
         </aside>
+
         <main class="main">
             <header class="top-bar">
-                <div class="flex"><h2 id="page-title" style="font-size:22px;">Dashboard</h2></div>
+                <div class="flex"><h2 id="page-title" style="font-size:18px;">Dashboard</h2></div>
                 <div class="flex">
                     <button class="btn btn-sec" onclick="AmanLib.Diagnostics.runAudioCheck()" title="Audio Test"><i class="ph ph-speaker-high"></i></button>
-                    <span id="sys-date" class="mono text-sm" style="background: rgba(255,255,255,0.05); padding: 6px 12px; border-radius: 6px;"></span>
+                    <span id="sys-date" class="mono text-sm" style="background: rgba(255,255,255,0.03); padding: 4px 10px; border-radius: 4px;"></span>
                     <input type="file" id="restore-file" onchange="AmanLib.Backup.restore(this)">
                     <button class="btn btn-sec" onclick="$('restore-file').click()" title="Restore Data"><i class="ph ph-upload-simple"></i></button>
                     <button class="btn btn-sec" onclick="AmanLib.Backup.download()" title="Backup Data"><i class="ph ph-download-simple"></i></button>
-                    <div style="width: 35px; height: 35px; background: linear-gradient(135deg, #333, #555); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 1px solid rgba(255,255,255,0.2);">A</div>
+                    <div style="width: 30px; height: 30px; background: linear-gradient(135deg, #222, #444); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 1px solid rgba(255,255,255,0.1); font-size:11px;">A</div>
                 </div>
             </header>
+
             <div class="content">
                 <div id="v-dash" class="view active">
                     <div class="grid-4">
-                        <div class="stat-card" style="border-left: 4px solid var(--accent-blue)">
+                        <div class="stat-card" style="border-left: 3px solid var(--accent-blue)">
                             <div class="stat-val" id="d-books">0</div>
-                            <div class="stat-lbl">Total Books</div>
-                            <i class="ph ph-books" style="position: absolute; right: 20px; top: 20px; font-size: 40px; opacity: 0.1;"></i>
+                            <div class="stat-lbl">Total Inventory</div>
                         </div>
-                        <div class="stat-card" style="border-left: 4px solid var(--accent-purple)">
+                        <div class="stat-card" style="border-left: 3px solid var(--accent-purple)">
                             <div class="stat-val" id="d-issued">0</div>
-                            <div class="stat-lbl">Books Issued</div>
-                            <i class="ph ph-hand-giving" style="position: absolute; right: 20px; top: 20px; font-size: 40px; opacity: 0.1;"></i>
+                            <div class="stat-lbl">Active Loans</div>
                         </div>
-                        <div class="stat-card" style="border-left: 4px solid var(--accent-pink)">
+                        <div class="stat-card" style="border-left: 3px solid var(--accent-pink)">
                             <div class="stat-val" id="d-overdue">0</div>
-                            <div class="stat-lbl" style="color: var(--accent-pink);">Action Required</div>
-                            <i class="ph ph-warning" style="position: absolute; right: 20px; top: 20px; font-size: 40px; opacity: 0.1;"></i>
+                            <div class="stat-lbl" style="color: var(--accent-pink);">Overdue Books</div>
                         </div>
-                        <div class="stat-card" style="border-left: 4px solid var(--accent-gold)">
+                        <div class="stat-card" style="border-left: 3px solid var(--accent-gold)">
                             <div class="stat-val" id="d-fines">₹0</div>
-                            <div class="stat-lbl">Outstanding Fines</div>
-                            <i class="ph ph-currency-circle-dollar" style="position: absolute; right: 20px; top: 20px; font-size: 40px; opacity: 0.1;"></i>
+                            <div class="stat-lbl">Unpaid Fines</div>
                         </div>
                     </div>
-                    <div class="grid-4" style="margin-top:15px;">
-                        <div class="stat-card" style="border-left: 4px solid var(--accent-green)">
+                    
+                    <div class="grid-4" style="margin-top:20px;">
+                        <div class="stat-card" style="border-left: 3px solid var(--accent-green)">
                             <div class="stat-val" id="d-active-members">0</div>
                             <div class="stat-lbl">Active Borrowers</div>
                         </div>
-                        <div class="stat-card" style="border-left: 4px solid var(--accent-blue)">
+                        <div class="stat-card" style="border-left: 3px solid var(--accent-blue)">
                             <div class="stat-val" id="d-popular-book">-</div>
-                            <div class="stat-lbl">Top Book</div>
+                            <div class="stat-lbl">Top Title</div>
                         </div>
-                        <div class="stat-card" style="border-left: 4px solid var(--accent-purple)">
+                        <div class="stat-card" style="border-left: 3px solid var(--accent-purple)">
                             <div class="stat-val" id="d-total-genres">0</div>
-                            <div class="stat-lbl">Genres Available</div>
+                            <div class="stat-lbl">Genres</div>
                         </div>
-                        <div class="stat-card" style="border-left: 4px solid var(--accent-gold)">
+                        <div class="stat-card" style="border-left: 3px solid var(--accent-gold)">
                             <div class="stat-val" id="d-waived-fines">₹0</div>
-                            <div class="stat-lbl">Total Waived</div>
+                            <div class="stat-lbl">Waived Fines</div>
                         </div>
                     </div>
-                    <div class="grid-4" style="margin-top:15px;">
-                        <div class="stat-card" style="border-left: 4px solid var(--accent-blue)">
+
+                    <div class="grid-4" style="margin-top:20px;">
+                        <div class="stat-card" style="border-left: 3px solid var(--accent-blue)">
                             <div class="stat-val" id="d-projected-fines">₹0</div>
-                            <div class="stat-lbl">Projected Fine Accruals</div>
+                            <div class="stat-lbl">Accruing Fines</div>
                         </div>
-                        <div class="stat-card" style="border-left: 4px solid var(--accent-green)">
+                        <div class="stat-card" style="border-left: 3px solid var(--accent-green)">
                             <div class="stat-val" id="d-asset-valuation">₹0</div>
-                            <div class="stat-lbl">Total Asset Value</div>
+                            <div class="stat-lbl">Asset Value</div>
                         </div>
-                        <div class="stat-card" style="border-left: 4px solid var(--accent-pink)">
+                        <div class="stat-card" style="border-left: 3px solid var(--accent-pink)">
                             <div class="stat-val" id="d-quarantine-count">0</div>
-                            <div class="stat-lbl">Quarantined Stock</div>
+                            <div class="stat-lbl">In Maintenance</div>
                         </div>
-                        <div class="stat-card" style="border-left: 4px solid var(--accent-purple)">
+                        <div class="stat-card" style="border-left: 3px solid var(--accent-purple)">
                             <div class="stat-val" id="d-avg-reliability">100%</div>
-                            <div class="stat-lbl">Avg Member Reliability</div>
+                            <div class="stat-lbl">Member On-Time %</div>
                         </div>
                     </div>
-                    <div class="grid-2" style="margin-top:25px;">
+
+                    <div class="grid-2" style="margin-top:20px;">
                         <div class="glass">
-                            <h3><i class="ph ph-door"></i> Physical Space Attendance Entry</h3>
+                            <h3><i class="ph ph-door"></i> Check-In Space Attendance</h3>
                             <div class="flex">
-                                <input id="att-mid" placeholder="Scan or Type Member ID Code" style="margin:0;">
+                                <input id="att-mid" placeholder="Scan or Type Member ID" style="margin:0;">
                                 <button class="btn btn-pri" onclick="AmanLib.Attendance.checkIn()">In</button>
                                 <button class="btn btn-dan" onclick="AmanLib.Attendance.checkOut()">Out</button>
                             </div>
-                            <div class="flex between text-sm mono" style="margin-top:15px; background:rgba(0,0,0,0.2); padding:10px; border-radius:8px;">
-                                <span>Active Room Population Load: <b id="live-occupancy-count" style="color:var(--accent-green)">0</b></span>
+                            <div class="flex between text-sm mono" style="margin-top:12px; background:rgba(0,0,0,0.2); padding:8px; border-radius:6px;">
+                                <span>Live Occupancy Count: <b id="live-occupancy-count" style="color:var(--accent-green)">0</b></span>
                             </div>
                         </div>
                         <div class="glass">
-                            <h3><i class="ph ph-calendar-todo"></i> Operational Agenda Executive Summary</h3>
-                            <div id="agenda-briefing-pane" class="mono text-xs text-main" style="max-height:120px; overflow-y:auto; background:rgba(0,0,0,0.3); padding:12px; border-radius:8px;"></div>
+                            <h3><i class="ph ph-calendar-todo"></i> Brief Executive Log</h3>
+                            <div id="agenda-briefing-pane" class="mono text-xs text-main" style="max-height:100px; overflow-y:auto; background:rgba(0,0,0,0.2); padding:10px; border-radius:6px;"></div>
                         </div>
                     </div>
-                    <div class="grid-2" style="margin-top:25px;">
+
+                    <div class="grid-2" style="margin-top:20px;">
                         <div class="glass">
-                            <h3><i class="ph ph-chart-bar"></i> Weekly Activity</h3>
-                            <div style="height:220px; position:relative; margin-bottom:15px;">
+                            <h3><i class="ph ph-chart-bar"></i> Weekly Activity Stream</h3>
+                            <div style="height:200px; position:relative;">
                                 <canvas id="chart-circ"></canvas>
                             </div>
                         </div>
                         <div class="glass">
-                            <h3><i class="ph ph-chart-pie"></i> Inventory Distribution</h3>
-                            <div style="height:220px; position:relative; margin-bottom:15px;">
+                            <h3><i class="ph ph-chart-pie"></i> Inventory Spread</h3>
+                            <div style="height:200px; position:relative;">
                                 <canvas id="chart-genre"></canvas>
                             </div>
                         </div>
                     </div>
-                    <div class="grid-2" style="margin-top:25px;">
+
+                    <div class="grid-2" style="margin-top:20px;">
                         <div class="glass">
-                            <div class="flex between">
-                                <h3><i class="ph ph-bell-ringing"></i> Overdue Alerts</h3>
-                                <span class="tag t-bad">Priority</span>
-                            </div>
-                            <div id="list-overdue" style="margin-top:15px; max-height:250px; overflow-y:auto;" class="flex-col"></div>
+                            <h3><i class="ph ph-bell-ringing"></i> Urgent Overdue Alerts</h3>
+                            <div id="list-overdue" style="max-height:220px; overflow-y:auto;" class="flex-col"></div>
                         </div>
                         <div class="glass">
-                            <h3><i class="ph ph-clock-counter-clockwise"></i> Recent Log</h3>
+                            <h3><i class="ph ph-clock-counter-clockwise"></i> Global System Log</h3>
                             <div class="table-wrap">
                                 <table id="t-recent"><thead><tr><th>Txn ID</th><th>Action</th><th>Member</th><th>Book</th><th>Date</th></tr></thead><tbody></tbody></table>
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <div id="v-catalog" class="view">
                     <div class="glass">
-                        <div class="flex between mb-2">
-                            <h3><i class="ph ph-books"></i> Master Catalog</h3>
+                        <div class="flex between mb-2" style="margin-bottom:15px;">
+                            <h3><i class="ph ph-books"></i> Catalog Registry</h3>
                             <div class="flex">
-                                <button class="btn btn-sec" onclick="AmanLib.UI.modal('m-wishlist-view')"><i class="ph ph-heart"></i> Suggestions Board</button>
+                                <button class="btn btn-sec" onclick="AmanLib.UI.modal('m-wishlist-view')"><i class="ph ph-heart"></i> Suggestion Board</button>
                                 <button class="btn btn-sec" onclick="AmanLib.UI.modal('m-bulk-import')"><i class="ph ph-file-arrow-up"></i> Bulk Import</button>
                                 <button class="btn btn-pri" onclick="AmanLib.UI.modal('m-book'); AmanLib.Catalog.prepAdd();"><i class="ph ph-plus"></i> Add New Book</button>
                             </div>
                         </div>
-                        <div style="background: rgba(139, 92, 246, 0.1); border: 1px dashed var(--accent-purple); padding: 15px; border-radius: 12px; margin-bottom: 20px;">
+                        
+                        <div style="background: rgba(168, 85, 247, 0.05); border: 1px dashed rgba(168, 85, 247, 0.2); padding: 12px; border-radius: 8px; margin-bottom: 16px;">
                             <div class="flex">
-                                <i class="ph-bold ph-scan" style="font-size: 24px; color: var(--accent-purple);"></i>
+                                <i class="ph-bold ph-scan" style="font-size: 20px; color: var(--accent-purple);"></i>
                                 <div class="full-w">
-                                    <div style="font-size: 11px; color: var(--accent-purple); font-weight: bold; text-transform: uppercase;">Scan to Locate</div>
-                                    <input id="shelf-finder" placeholder="Scan Book QR or Type ISBN/Title here to find shelf..." style="margin: 0; background: transparent; border: none; padding: 5px 0; font-size: 14px;" onkeydown="if(event.key==='Enter') AmanLib.Catalog.locate()">
+                                    <input id="shelf-finder" placeholder="Scan QR or Type ISBN/Title to pinpoint shelf location..." style="margin: 0; background: transparent; border: none; padding: 4px 0; font-size: 13px;" onkeydown="if(event.key==='Enter') AmanLib.Catalog.locate()">
                                 </div>
-                                <button class="btn btn-sec" onclick="AmanLib.Catalog.locate()">Locate</button>
+                                <button class="btn btn-sec" onclick="AmanLib.Catalog.locate()">Track Asset</button>
                             </div>
                         </div>
-                        <div class="grid-4" style="margin-bottom:20px; background: rgba(0,0,0,0.2); padding: 15px; border-radius: 12px; gap: 15px;">
+
+                        <div class="grid-4" style="margin-bottom:16px; background: rgba(0,0,0,0.15); padding: 12px; border-radius: 8px; gap: 12px;">
                             <div>
-                                <label>Search Criteria</label>
+                                <label>Search Matrix</label>
                                 <input id="cat-search" placeholder="Title, Author, ISBN..." style="margin:0;" onkeyup="AmanLib.Catalog.render()">
                             </div>
                             <div>
-                                <label>Genre Classification</label>
+                                <label>Genre Scope</label>
                                 <select id="cat-filter" style="margin:0;" onchange="AmanLib.Catalog.render()">
                                     <option value="ALL">All Genres</option><option value="Fiction">Fiction</option><option value="Science">Science</option><option value="History">History</option><option value="Tech">Technology</option><option value="Arts">Arts</option><option value="Other">Other</option>
                                 </select>
                             </div>
                             <div>
-                                <label>Stock Availability</label>
+                                <label>Availability</label>
                                 <select id="cat-avail-filter" style="margin:0;" onchange="AmanLib.Catalog.render()">
-                                    <option value="ALL">All Stock</option><option value="AVAILABLE">Only Available</option>
+                                    <option value="ALL">All Stock</option><option value="AVAILABLE">Available Now</option>
                                 </select>
                             </div>
                             <div>
-                                <label>Min Rating Tier</label>
+                                <label>Minimum Rating</label>
                                 <select id="cat-rating-filter" style="margin:0;" onchange="AmanLib.Catalog.render()">
-                                    <option value="0">All Ratings</option><option value="5">⭐⭐⭐⭐⭐ 5 Stars</option><option value="4">⭐⭐⭐⭐ & Up</option><option value="3">⭐⭐⭐ & Up</option>
+                                    <option value="0">All Reviews</option><option value="5">⭐⭐⭐⭐⭐ 5 Stars</option><option value="4">⭐⭐⭐⭐ & Up</option><option value="3">⭐⭐⭐ & Up</option>
                                 </select>
                             </div>
                         </div>
-                        <div style="margin-bottom: 15px;" class="flex">
-                            <div style="width: 50%;">
-                                <label>Filter Publication Year Range (Min)</label>
+                        
+                        <div style="margin-bottom: 16px;" class="grid-2">
+                            <div>
+                                <label>Publication Year Minimum</label>
                                 <input type="number" id="cat-year-min" placeholder="e.g. 2000" style="margin:0;" onkeyup="AmanLib.Catalog.render()">
                             </div>
-                            <div style="width: 50%;">
-                                <label>Filter Publication Year Range (Max)</label>
+                            <div>
+                                <label>Publication Year Maximum</label>
                                 <input type="number" id="cat-year-max" placeholder="e.g. 2026" style="margin:0;" onkeyup="AmanLib.Catalog.render()">
                             </div>
                         </div>
+
                         <div class="table-wrap">
                             <table id="t-cat">
                                 <thead>
                                     <tr>
                                         <th onclick="AmanLib.Sorting.sort('t-cat', 0)">ISBN</th>
-                                        <th onclick="AmanLib.Sorting.sort('t-cat', 1)">Title</th>
-                                        <th onclick="AmanLib.Sorting.sort('t-cat', 2)">Author / Subgenre</th>
+                                        <th onclick="AmanLib.Sorting.sort('t-cat', 1)">Book Title</th>
+                                        <th onclick="AmanLib.Sorting.sort('t-cat', 2)">Author</th>
                                         <th onclick="AmanLib.Sorting.sort('t-cat', 3)">Genre</th>
                                         <th onclick="AmanLib.Sorting.sort('t-cat', 4)">Shelf</th>
                                         <th onclick="AmanLib.Sorting.sort('t-cat', 5)">Copies</th>
                                         <th onclick="AmanLib.Sorting.sort('t-cat', 6)">Rating</th>
-                                        <th>Action</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
-                                tbody</tbody>
+                                <tbody></tbody>
                             </table>
                         </div>
                     </div>
                 </div>
+
                 <div id="v-reservations" class="view">
                     <div class="glass">
-                         <h3><i class="ph ph-bookmark"></i> Active Reservations</h3>
-                         <p class="text-mute" style="margin-bottom: 20px;">Members waiting for books. Automatically alerted upon return processing.</p>
+                         <h3><i class="ph ph-bookmark"></i> Hold Queues</h3>
                          <div class="table-wrap">
-                             <table id="t-res"><thead><tr><th>Date</th><th>Member</th><th>Book Title</th><th>Status</th><th>Actions</th></tr></thead><tbody></tbody></table>
+                             <table id="t-res"><thead><tr><th>Date Locked</th><th>Member Node</th><th>Book Target</th><th>Status</th><th>Actions</th></tr></thead><tbody></tbody></table>
                          </div>
                     </div>
                 </div>
+
                 <div id="v-issue" class="view">
                     <div class="grid-2">
                         <div class="glass">
-                            <h3><i class="ph ph-user-focus"></i> 1. Find Member</h3>
+                            <h3><i class="ph ph-user-focus"></i> 1. Select Target Member</h3>
                             <div style="position:relative">
-                                <input id="issue-mem-s" placeholder="Type Name or ID..." onkeyup="AmanLib.Issue.searchMem(this.value)">
+                                <input id="issue-mem-s" placeholder="Type Name or Profile ID..." onkeyup="AmanLib.Issue.searchMem(this.value)">
                                 <div id="issue-mem-res" class="suggestion-box hidden"></div>
                             </div>
-                            <div id="issue-mem-card" class="hidden" style="margin-top:20px; background:linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)); padding:20px; border-radius:12px; border:1px solid rgba(255,255,255,0.05);">
+                            <div id="issue-mem-card" class="hidden" style="margin-top:16px; background:rgba(255,255,255,0.02); padding:16px; border-radius:8px; border:1px solid rgba(255,255,255,0.04);">
                                 <div class="flex between">
-                                    <div class="bold" id="im-name" style="font-size:16px; color:#fff;"></div>
+                                    <div class="bold" id="im-name" style="font-size:14px; color:#fff;"></div>
                                     <div class="tag t-info" id="im-type"></div>
                                 </div>
-                                <div class="mono text-sm" id="im-id" style="color:var(--text-mute); margin-top:5px;"></div>
-                                <div class="flex between" style="margin-top:10px;">
+                                <div class="mono text-sm" id="im-id" style="color:var(--text-mute); margin-top:4px;"></div>
+                                <div class="flex between" style="margin-top:8px;">
                                     <span id="im-expiry-tag" class="tag"></span>
                                     <span id="im-status-tag" class="tag"></span>
                                     <span id="im-tier-tag" class="tag t-info"></span>
                                 </div>
-                                <div class="flex between" style="margin-top:10px;">
+                                <div class="flex between" style="margin-top:8px;">
                                     <span id="im-score-tag" class="tag t-ok"></span>
                                 </div>
-                                <div class="tag t-warn mt-2" id="im-status" style="margin-top: 15px;"></div>
+                                <div class="tag t-warn mt-2" id="im-status" style="margin-top: 10px;"></div>
                                 <div style="margin-top:10px;" id="override-container" class="hidden">
-                                    <label style="color:var(--accent-pink)">Limit Reached. Admin Bypass Password:</label>
+                                    <label style="color:var(--accent-pink)">Limit Tripped. Admin Override Code:</label>
                                     <input type="password" id="override-pass" style="margin:0;">
                                 </div>
                             </div>
                         </div>
                         <div class="glass">
-                            <h3><i class="ph ph-book-bookmark"></i> 2. Select Book</h3>
+                            <h3><i class="ph ph-book-bookmark"></i> 2. Select Target Book Asset</h3>
                             <div style="position:relative">
-                                <input id="issue-book-s" placeholder="Type Title or ISBN..." onkeyup="AmanLib.Issue.searchBook(this.value)">
+                                <input id="issue-book-s" placeholder="Type Title or Scan ISBN..." onkeyup="AmanLib.Issue.searchBook(this.value)">
                                 <div id="issue-book-res" class="suggestion-box hidden"></div>
                             </div>
-                            <div id="issue-book-card" class="hidden" style="margin-top:20px; background:linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)); padding:20px; border-radius:12px; border:1px solid rgba(255,255,255,0.05);">
-                                <div class="bold" id="ib-title" style="font-size:16px; color:#fff;"></div>
-                                <div class="text-sm" style="margin: 10px 0;">Available Copies: <span id="ib-count" style="color:var(--accent-green); font-weight: bold;">0</span></div>
-                                <label>Select Specific Copy:</label>
-                                <select id="ib-copy" style="margin-top:5px"></select>
+                            <div id="issue-book-card" class="hidden" style="margin-top:16px; background:rgba(255,255,255,0.02); padding:16px; border-radius:8px; border:1px solid rgba(255,255,255,0.04);">
+                                <div class="bold" id="ib-title" style="font-size:14px; color:#fff;"></div>
+                                <div class="text-sm" style="margin: 8px 0;">Available Copies: <span id="ib-count" style="color:var(--accent-green); font-weight: bold;">0</span></div>
+                                <label>Assign Token Reference:</label>
+                                <select id="ib-copy" style="margin-top:4px"></select>
                             </div>
                         </div>
                     </div>
-                    <div class="glass" style="margin-top:25px; border-left: 4px solid var(--accent-blue);">
+                    <div class="glass" style="margin-top:20px; border-left: 3px solid var(--accent-blue);">
                         <div class="flex between">
                             <div class="flex">
                                 <div>
-                                    <label>Return By</label>
-                                    <input type="date" id="issue-date" style="width:200px; margin:0;">
+                                    <label>Contract Return Matrix Expiry Date</label>
+                                    <input type="date" id="issue-date" style="width:180px; margin:0;">
                                 </div>
                             </div>
-                            <button class="btn btn-pri" style="height: 45px; padding: 0 40px;" onclick="AmanLib.Issue.submit()">CONFIRM ISSUE</button>
+                            <button class="btn btn-pri" style="height: 36px; padding: 0 30px;" onclick="AmanLib.Issue.submit()">CONFIRM CONTRACT LOAN</button>
                         </div>
                     </div>
                 </div>
+
                 <div id="v-return" class="view">
-                    <div class="glass" style="max-width:800px; margin:0 auto;">
-                        <h3><i class="ph ph-arrow-u-down-left"></i> Process Return</h3>
-                        <p style="color:var(--text-mute); margin-bottom:20px;">Scan barcode or enter Accession ID (e.g., CP-1023).</p>
+                    <div class="glass" style="max-width:700px; margin:0 auto;">
+                        <h3><i class="ph ph-arrow-u-down-left"></i> Ingest Returned Asset</h3>
+                        <p style="color:var(--text-mute); margin-bottom:16px;">Scan barcode or type individual token token identifier (e.g., CP-1001).</p>
                         <div class="flex">
-                            <input id="ret-id" placeholder="Accession ID" style="font-size: 16px; font-family: var(--font-code);" onkeydown="if(event.key==='Enter') AmanLib.Return.check()">
-                            <button class="btn btn-pri" onclick="AmanLib.Return.check()">Fetch Details</button>
+                            <input id="ret-id" placeholder="Copy Code" style="font-size: 14px; font-family: var(--font-code);" onkeydown="if(event.key==='Enter') AmanLib.Return.check()">
+                            <button class="btn btn-pri" onclick="AmanLib.Return.check()">Query Token</button>
                         </div>
-                        <div id="ret-panel" class="hidden" style="margin-top:30px; border-top:1px dashed var(--glass-border); padding-top:30px;">
+                        
+                        <div id="ret-panel" class="hidden" style="margin-top:24px; border-top:1px dashed rgba(255,255,255,0.08); padding-top:24px;">
                             <div class="grid-2">
                                 <div>
-                                    <label>Book Title</label>
-                                    <div id="rp-title" style="font-size:18px; color:#fff; font-weight:bold; margin-bottom:15px;"></div>
-                                    <label>Issued To</label>
-                                    <div id="rp-mem" style="color:var(--accent-purple); font-size: 15px;"></div>
+                                    <label>Asset Title</label>
+                                    <div id="rp-title" style="font-size:16px; color:#fff; font-weight:bold; margin-bottom:10px;"></div>
+                                    <label>Current Holder</label>
+                                    <div id="rp-mem" style="color:var(--accent-purple); font-size: 14px;"></div>
                                 </div>
-                                <div style="text-align:right; background: rgba(0,0,0,0.2); padding: 15px; border-radius: 12px;">
-                                    <label>Due Date</label>
-                                    <div id="rp-due" class="mono" style="margin-bottom: 10px;"></div>
-                                    <label>Late Fine</label>
-                                    <div id="rp-fine" style="font-size:28px; color:var(--accent-pink); font-weight:bold;">₹0</div>
+                                <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px;">
+                                    <label>Due Boundary Date</label>
+                                    <div id="rp-due" class="mono" style="margin-bottom: 6px;"></div>
+                                    <label>Computed Penalty Matrix Fine</label>
+                                    <div id="rp-fine" style="font-size:24px; color:var(--accent-pink); font-weight:bold;">₹0</div>
                                 </div>
                             </div>
-                            <div class="grid-3" style="margin-top: 20px;">
+                            
+                            <div class="grid-3" style="margin-top: 16px;">
                                 <div>
-                                    <label>Condition Status</label>
+                                    <label>Physical Integrity State</label>
                                     <select id="rp-cond">
                                         <option value="Good">Good (No Change)</option>
                                         <option value="Fair">Fair (Wear & Tear)</option>
                                         <option value="Poor">Poor (Damaged)</option>
-                                        <option value="Quarantine">Quarantine (Repair needed)</option>
-                                        <option value="Lost">Lost (Charge Cost)</option>
+                                        <option value="Quarantine">Maintenance Hold</option>
+                                        <option value="Lost">Lost Liability</option>
                                     </select>
                                 </div>
                                 <div>
                                     <label>Payment Collected</label>
-                                    <input type="number" id="rp-paid" value="0" style="margin:0; font-size: 16px; font-weight: bold;">
+                                    <input type="number" id="rp-paid" value="0" style="margin:0; font-weight: bold;">
                                 </div>
                                 <div>
-                                    <label>Waiver Amount</label>
-                                    <input type="number" id="rp-waived" value="0" style="margin:0; font-size: 16px; font-weight: bold; color: var(--accent-gold);" onkeyup="AmanLib.Return.calcWaiver()">
+                                    <label>Waiver Fine Reduction</label>
+                                    <input type="number" id="rp-waived" value="0" style="margin:0; font-weight: bold; color: var(--accent-gold);" onkeyup="AmanLib.Return.calcWaiver()">
                                 </div>
                             </div>
-                            <div class="grid-2" style="margin-top:15px;">
-                                <button class="btn btn-sec full-w" onclick="AmanLib.Return.printReceipt()"><i class="ph ph-file-pdf"></i> Generate PDF Invoice</button>
-                                <button class="btn btn-pri full-w" style="height: 50px;" onclick="AmanLib.Return.confirm()">COMPLETE RETURN</button>
+                            <div class="grid-2" style="margin-top:16px;">
+                                <button class="btn btn-sec full-w" onclick="AmanLib.Return.printReceipt()"><i class="ph ph-file-pdf"></i> PDF Invoice Receipt</button>
+                                <button class="btn btn-pri full-w" style="height: 40px;" onclick="AmanLib.Return.confirm()">CLOSE CONTRACT WORKFLOW</button>
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <div id="v-members" class="view">
                     <div class="glass">
-                        <div class="flex between mb-2">
-                            <h3>Registered Members</h3>
-                            <button class="btn btn-pri" onclick="AmanLib.UI.modal('m-mem'); AmanLib.Members.prepAdd();"><i class="ph ph-user-plus"></i> Add Member</button>
+                        <div class="flex between mb-2" style="margin-bottom:15px;">
+                            <h3>Borrower Database Profiles</h3>
+                            <button class="btn btn-pri" onclick="AmanLib.UI.modal('m-mem'); AmanLib.Members.prepAdd();"><i class="ph ph-user-plus"></i> Register Profile</button>
                         </div>
-                        <input id="mem-search" placeholder="Search by Name or ID..." onkeyup="AmanLib.Members.render()">
-                        <div id="mem-grid" class="grid-3" style="margin-top:25px;"></div>
+                        <input id="mem-search" placeholder="Filter by name string or tracking token..." onkeyup="AmanLib.Members.render()">
+                        <div id="mem-grid" class="grid-3" style="margin-top:20px;"></div>
                     </div>
                 </div>
+
                 <div id="v-finance" class="view">
                     <div class="grid-2">
                         <div class="glass">
-                            <div class="flex between mb-2">
-                                <h3>Ledger</h3>
-                                <button class="btn btn-sec" onclick="AmanLib.Finance.exportCSV()"><i class="ph ph-file-csv"></i> Export CSV</button>
+                            <div class="flex between mb-2" style="margin-bottom:15px;">
+                                <h3>Transactional Ledger</h3>
+                                <button class="btn btn-sec" onclick="AmanLib.Finance.exportCSV()"><i class="ph ph-file-csv"></i> Export Spreadsheet</button>
                             </div>
-                            <div class="table-wrap" style="height:400px; overflow-y:auto;">
+                            <div class="table-wrap" style="height:360px; overflow-y:auto;">
                                 <table id="t-fin">
                                     <thead>
                                         <tr>
-                                            <th onclick="AmanLib.Sorting.sort('t-fin', 0)">Date</th>
+                                            <th onclick="AmanLib.Sorting.sort('t-fin', 0)">Timestamp</th>
                                             <th onclick="AmanLib.Sorting.sort('t-fin', 1)">Type</th>
-                                            <th onclick="AmanLib.Sorting.sort('t-fin', 2)">Desc</th>
-                                            <th onclick="AmanLib.Sorting.sort('t-fin', 3)">Amt</th>
+                                            <th onclick="AmanLib.Sorting.sort('t-fin', 2)">Structural Description</th>
+                                            <th onclick="AmanLib.Sorting.sort('t-fin', 3)">Delta Amount</th>
                                         </tr>
                                     </thead>
                                     <tbody></tbody>
@@ -505,207 +528,219 @@
                             </div>
                         </div>
                         <div class="glass">
-                            <h3>Financial Summary</h3>
-                            <div class="stat-card" style="background:rgba(16, 185, 129, 0.05); margin-bottom:20px; border-color: rgba(16, 185, 129, 0.2);">
-                                <div class="stat-val" style="color:#86efac" id="fin-total">₹0</div>
-                                <div class="stat-lbl">Total Collected</div>
+                            <h3>Ledger Aggregation Balancing Metrics</h3>
+                            <div class="stat-card" style="background:rgba(52, 211, 153, 0.02); margin-bottom:16px; border-color: rgba(52, 211, 153, 0.1);">
+                                <div class="stat-val" style="color:#34d399" id="fin-total">₹0</div>
+                                <div class="stat-lbl">Liquid Cash Ingested</div>
                             </div>
-                            <div class="stat-card" style="background:rgba(245, 158, 11, 0.05); margin-bottom:20px; border-color: rgba(245, 158, 11, 0.2);">
-                                <div class="stat-val" style="color:#fcd34d" id="fin-pend">₹0</div>
-                                <div class="stat-lbl">Pending Fines</div>
+                            <div class="stat-card" style="background:rgba(251, 191, 36, 0.02); margin-bottom:16px; border-color: rgba(251, 191, 36, 0.1);">
+                                <div class="stat-val" style="color:#fbbf24" id="fin-pend">₹0</div>
+                                <div class="stat-lbl">Outstanding Matrix Balances</div>
                             </div>
-                            <div class="stat-card" style="background:rgba(236, 72, 153, 0.05); border-color: rgba(236, 72, 153, 0.2);">
-                                <div class="stat-val" style="color:#f9a8d4" id="fin-waived">₹0</div>
-                                <div class="stat-lbl">Total Forgiven/Waived</div>
+                            <div class="stat-card" style="background:rgba(244, 63, 94, 0.02); border-color: rgba(244, 63, 94, 0.1);">
+                                <div class="stat-val" style="color:#f43f5e" id="fin-waived">₹0</div>
+                                <div class="stat-lbl">Forgiven Fine Deductions</div>
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <div id="v-audit" class="view">
                     <div class="glass">
-                        <div class="flex between mb-2">
-                            <h3><i class="ph ph-list-bullets"></i> System Audit Trail</h3>
-                            <button class="btn btn-dan" onclick="AmanLib.Audit.pruneLogs()">Prune Log Registry</button>
+                        <div class="flex between mb-2" style="margin-bottom:15px;">
+                            <h3><i class="ph ph-list-bullets"></i> System Operation Audit History</h3>
+                            <button class="btn btn-dan" onclick="AmanLib.Audit.pruneLogs()">Truncate Event Registry</button>
                         </div>
-                        <p class="text-mute" style="margin-bottom:15px;">Historical record of security actions and internal state modifications.</p>
-                        <div class="table-wrap" style="max-height:500px; overflow-y:auto;">
-                            <table id="t-audit"><thead><tr><th>Timestamp</th><th>Category</th><th>Details</th></tr></thead><tbody></tbody></table>
+                        <div class="table-wrap" style="max-height:450px; overflow-y:auto;">
+                            <table id="t-audit"><thead><tr><th>Event Clock</th><th>Layer</th><th>Details</th></tr></thead><tbody></tbody></table>
                         </div>
                     </div>
                 </div>
+
                  <div id="v-settings" class="view">
                     <div class="glass" style="max-width:600px;">
-                        <h3>System Configuration</h3>
-                        <label>Library Name</label>
+                        <h3>Environmental Variable Configuration</h3>
+                        <label>Library Identifier Signature</label>
                         <input id="set-name" value="Aman's Library">
-                        <label>Default Loan Period (Days)</label>
+                        <label>Default Duration Boundary Constraint (Days)</label>
                         <input type="number" id="set-days" value="14">
-                        <label>Global UI Theme Preset</label>
+                        <label>Interface Theme Engine Preset</label>
                         <select id="set-theme" onchange="AmanLib.Settings.applyTheme(this.value)">
                             <option value="cyberpunk">Void Cyberpunk (Dark)</option>
-                            <option value="navy">High-Contrast Slate (Navy)</option>
+                            <option value="navy">Slate Blueprint (Navy)</option>
                         </select>
-                        <label>Localized Currency Unit</label>
+                        <label>Localization Currency Sign</label>
                         <select id="set-curr">
                             <option value="₹">₹ INR</option>
                             <option value="$">$ USD</option>
                             <option value="€">€ EUR</option>
                             <option value="£">£ GBP</option>
                         </select>
-                        <div style="margin: 15px 0 10px; border-top:1px solid rgba(255,255,255,0.05); padding-top:15px;">
-                            <h4 style="font-size:12px; color:var(--accent-purple); margin-bottom:10px;">TEMPLATES & EXCEPTIONS CONFIG</h4>
-                            <label>Overdue Notice Text Matrix</label>
+                        
+                        <div style="margin: 12px 0; border-top:1px solid rgba(255,255,255,0.05); padding-top:12px;">
+                            <h4 style="font-size:11px; color:var(--accent-purple); margin-bottom:8px;">Templates & Exclusion Boundaries</h4>
+                            <label>Overdue Custom String Notification Text Matrix</label>
                             <input id="set-tpl-overdue" value="">
-                            <label>Grace Period Exceptional Holiday Exclusions (Comma separated YYYY-MM-DD)</label>
+                            <label>Grace Period Exceptional Calendar Holiday Exclusions (YYYY-MM-DD, Comma Separated)</label>
                             <input id="set-holidays-list" placeholder="2026-01-01, 2026-12-25">
                         </div>
-                        <div style="margin: 15px 0 10px;"><h4 style="font-size:12px; color:var(--accent-purple);">FINE TIERS (PER DAY)</h4></div>
+                        
+                        <div style="margin: 12px 0;"><h4 style="font-size:11px; color:var(--accent-purple);">Dynamic Tier Multitask Late Penalty Cost Rates (Per 24h)</h4></div>
                         <div class="grid-3">
-                            <div><label>Student</label><input type="number" id="set-fine-student" value="5"></div>
-                            <div><label>Staff</label><input type="number" id="set-fine-staff" value="2"></div>
-                            <div><label>Public</label><input type="number" id="set-fine-public" value="10"></div>
+                            <div><label>Student Node</label><input type="number" id="set-fine-student" value="5"></div>
+                            <div><label>Staff Node</label><input type="number" id="set-fine-staff" value="2"></div>
+                            <div><label>Public Profile</label><input type="number" id="set-fine-public" value="10"></div>
                         </div>
-                        <button class="btn btn-pri full-w" onclick="AmanLib.Settings.save()" style="margin-top:20px;">Save Configuration</button>
-                        <div style="margin-top:25px; border-top:1px solid var(--glass-border); padding-top:15px;">
-                            <h4 style="font-size:12px; color:var(--accent-purple); margin-bottom:10px;">SELECTIVE BACKUP FILTER</h4>
+                        <button class="btn btn-pri full-w" onclick="AmanLib.Settings.save()" style="margin-top:16px; height:36px;">Commit Global Matrix Values</button>
+                        
+                        <div style="margin-top:20px; border-top:1px solid var(--glass-border); padding-top:12px;">
+                            <h4 style="font-size:11px; color:var(--accent-purple); margin-bottom:8px;">Segmented Manifest Partition Backups</h4>
                             <div class="grid-3">
-                                <button class="btn btn-sec" onclick="AmanLib.Backup.downloadFiltered('books')">Catalog</button>
-                                <button class="btn btn-sec" onclick="AmanLib.Backup.downloadFiltered('members')">Profiles</button>
-                                <button class="btn btn-sec" onclick="AmanLib.Backup.downloadFiltered('ledger')">Finance</button>
+                                <button class="btn btn-sec" onclick="AmanLib.Backup.downloadFiltered('books')">Catalog JSON</button>
+                                <button class="btn btn-sec" onclick="AmanLib.Backup.downloadFiltered('members')">Users JSON</button>
+                                <button class="btn btn-sec" onclick="AmanLib.Backup.downloadFiltered('ledger')">Finance JSON</button>
                             </div>
                         </div>
-                        <div style="margin-top:25px; border-top:1px solid var(--glass-border); padding-top:15px;">
-                            <h4 style="font-size:12px; color:var(--accent-purple); margin-bottom:10px;">HARDWARE DIAGNOSTIC SUITE</h4>
-                            <button class="btn btn-sec full-w" onclick="AmanLib.Diagnostics.runSystemValidationLoop()">Trigger Ecosystem Verification Check</button>
+                        <div style="margin-top:20px; border-top:1px solid var(--glass-border); padding-top:12px;">
+                            <h4 style="font-size:11px; color:var(--accent-purple); margin-bottom:8px;">Diagnostic Suite Hardware Loop</h4>
+                            <button class="btn btn-sec full-w" onclick="AmanLib.Diagnostics.runSystemValidationLoop()">Trigger Complete System Context Verification</button>
                         </div>
-                        <div style="margin-top:40px; border-top:1px solid var(--accent-pink); padding-top:20px;">
-                            <h3 style="color:var(--accent-pink); border:none;"><i class="ph ph-warning" style="color:var(--accent-pink)"></i> Danger Zone</h3>
-                            <button class="btn btn-dan full-w" onclick="AmanLib.Settings.nuke()">Factory Reset System</button>
+                        <div style="margin-top:30px; border-top:1px solid var(--accent-pink); padding-top:16px;">
+                            <h3 style="color:var(--accent-pink); border:none;"><i class="ph ph-warning" style="color:var(--accent-pink)"></i> Fatal Destructive Override Boundary</h3>
+                            <button class="btn btn-dan full-w" onclick="AmanLib.Settings.nuke()">Factory Reset Entire System State Matrix</button>
                         </div>
                     </div>
                 </div>
             </div>
         </main>
     </div>
+
     <div id="m-book" class="modal-mask">
         <div class="modal">
-            <h3 id="nb-header"><i class="ph ph-book-open"></i> New Book Entry</h3>
+            <h3 id="nb-header"><i class="ph ph-book-open"></i> Create Inventory Schema Node</h3>
             <input type="hidden" id="nb-mode" value="add"> 
             <div class="grid-2">
-                <div><label>ISBN</label><input id="nb-isbn" placeholder="Unique ISBN"></div>
-                <div><label>Shelf Location</label><input id="nb-shelf" placeholder="e.g. A-12"></div>
+                <div><label>ISBN Tracking Signature</label><input id="nb-isbn" placeholder="ISBN-13/10 Code"></div>
+                <div><label>Shelf Tracking Coordinate</label><input id="nb-shelf" placeholder="e.g. Row-G3"></div>
             </div>
-            <label>Book Title</label><input id="nb-title">
+            <label>Title String</label><input id="nb-title">
             <div class="grid-3">
-                <div><label>Author</label><input id="nb-auth"></div>
-                <div><label>Genre</label><select id="nb-gen"><option>Fiction</option><option>Science</option><option>History</option><option>Tech</option><option>Arts</option><option>Other</option></select></div>
-                <div><label>Subgenre / Tag</label><input id="nb-subgen" placeholder="e.g. AI, Calculus"></div>
+                <div><label>Author Node</label><input id="nb-auth"></div>
+                <div><label>Genre Block</label><select id="nb-gen"><option>Fiction</option><option>Science</option><option>History</option><option>Tech</option><option>Arts</option><option>Other</option></select></div>
+                <div><label>Subgenre Node Label</label><input id="nb-subgen" placeholder="e.g. AI, Calculus"></div>
             </div>
-            <div style="margin-bottom:10px; background:rgba(0,0,0,0.2); padding:10px; border-radius:8px;">
-                <label>Dynamic Core Extension Metadata Fields (JSON dictionary strings)</label>
-                <input id="nb-custom-meta" placeholder='{"Publisher": "OReilly", "Language": "English"}'>
+            <div style="margin-bottom:8px; background:rgba(0,0,0,0.2); padding:8px; border-radius:6px;">
+                <label>Dynamic Payload Metadata JSON Dictionary</label>
+                <input id="nb-custom-meta" placeholder='{"Publisher": "MIT Press", "Language": "English"}'>
             </div>
             <div class="grid-2">
-                <div><label>Sequential Set Chain Link ID (Series Code)</label><input id="nb-series-link" placeholder="e.g. VOL-1"></div>
-                <div><label>Inter-Library Loan Transit Facility Flag Location</label><input id="nb-ill-location" placeholder="e.g. Branch-B"></div>
+                <div><label>Sequential Set Chain Link Code</label><input id="nb-series-link" placeholder="e.g. VOL-1"></div>
+                <div><label>Transit Facility Flag Room</label><input id="nb-ill-location" placeholder="e.g. Central-Hub"></div>
             </div>
             <div class="grid-3">
-                <div><label>Replacement Cost</label><input type="number" id="nb-price" value="500"></div>
-                <div><label>Pub Year</label><input type="number" id="nb-year" value="2026"></div>
-                <div id="nb-qty-wrap"><label>Initial Copies</label><input type="number" id="nb-qty" value="1"></div>
+                <div><label>Replacement Cost Liability</label><input type="number" id="nb-price" value="500"></div>
+                <div><label>Publication Year Stamp</label><input type="number" id="nb-year" value="2026"></div>
+                <div id="nb-qty-wrap"><label>Initial Instances Allocated</label><input type="number" id="nb-qty" value="1"></div>
             </div>
-            <div class="flex" style="margin-top:30px;">
-                <button id="nb-btn" class="btn btn-pri full-w" onclick="AmanLib.Catalog.save()">Add to Catalog</button>
-                <button class="btn btn-sec full-w" onclick="AmanLib.UI.closeM('m-book')">Cancel</button>
+            <div class="flex" style="margin-top:24px;">
+                <button id="nb-btn" class="btn btn-pri full-w" onclick="AmanLib.Catalog.save()">Commit to Registry</button>
+                <button class="btn btn-sec full-w" onclick="AmanLib.UI.closeM('m-book')">Abort</button>
             </div>
         </div>
     </div>
+
     <div id="m-mem" class="modal-mask">
         <div class="modal">
-            <h3 id="nm-header"><i class="ph ph-user-plus"></i> New Member</h3>
+            <h3 id="nm-header"><i class="ph ph-user-plus"></i> Instatiate Member Profile</h3>
             <input type="hidden" id="nm-mode" value="add"><input type="hidden" id="nm-id" value="">
-            <label>Full Name</label><input id="nm-name">
-            <label>Phone / Contact</label><input id="nm-phone">
-            <label>Email</label><input id="nm-email">
+            <label>Name String Reference</label><input id="nm-name">
+            <label>Contact Endpoint Phone</label><input id="nm-phone">
+            <label>Email Endpoint Location</label><input id="nm-email">
             <div class="grid-2">
                 <div>
-                    <label>Membership Type</label>
+                    <label>Permission Class Group</label>
                     <select id="nm-type">
-                        <option value="Student">Student</option><option value="Staff">Staff</option><option value="Public">Public</option>
+                        <option value="Student">Student Class</option><option value="Staff">Staff Class</option><option value="Public">Public Class</option>
                     </select>
                 </div>
                 <div>
-                    <label>Account Expiration (Months)</label>
+                    <label>Duration Active Lifecycle (Months)</label>
                     <input type="number" id="nm-duration" value="12">
                 </div>
             </div>
-            <div class="flex" style="margin-top:30px;">
-                <button id="nm-btn" class="btn btn-pri full-w" onclick="AmanLib.Members.save()">Register</button>
-                <button class="btn btn-sec full-w" onclick="AmanLib.UI.closeM('m-mem')">Cancel</button>
+            <div class="flex" style="margin-top:24px;">
+                <button id="nm-btn" class="btn btn-pri full-w" onclick="AmanLib.Members.save()">Inject Identity Node</button>
+                <button class="btn btn-sec full-w" onclick="AmanLib.UI.closeM('m-mem')">Abort</button>
             </div>
         </div>
     </div>
+
     <div id="m-review" class="modal-mask">
         <div class="modal">
-            <h3><i class="ph ph-star"></i> Submit Book Review</h3>
+            <h3><i class="ph ph-star"></i> Commit Asset Review Analysis Vector</h3>
             <input type="hidden" id="rev-isbn">
-            <label>Rating Evaluation</label>
+            <label>Rating Index Score Evaluation</label>
             <select id="rev-rating">
-                <option value="5">⭐⭐⭐⭐⭐ 5 Stars</option><option value="4">⭐⭐⭐⭐ 4 Stars</option><option value="3">⭐⭐⭐ 3 Stars</option><option value="2">⭐⭐ 2 Stars</option><option value="1">⭐ 1 Star</option>
+                <option value="5">⭐⭐⭐⭐⭐ 5/5 Stars</option><option value="4">⭐⭐⭐⭐ 4/5 Stars</option><option value="3">⭐⭐⭐ 3/5 Stars</option><option value="2">⭐⭐ 2/5 Stars</option><option value="1">⭐ 1/5 Star</option>
             </select>
-            <label>Review Commentary</label>
-            <textarea id="rev-text" rows="3" placeholder="Enter critical notes regarding condition or content references..."></textarea>
-            <div style="margin: 10px 0; max-height: 150px; overflow-y: auto; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px;" id="review-feed-box"></div>
-            <div class="flex" style="margin-top:20px;">
-                <button class="btn btn-pri full-w" onclick="AmanLib.Catalog.submitReview()">Save Review</button>
-                <button class="btn btn-sec full-w" onclick="AmanLib.UI.closeM('m-review')">Cancel</button>
+            <label>Review Descriptive Commentary</label>
+            <textarea id="rev-text" rows="3" placeholder="Enter critical notes regarding asset data content references..."></textarea>
+            <div style="margin: 8px 0; max-height: 120px; overflow-y: auto; background: rgba(0,0,0,0.2); padding: 8px; border-radius: 6px;" id="review-feed-box"></div>
+            <div class="flex" style="margin-top:16px;">
+                <button class="btn btn-pri full-w" onclick="AmanLib.Catalog.submitReview()">Inject Analysis Matrix</button>
+                <button class="btn btn-sec full-w" onclick="AmanLib.UI.closeM('m-review')">Abort</button>
             </div>
         </div>
     </div>
+
     <div id="m-bulk-import" class="modal-mask">
         <div class="modal">
-            <h3><i class="ph ph-file-arrow-up"></i> Bulk Database Import</h3>
-            <p class="text-mute" style="font-size:12px; margin-bottom:15px;">Paste valid JSON matching array parameters directly into terminal interface field below.</p>
-            <textarea id="bulk-json-data" rows="8" placeholder='[{"isbn":"9780134685991","title":"Effective Java","author":"Joshua Bloch","genre":"Tech","subgen":"Programming","shelf":"T-04","price":800,"year":2018}]' style="font-family:var(--font-code); font-size:12px;"></textarea>
+            <h3><i class="ph ph-file-arrow-up"></i> Mass Struct Payload Database Ingestion</h3>
+            <p class="text-mute" style="font-size:11px; margin-bottom:12px;">Paste valid JSON matching array definitions directly below to parse into active system parameters.</p>
+            <textarea id="bulk-json-data" rows="8" placeholder='[{"isbn":"9780134685991","title":"Effective Java","author":"Joshua Bloch","genre":"Tech","subgen":"Programming","shelf":"T-04","price":800,"year":2018}]' style="font-family:var(--font-code); font-size:11px;"></textarea>
             <div class="flex">
-                <button class="btn btn-pri full-w" onclick="AmanLib.Catalog.processBulkImport()">Execute Batch Execution</button>
-                <button class="btn btn-sec full-w" onclick="AmanLib.UI.closeM('m-bulk-import')">Cancel</button>
+                <button class="btn btn-pri full-w" onclick="AmanLib.Catalog.processBulkImport()">Execute Sequence Parse Ingestion</button>
+                <button class="btn btn-sec full-w" onclick="AmanLib.UI.closeM('m-bulk-import')">Abort</button>
             </div>
         </div>
     </div>
+
     <div id="m-wishlist-view" class="modal-mask">
         <div class="modal">
-            <h3><i class="ph ph-heart"></i> Procurement Suggestion Voting Board</h3>
-            <div class="flex" style="margin-bottom:15px;">
-                <input id="wish-title" placeholder="Propose Book Title String Link Reference" style="margin:0;">
-                <button class="btn btn-pri" onclick="AmanLib.Wishlist.propose()">Submit</button>
+            <h3><i class="ph ph-heart"></i> Suggestion Queue Upvote Hub Matrix</h3>
+            <div class="flex" style="margin-bottom:12px;">
+                <input id="wish-title" placeholder="Proposed Book Title Reference String..." style="margin:0;">
+                <button class="btn btn-pri" onclick="AmanLib.Wishlist.propose()">Submit Propose</button>
             </div>
-            <div id="wishlist-rendering-box" class="flex-col" style="max-height:200px; overflow-y:auto; gap:8px;"></div>
-            <button class="btn btn-sec full-w" style="margin-top:15px;" onclick="AmanLib.UI.closeM('m-wishlist-view')">Close Board</button>
+            <div id="wishlist-rendering-box" class="flex-col" style="max-height:180px; overflow-y:auto; gap:6px;"></div>
+            <button class="btn btn-sec full-w" style="margin-top:12px;" onclick="AmanLib.UI.closeM('m-wishlist-view')">Close Hub Layout</button>
         </div>
     </div>
+
     <div id="m-copy-mgmt" class="modal-mask">
-        <div class="modal" style="width:700px;">
-            <h3><i class="ph ph-copy"></i> Copy Allocation Ledger</h3>
+        <div class="modal" style="width:650px;">
+            <h3><i class="ph ph-copy"></i> Tracked Allocated Copies Token Registry</h3>
             <input type="hidden" id="copy-mgmt-isbn">
-            <div style="margin-bottom: 15px; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px;" class="flex">
+            <div style="margin-bottom: 12px; background: rgba(0,0,0,0.2); padding: 8px; border-radius: 6px;" class="flex">
                 <div style="flex:1;">
-                    <label>Relocate Target Copy ID</label>
-                    <input id="relocate-copy-id" placeholder="e.g. CP-1234" style="margin:0;">
+                    <label>Target Individual Copy ID Code</label>
+                    <input id="relocate-copy-id" placeholder="e.g. CP-1002" style="margin:0;">
                 </div>
                 <div style="flex:1;">
-                    <label>New Shelf Designation</label>
-                    <input id="relocate-shelf-target" placeholder="e.g. B-09" style="margin:0;">
+                    <label>Target Translation Coordinates Shelf</label>
+                    <input id="relocate-shelf-target" placeholder="e.g. Shelf-Z" style="margin:0;">
                 </div>
-                <button class="btn btn-pri" style="margin-top:18px;" onclick="AmanLib.Catalog.relocateCopySubmit()">Transfer</button>
+                <button class="btn btn-pri" style="margin-top:14px;" onclick="AmanLib.Catalog.relocateCopySubmit()">Transfer Asset</button>
             </div>
-            <div class="table-wrap" style="max-height:250px; overflow-y:auto; margin:15px 0;">
-                <table id="t-copy-ledger"><thead><tr><th>Copy ID</th><th>Condition</th><th>Status</th><th>Lifecycle Management</th></tr></thead><tbody></tbody></table>
+            <div class="table-wrap" style="max-height:220px; overflow-y:auto; margin:12px 0;">
+                <table id="t-copy-ledger"><thead><tr><th>Token Tracking ID</th><th>Physical Integrity</th><th>Status Flag</th><th>Asset Partition Controls</th></tr></thead><tbody></tbody></table>
             </div>
-            <button class="btn btn-sec full-w" onclick="AmanLib.UI.closeM('m-copy-mgmt')">Close Registry</button>
+            <button class="btn btn-sec full-w" onclick="AmanLib.UI.closeM('m-copy-mgmt')">Close State Matrix</button>
         </div>
     </div>
+
     <div id="print-zone"></div>
+
     <script>
         const $ = i => document.getElementById(i);
         const $$ = s => document.querySelectorAll(s);
@@ -716,32 +751,47 @@
             },
             temp: { issueMem: null, issueBook: null, retTxn: null, sortDir: {}, privacyMode: false },
             init: async () => {
+                const fallbackLocalData = localStorage.getItem('AmanLibStateMatrix');
+                if(fallbackLocalData) {
+                    try { AmanLib.data = JSON.parse(fallbackLocalData); } catch(ex){}
+                }
                 try {
                     const response = await fetch('', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ action: 'load' })
                     });
-                    AmanLib.data = await response.json();
-                    if(!AmanLib.data.logs) AmanLib.data.logs = [];
-                    if(!AmanLib.data.attendance) AmanLib.data.attendance = [];
-                    if(!AmanLib.data.wishlist) AmanLib.data.wishlist = [];
-                    if(!AmanLib.data.holidays) AmanLib.data.holidays = [];
-                    if(!AmanLib.data.settings.fineTiers) AmanLib.data.settings.fineTiers = { Student: 5, Staff: 2, Public: 10 };
-                    if(!AmanLib.data.settings.curr) AmanLib.data.settings.curr = '₹';
-                    if(!AmanLib.data.settings.theme) AmanLib.data.settings.theme = 'cyberpunk';
-                    if(!AmanLib.data.msgTemplates) AmanLib.data.msgTemplates = {overdue:"Overdue notice parameter context.", welcome:"Welcome context pattern."};
-                    AmanLib.Settings.applyTheme(AmanLib.data.settings.theme);
+                    const remoteData = await response.json();
+                    if(remoteData && remoteData.books) {
+                        AmanLib.data = remoteData;
+                    }
                 } catch(e) {
-                    console.error(e);
-                    AmanLib.UI.toast('Failed to sync with Database backend parameters.', 'bad');
+                    console.warn('Backend server unreachable, relying gracefully on structural local Storage cache layer configuration.');
                 }
+                if(!AmanLib.data.books) AmanLib.data.books = [];
+                if(!AmanLib.data.copies) AmanLib.data.copies = [];
+                if(!AmanLib.data.members) AmanLib.data.members = [];
+                if(!AmanLib.data.txns) AmanLib.data.txns = [];
+                if(!AmanLib.data.reservations) AmanLib.data.reservations = [];
+                if(!AmanLib.data.ledger) AmanLib.data.ledger = [];
+                if(!AmanLib.data.logs) AmanLib.data.logs = [];
+                if(!AmanLib.data.attendance) AmanLib.data.attendance = [];
+                if(!AmanLib.data.wishlist) AmanLib.data.wishlist = [];
+                if(!AmanLib.data.holidays) AmanLib.data.holidays = [];
+                if(!AmanLib.data.settings) AmanLib.data.settings = { name: "Aman's Library", days: 14, fine: 5, curr: '₹', theme: 'cyberpunk', fineTiers: { Student: 5, Staff: 2, Public: 10 } };
+                if(!AmanLib.data.settings.fineTiers) AmanLib.data.settings.fineTiers = { Student: 5, Staff: 2, Public: 10 };
+                if(!AmanLib.data.settings.curr) AmanLib.data.settings.curr = '₹';
+                if(!AmanLib.data.settings.theme) AmanLib.data.settings.theme = 'cyberpunk';
+                if(!AmanLib.data.msgTemplates) AmanLib.data.msgTemplates = {overdue:"Overdue notice parameter context.", welcome:"Welcome context pattern."};
+                
+                AmanLib.Settings.applyTheme(AmanLib.data.settings.theme);
                 AmanLib.Dash.render();
                 $('sys-date').innerText = new Date().toLocaleDateString('en-US', { weekday:'short', year:'numeric', month:'short', day:'numeric' });
                 $('login-pass').addEventListener('keyup', e => { if(e.key==='Enter') AmanLib.Auth.login(); });
             },
             save: async () => {
                 AmanLib.Dash.render();
+                localStorage.setItem('AmanLibStateMatrix', JSON.stringify(AmanLib.data));
                 try {
                     await fetch('', {
                         method: 'POST',
@@ -749,8 +799,7 @@
                         body: JSON.stringify({ action: 'save', data: AmanLib.data })
                     });
                 } catch(e) {
-                    console.error(e);
-                    AmanLib.UI.toast('Database layer sync execution failure.', 'bad');
+                    console.error('Data layer server transmission sync suspended. Local client copy saved.');
                 }
             },
             logEvent: (cat, details) => {
@@ -803,6 +852,7 @@
                 sort: (tableId, colIdx) => {
                     const table = $(tableId);
                     const tbody = table.querySelector('tbody');
+                    if(!tbody) return;
                     const rows = Array.from(tbody.querySelectorAll('tr'));
                     if(rows.length < 1) return;
                     AmanLib.temp.sortDir[tableId] = !AmanLib.temp.sortDir[tableId];
@@ -850,7 +900,7 @@
                 renderModal: () => {
                     const box = $('wishlist-rendering-box');
                     box.innerHTML = AmanLib.data.wishlist.sort((a,b)=>b.votes - a.votes).map(w => {
-                        return `<div class="flex between" style="background:rgba(255,255,255,0.03); padding:10px; border-radius:6px; font-size:12px; border:1px solid rgba(255,255,255,0.05);">
+                        return `<div class="flex between" style="background:rgba(255,255,255,0.02); padding:8px; border-radius:6px; font-size:12px; border:1px solid rgba(255,255,255,0.04);">
                             <span class="mono">${w.title}</span>
                             <div class="flex">
                                 <span class="tag t-info">${w.votes || 1} priority points</span>
@@ -935,14 +985,14 @@
                     let lastAttState = {};
                     AmanLib.data.attendance.forEach(a => { lastAttState[a.memId] = a.type; });
                     Object.values(lastAttState).forEach(st => { if(st === 'IN') activeIn++; });
-                    $('live-occupancy-count').innerText = activeIn + " active entities";
+                    $('live-occupancy-count').innerText = activeIn;
 
                     let agendaBrief = [];
                     let rightNow = new Date().toISOString().split('T')[0];
                     let openLoans = AmanLib.data.txns.filter(t => t.status === 'OPEN');
                     agendaBrief.push(`● Active outstanding loan instances under observation: ${openLoans.length}`);
                     let urgentOverdue = openLoans.filter(t => t.dueDate < rightNow);
-                    agendaBrief.push(`● Critical breach exception boundaries detected: ${urgentOverdue.length} items`);
+                    agendaBrief.push(`● Critical boundary breaches detected: ${urgentOverdue.length} exceptions`);
                     $('agenda-briefing-pane').innerHTML = agendaBrief.join("<br>");
 
                     let brMap = {}; AmanLib.data.txns.forEach(t => { if(t.status==='OPEN') brMap[t.memId] = true; });
@@ -961,8 +1011,8 @@
                     const counts = dates.map(d => AmanLib.data.txns.filter(t => t.issueDate === d).length);
                     window.myChart = new Chart(ctx, {
                         type: 'bar',
-                        data: { labels: dates.map(d => d.slice(5)), datasets: [{ label: 'Issues Framework Metric Logs', data: counts, backgroundColor: '#0ea5e9', borderRadius: 4 }] },
-                        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: {display:false} }, scales: { x: { grid: { display:false }, ticks: { color: '#aaa' } }, y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#aaa' } } } }
+                        data: { labels: dates.map(d => d.slice(5)), datasets: [{ label: 'Issues Metric Timeline', data: counts, backgroundColor: '#38bdf8', borderRadius: 4 }] },
+                        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: {display:false} }, scales: { x: { grid: { display:false }, ticks: { color: '#888' } }, y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.03)' }, ticks: { color: '#888', stepSize: 1 } } } }
                     });
 
                     const gCtx = $('chart-genre');
@@ -972,9 +1022,9 @@
                         type: 'doughnut',
                         data: {
                             labels: Object.keys(gCounts),
-                            datasets: [{ data: Object.values(gCounts), backgroundColor: ['#0ea5e9', '#8b5cf6', '#ec4899', '#10b981', '#f59e0b', '#64748b'] }]
+                            datasets: [{ data: Object.values(gCounts), backgroundColor: ['#38bdf8', '#a855f7', '#f43f5e', '#34d399', '#fbbf24', '#64748b'], borderWidth: 0 }]
                         },
-                        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: '#aaa' } } } }
+                        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: '#aaa', font: { size: 10 } } } } }
                     });
 
                     const odList = AmanLib.data.txns.filter(t => t.status === 'OPEN' && new Date(t.dueDate) < new Date());
@@ -982,27 +1032,30 @@
                         const m = AmanLib.data.members.find(x => x.id === t.memId);
                         const b = AmanLib.data.books.find(x => x.isbn === t.isbn);
                         const days = Math.floor((new Date() - new Date(t.dueDate))/(1000*60*60*24));
-                        return `<div style="padding:12px; border-bottom:1px solid rgba(255,255,255,0.05); font-size:13px;">
-                            <div style="font-weight:bold; color:#fff">${b?b.title:'Unknown'}</div>
-                            <div class="flex between" style="margin-top:4px;">
-                                <span style="color:var(--accent-purple)">${m?m.name:'Unknown'}</span> 
-                                <span class="tag t-bad">${days} days late</span>
+                        return `<div style="padding:10px; border-bottom:1px solid rgba(255,255,255,0.03); font-size:12px; background:rgba(244,63,94,0.02); border-radius:4px;">
+                            <div style="font-weight:600; color:#fff">${b?b.title:'Unknown Title'}</div>
+                            <div class="flex between" style="margin-top:2px;">
+                                <span style="color:var(--accent-purple)">${m?m.name:'Unknown Borrower'}</span> 
+                                <span class="tag t-bad">${days}d late</span>
                             </div>
                         </div>`;
-                    }).join('') || '<div style="padding:20px; text-align:center; color:var(--text-mute)">No overdue records pending verification vectors.</div>';
+                    }).join('') || '<div style="padding:10px; text-align:center; color:var(--text-mute)">No overdue verification records trailing standard parameters.</div>';
                     
-                    $('t-recent').querySelector('tbody').innerHTML = AmanLib.data.txns.slice().reverse().slice(0, 8).map(t => {
-                        const m = AmanLib.data.members.find(x => x.id === t.memId);
-                        const b = AmanLib.data.books.find(x => x.isbn === t.isbn);
-                        const action = t.status === 'OPEN' ? '<span class="tag t-info">Issued</span>' : '<span class="tag t-ok">Returned</span>';
-                        return `<tr>
-                            <td><span class="mono" style="opacity:0.7">${t.id.split('-')[1]}</span></td>
-                            <td>${action}</td>
-                            <td>${m?.name || 'Unknown'}</td>
-                            <td>${b?.title.substring(0, 15) || 'Unknown'}...</td>
-                            <td class="mono text-sm">${t.issueDate}</td>
-                        </tr>`;
-                    }).join('');
+                    const tbodyRecent = $('t-recent').querySelector('tbody');
+                    if(tbodyRecent) {
+                        tbodyRecent.innerHTML = AmanLib.data.txns.slice().reverse().slice(0, 6).map(t => {
+                            const m = AmanLib.data.members.find(x => x.id === t.memId);
+                            const b = AmanLib.data.books.find(x => x.isbn === t.isbn);
+                            const action = t.status === 'OPEN' ? '<span class="tag t-info">Issued</span>' : '<span class="tag t-ok">Returned</span>';
+                            return `<tr>
+                                <td><span class="mono" style="opacity:0.6">${t.id.split('-')[1] || t.id}</span></td>
+                                <td>${action}</td>
+                                <td>${m?.name || 'Unknown'}</td>
+                                <td>${b?.title.substring(0, 14) || 'Unknown'}...</td>
+                                <td class="mono">${t.issueDate}</td>
+                            </tr>`;
+                        }).join('');
+                    }
                 }
             },
             Catalog: {
@@ -1015,7 +1068,11 @@
                     const yMax = parseInt($('cat-year-max').value) || 3000;
 
                     const res = AmanLib.data.books.filter(b => {
-                        const mText = b.title.toLowerCase().includes(q) || b.author.toLowerCase().includes(q) || b.isbn.includes(q) || (b.subgen && b.subgen.toLowerCase().includes(q));
+                        const bTitle = b.title || '';
+                        const bAuth = b.author || '';
+                        const bIsbn = b.isbn || '';
+                        const bSub = b.subgen || '';
+                        const mText = bTitle.toLowerCase().includes(q) || bAuth.toLowerCase().includes(q) || bIsbn.includes(q) || bSub.toLowerCase().includes(q);
                         const mGen = g === 'ALL' || b.genre === g;
                         let mStock = true;
                         if(stockFilter === 'AVAILABLE') { mStock = AmanLib.data.copies.filter(c => c.isbn === b.isbn && c.status === 'AV' && c.condition !== 'Quarantine').length > 0; }
@@ -1025,56 +1082,59 @@
                         const mYear = bYear >= yMin && bYear <= yMax;
                         return mText && mGen && mStock && mRating && mYear;
                     });
-                    $('t-cat').querySelector('tbody').innerHTML = res.map(b => {
-                        const allC = AmanLib.data.copies.filter(c => c.isbn === b.isbn);
-                        const av = allC.filter(c => c.status === 'AV' && c.condition !== 'Quarantine').length;
-                        let avg = "-"; if(b.reviews && b.reviews.length > 0) { avg = (b.reviews.reduce((acc, r)=>acc+parseInt(r.score),0)/b.reviews.length).toFixed(1) + " ⭐"; }
-                        
-                        let totalOutDays = 0, closedCount = 0;
-                        AmanLib.data.txns.filter(t => t.isbn === b.isbn && t.status === 'CLOSED').forEach(t => {
-                            let duration = Math.floor((new Date(t.retDate) - new Date(t.issueDate))/(1000*60*60*24));
-                            totalOutDays += duration; closedCount++;
-                        });
-                        let velocity = closedCount > 0 ? Math.round(totalOutDays/closedCount) + " days turn" : "Static";
-                        
-                        let rackTotal = allC.length;
-                        let volumetricAlarm = rackTotal >= 10 ? "<span style='color:var(--accent-pink); font-size:10px;'> [MAX CAPACITY EXCEEDED]</span>" : "";
+                    
+                    const tbodyCat = $('t-cat').querySelector('tbody');
+                    if(tbodyCat) {
+                        tbodyCat.innerHTML = res.map(b => {
+                            const allC = AmanLib.data.copies.filter(c => c.isbn === b.isbn);
+                            const av = allC.filter(c => c.status === 'AV' && c.condition !== 'Quarantine').length;
+                            let avg = "-"; if(b.reviews && b.reviews.length > 0) { avg = (b.reviews.reduce((acc, r)=>acc+parseInt(r.score),0)/b.reviews.length).toFixed(1) + " ⭐"; }
+                            
+                            let totalOutDays = 0, closedCount = 0;
+                            AmanLib.data.txns.filter(t => t.isbn === b.isbn && t.status === 'CLOSED').forEach(t => {
+                                let duration = Math.floor((new Date(t.retDate) - new Date(t.issueDate))/(1000*60*60*24));
+                                totalOutDays += duration; closedCount++;
+                            });
+                            let velocity = closedCount > 0 ? Math.round(totalOutDays/closedCount) + "d turn" : "Static";
+                            let rackTotal = allC.length;
+                            let volumetricAlarm = rackTotal >= 10 ? "<span style='color:var(--accent-pink); font-size:9px;'> [CAP LIMIT]</span>" : "";
 
-                        return `<tr>
-                            <td class="mono text-sm" style="color:var(--accent-blue)">${b.isbn}</td>
-                            <td style="font-weight:600; color:#fff">
-                                ${b.title} <span style="font-size:10px; opacity:0.5;">(${b.year || 2026})</span>
-                                ${b.seriesLink ? `<span class="tag t-warn" style="font-size:9px; padding:2px 4px;">Chain: ${b.seriesLink}</span>` : ""}
-                                ${b.illLocation ? `<span class="tag t-info" style="font-size:9px; padding:2px 4px;">Transit: ${b.illLocation}</span>` : ""}
-                            </td>
-                            <td><div style="font-weight:500;">${b.author}</div><div style="font-size:11px; color:var(--text-mute);">${b.subgen||'-'}</div></td>
-                            <td><span class="tag t-info">${b.genre}</span></td>
-                            <td>${b.shelf}${volumetricAlarm}</td>
-                            <td><span style="color:${av>0 ? 'var(--accent-green)' : 'var(--accent-pink)'}; font-weight:bold;">${av}</span> / ${allC.length} <small class="mono" style="opacity:0.5">(${velocity})</small></td>
-                            <td style="color:var(--accent-gold); font-weight:600; cursor:pointer;" onclick="AmanLib.Catalog.prepReview('${b.isbn}')">${avg}</td>
-                            <td>
-                                <div class="flex" style="gap:4px">
-                                    <button class="btn btn-sec" style="padding:6px 8px; font-size:11px;" onclick="AmanLib.Catalog.openCopyMgmt('${b.isbn}')"><i class="ph ph-copy"></i> Manage</button>
-                                    <button class="btn btn-sec" style="padding:6px 8px; font-size:11px;" onclick="AmanLib.Catalog.prepEdit('${b.isbn}')"><i class="ph ph-pencil-simple"></i></button>
-                                    <button class="btn btn-sec" style="padding:6px 8px; font-size:11px; color:var(--accent-purple);" onclick="AmanLib.Catalog.genQR('${b.isbn}')"><i class="ph ph-qr-code"></i></button>
-                                    <button class="btn btn-sec" style="padding:6px 8px; font-size:11px; color:var(--accent-gold);" onclick="AmanLib.Catalog.prepReview('${b.isbn}')"><i class="ph ph-star"></i></button>
-                                    ${av === 0 ? `<button class="btn btn-dan" style="padding:6px 8px; font-size:11px;" onclick="AmanLib.Reservations.add('${b.isbn}')">Reserve</button>` : ''}
-                                </div>
-                            </td>
-                        </tr>`;
-                    }).join('');
+                            return `<tr>
+                                <td class="mono" style="color:var(--accent-blue)">${b.isbn}</td>
+                                <td style="font-weight:600; color:#fff">
+                                    ${b.title} <span style="font-size:10px; opacity:0.4;">(${b.year || 2026})</span>
+                                    ${b.seriesLink ? `<span class="tag t-warn" style="font-size:8px; padding:1px 3px;">${b.seriesLink}</span>` : ""}
+                                    ${b.illLocation ? `<span class="tag t-info" style="font-size:8px; padding:1px 3px;">Transit: ${b.illLocation}</span>` : ""}
+                                </td>
+                                <td><div style="font-weight:500;">${b.author}</div><div style="font-size:10px; color:var(--text-mute);">${b.subgen||'-'}</div></td>
+                                <td><span class="tag t-info">${b.genre}</span></td>
+                                <td>${b.shelf}${volumetricAlarm}</td>
+                                <td><span style="color:${av>0 ? 'var(--accent-green)' : 'var(--accent-pink)'}; font-weight:bold;">${av}</span> / ${allC.length} <small class="mono" style="opacity:0.4">(${velocity})</small></td>
+                                <td style="color:var(--accent-gold); font-weight:600; cursor:pointer;" onclick="AmanLib.Catalog.prepReview('${b.isbn}')">${avg}</td>
+                                <td>
+                                    <div class="flex" style="gap:4px">
+                                        <button class="btn btn-sec" style="padding:4px 6px; font-size:11px;" onclick="AmanLib.Catalog.openCopyMgmt('${b.isbn}')"><i class="ph ph-copy"></i> Manage</button>
+                                        <button class="btn btn-sec" style="padding:4px 6px; font-size:11px;" onclick="AmanLib.Catalog.prepEdit('${b.isbn}')"><i class="ph ph-pencil-simple"></i></button>
+                                        <button class="btn btn-sec" style="padding:4px 6px; font-size:11px; color:var(--accent-purple);" onclick="AmanLib.Catalog.genQR('${b.isbn}')"><i class="ph ph-qr-code"></i></button>
+                                        <button class="btn btn-sec" style="padding:4px 6px; font-size:11px; color:var(--accent-gold);" onclick="AmanLib.Catalog.prepReview('${b.isbn}')"><i class="ph ph-star"></i></button>
+                                        ${av === 0 ? `<button class="btn btn-dan" style="padding:4px 6px; font-size:11px;" onclick="AmanLib.Reservations.add('${b.isbn}')">Hold</button>` : ''}
+                                    </div>
+                                </td>
+                            </tr>`;
+                        }).join('');
+                    }
                 },
                 prepAdd: () => {
-                    $('nb-header').innerHTML = '<i class="ph ph-book-open"></i> New Book Entry';
-                    $('nb-btn').innerText = 'Add to Catalog'; $('nb-mode').value = 'add';
+                    $('nb-header').innerHTML = '<i class="ph ph-book-open"></i> Create Inventory Schema Node';
+                    $('nb-btn').innerText = 'Commit to Registry'; $('nb-mode').value = 'add';
                     $('nb-qty-wrap').classList.remove('hidden'); $('nb-isbn').disabled = false;
                     ['nb-isbn','nb-title','nb-auth','nb-shelf','nb-subgen','nb-series-link','nb-ill-location','nb-custom-meta'].forEach(id => $(id).value = '');
                     $('nb-qty').value = 1; $('nb-price').value = 500; $('nb-year').value = 2026; $('nb-gen').selectedIndex = 0;
                 },
                 prepEdit: (isbn) => {
                     const b = AmanLib.data.books.find(x => x.isbn === isbn); if(!b) return;
-                    $('nb-header').innerHTML = '<i class="ph ph-pencil"></i> Edit Book Details';
-                    $('nb-btn').innerText = 'Save Changes'; $('nb-mode').value = 'edit';
+                    $('nb-header').innerHTML = '<i class="ph ph-pencil"></i> Modify Book Profile Parameters';
+                    $('nb-btn').innerText = 'Commit Variations'; $('nb-mode').value = 'edit';
                     $('nb-qty-wrap').classList.add('hidden'); $('nb-isbn').value = b.isbn; $('nb-isbn').disabled = true;
                     $('nb-title').value = b.title; $('nb-auth').value = b.author; $('nb-shelf').value = b.shelf;
                     $('nb-price').value = b.price; $('nb-year').value = b.year || 2026; $('nb-gen').value = b.genre; $('nb-subgen').value = b.subgen || '';
@@ -1088,56 +1148,60 @@
                     let parsedMeta = {};
                     try { if($('nb-custom-meta').value) parsedMeta = JSON.parse($('nb-custom-meta').value); } catch(ex){}
                     const b = {
-                        isbn: $('nb-isbn').value, title: $('nb-title').value, author: $('nb-auth').value,
-                        genre: $('nb-gen').value, subgen: $('nb-subgen').value, shelf: $('nb-shelf').value,
+                        isbn: $('nb-isbn').value.trim(), title: $('nb-title').value.trim(), author: $('nb-auth').value.trim(),
+                        genre: $('nb-gen').value, subgen: $('nb-subgen').value.trim(), shelf: $('nb-shelf').value.trim(),
                         price: parseFloat($('nb-price').value) || 0, year: parseInt($('nb-year').value) || 2026, reviews: [],
-                        seriesLink: $('nb-series-link').value, illLocation: $('nb-ill-location').value, customMeta: parsedMeta
+                        seriesLink: $('nb-series-link').value.trim(), illLocation: $('nb-ill-location').value.trim(), customMeta: parsedMeta
                     };
-                    if(!b.isbn || !b.title || !b.author) return AmanLib.UI.toast('Mandatory parameter strings missing structural definitions.', 'bad');
+                    if(!b.isbn || !b.title || !b.author) return AmanLib.UI.toast('Mandatory parameter elements require value inputs.', 'bad');
+                    
                     if(mode === 'add') {
-                        if(AmanLib.data.books.find(x => x.isbn === b.isbn)) return AmanLib.UI.toast('ISBN tracking code duplicates structural index.', 'bad');
+                        if(AmanLib.data.books.find(x => x.isbn === b.isbn)) return AmanLib.UI.toast('Duplicate ISBN parameter block discovered.', 'bad');
                         AmanLib.data.books.push(b);
                         const qty = parseInt($('nb-qty').value) || 1;
                         for(let i=0; i<qty; i++) {
                             AmanLib.data.copies.push({ id: 'CP-' + Math.floor(1000 + Math.random() * 9000), isbn: b.isbn, status: 'AV', condition: 'Good' });
                         }
-                        AmanLib.logEvent('Inventory', `Catalog Addition structural payload processed for: ${b.title}`);
-                        AmanLib.UI.toast('Book appended securely.', 'good');
+                        AmanLib.logEvent('Inventory', `Catalog Addition structured allocation parsed: ${b.title}`);
+                        AmanLib.UI.toast('Book profile appended successfully.', 'good');
                     } else {
                         const idx = AmanLib.data.books.findIndex(x => x.isbn === b.isbn);
-                        if(idx > -1) { b.reviews = AmanLib.data.books[idx].reviews || []; AmanLib.data.books[idx] = b; AmanLib.UI.toast('Entity modifications commited.', 'good'); }
+                        if(idx > -1) { b.reviews = AmanLib.data.books[idx].reviews || []; AmanLib.data.books[idx] = b; AmanLib.UI.toast('Profile tracking parameters committed.', 'good'); }
                     }
                     AmanLib.save(); AmanLib.Catalog.render(); AmanLib.UI.closeM('m-book');
                 },
                 openCopyMgmt: (isbn) => {
                     $('copy-mgmt-isbn').value = isbn;
                     const lc = AmanLib.data.copies.filter(c => c.isbn === isbn);
-                    $('t-copy-ledger').querySelector('tbody').innerHTML = lc.map(c => {
-                        return `<tr>
-                            <td class="mono font-bold">${c.id}</td>
-                            <td><span class="tag t-info">${c.condition}</span></td>
-                            <td><span class="tag ${c.status=='AV'?'t-ok':'t-bad'}">${c.status}</span></td>
-                            <td>
-                                <div class="flex" style="gap:5px;">
-                                    <button class="btn btn-sec" style="padding:4px 6px; font-size:10px;" onclick="AmanLib.Catalog.scrapCopy('${c.id}')" ${c.status==='OUT'?'disabled':''}>Scrap Entity</button>
-                                    <button class="btn btn-pri" style="padding:4px 6px; font-size:10px;" onclick="AmanLib.Catalog.mintAdditionalCopy('${isbn}')">+ Alloc</button>
-                                </div>
-                            </td>
-                        </tr>`;
-                    }).join('');
+                    const tbodyLedger = $('t-copy-ledger').querySelector('tbody');
+                    if(tbodyLedger) {
+                        tbodyLedger.innerHTML = lc.map(c => {
+                            return `<tr>
+                                <td class="mono font-bold">${c.id}</td>
+                                <td><span class="tag t-info">${c.condition}</span></td>
+                                <td><span class="tag ${c.status=='AV'?'t-ok':'t-bad'}">${c.status}</span></td>
+                                <td>
+                                    <div class="flex" style="gap:4px;">
+                                        <button class="btn btn-sec" style="padding:2px 4px; font-size:10px;" onclick="AmanLib.Catalog.scrapCopy('${c.id}')" ${c.status==='OUT'?'disabled':''}>Decommission</button>
+                                        <button class="btn btn-pri" style="padding:2px 4px; font-size:10px;" onclick="AmanLib.Catalog.mintAdditionalCopy('${isbn}')">+ Copy</button>
+                                    </div>
+                                </td>
+                            </tr>`;
+                        }).join('');
+                    }
                     AmanLib.UI.modal('m-copy-mgmt');
                 },
                 relocateCopySubmit: () => {
                     const cid = $('relocate-copy-id').value.trim();
                     const targetShelf = $('relocate-shelf-target').value.trim();
-                    if(!cid || !targetShelf) return AmanLib.UI.toast('Specify reallocation translation metrics.', 'warn');
+                    if(!cid || !targetShelf) return AmanLib.UI.toast('Specify reallocation parameters completely.', 'warn');
                     const cp = AmanLib.data.copies.find(c => c.id === cid);
-                    if(!cp) return AmanLib.UI.toast('Copy sequence mismatch inside registry state.', 'bad');
+                    if(!cp) return AmanLib.UI.toast('Target token instance missing from tracking state.', 'bad');
                     const bk = AmanLib.data.books.find(b => b.isbn === cp.isbn);
                     if(bk) {
                         bk.shelf = targetShelf;
-                        AmanLib.logEvent('Inventory', `Relocated Asset ${cid} to shelf unit coordinate ${targetShelf}`);
-                        AmanLib.UI.toast('Asset structural relocation mapping successful.', 'good');
+                        AmanLib.logEvent('Inventory', `Relocated Asset ${cid} to shelf block ${targetShelf}`);
+                        AmanLib.UI.toast('Structural relocation indexing successful.', 'good');
                         AmanLib.save();
                         AmanLib.Catalog.openCopyMgmt(cp.isbn);
                     }
@@ -1145,14 +1209,14 @@
                 mintAdditionalCopy: (isbn) => {
                     const nid = 'CP-' + Math.floor(1000 + Math.random() * 9000);
                     AmanLib.data.copies.push({ id: nid, isbn: isbn, status: 'AV', condition: 'Good' });
-                    AmanLib.logEvent('Inventory', `Minted Copy instantiation tracker token: ${nid}`);
+                    AmanLib.logEvent('Inventory', `Instantiated supplemental token entity: ${nid}`);
                     AmanLib.save(); AmanLib.Catalog.openCopyMgmt(isbn); AmanLib.Catalog.render();
                 },
                 scrapCopy: (id) => {
                     const idx = AmanLib.data.copies.findIndex(c => c.id === id);
                     if(idx > -1) {
                         const isbn = AmanLib.data.copies[idx].isbn;
-                        AmanLib.logEvent('Inventory', `Purged operational asset link reference: ${id}`);
+                        AmanLib.logEvent('Inventory', `Purged structural trace parameter node: ${id}`);
                         AmanLib.data.copies.splice(idx, 1);
                         AmanLib.save(); AmanLib.Catalog.openCopyMgmt(isbn); AmanLib.Catalog.render();
                     }
@@ -1161,7 +1225,7 @@
                     $('rev-isbn').value = isbn; $('rev-text').value = ''; 
                     const b = AmanLib.data.books.find(x => x.isbn === isbn);
                     if(b && b.reviews) {
-                        $('review-feed-box').innerHTML = b.reviews.map(r => `<div style="border-bottom:1px solid rgba(255,255,255,0.05); padding:4px 0;"><span style="color:var(--accent-gold)">${"⭐".repeat(r.score)}</span> <p style="font-size:12px; color:var(--text-main);">${r.commentary}</p></div>`).join('');
+                        $('review-feed-box').innerHTML = b.reviews.map(r => `<div style="border-bottom:1px solid rgba(255,255,255,0.03); padding:4px 0;"><span style="color:var(--accent-gold)">${"⭐".repeat(r.score)}</span> <p style="font-size:12px; color:var(--text-main);">${r.commentary}</p></div>`).join('');
                     } else {
                         $('review-feed-box').innerHTML = '<div style="font-size:11px; color:var(--text-mute)">No comment structures indexed for this book.</div>';
                     }
@@ -1188,11 +1252,11 @@
                                     AmanLib.data.copies.push({ id: 'CP-' + Math.floor(1000 + Math.random() * 9000), isbn: b.isbn, status: 'AV', condition: 'Good' });
                                 }
                             });
-                            AmanLib.logEvent('Security', 'Executed batch import parse sequence matrix data ingestion');
-                            AmanLib.UI.toast('Arrays integrated.', 'good');
+                            AmanLib.logEvent('Security', 'Batch profile injection array sequence completed.');
+                            AmanLib.UI.toast('Matrix elements combined.', 'good');
                             AmanLib.save(); AmanLib.Catalog.render(); AmanLib.UI.closeM('m-bulk-import');
                         }
-                    } catch(err) { AmanLib.UI.toast('Parsing diagnostic flags structural failure inside engine.', 'bad'); }
+                    } catch(err) { AmanLib.UI.toast('Parsing diagnostic structural mismatch.', 'bad'); }
                 },
                 genQR: (isbn) => {
                     const b = AmanLib.data.books.find(x => x.isbn === isbn); if(!b) return;
@@ -1202,30 +1266,31 @@
                         simulatedBarcode += `<div class="barcode-bar ${isSpace?'space':''}"></div>`;
                     }
                     simulatedBarcode += `</div>`;
-                    $('print-zone').innerHTML = `<div style="width:300px; border:2px solid #000; padding:20px; font-family:sans-serif; text-align:center; color:#000; background:#fff;"><h3 style="margin:0; font-size:16px; color:#000;">${b.title}</h3><div style="margin:5px 0; font-size:12px;">${b.author}</div><div id="qr-tg-book" style="margin:15px auto; width:100px;"></div>${simulatedBarcode}<div style="font-weight:bold; font-size:24px; margin-top:10px;">${b.shelf}</div></div>`;
-                    new QRCode($('qr-tg-book'), {text: `ISBN:${b.isbn}|SHELF:${b.shelf}`, width:100, height:100});
+                    $('print-zone').innerHTML = `<div style="width:280px; border:1px solid #000; padding:15px; font-family:sans-serif; text-align:center; color:#000; background:#fff;"><h3 style="margin:0; font-size:14px; color:#000;">${b.title}</h3><div style="margin:2px 0; font-size:11px;">${b.author}</div><div id="qr-tg-book" style="margin:10px auto; width:90px;"></div>${simulatedBarcode}<div style="font-weight:bold; font-size:20px; margin-top:5px;">${b.shelf}</div></div>`;
+                    new QRCode($('qr-tg-book'), {text: `ISBN:${b.isbn}|SHELF:${b.shelf}`, width:90, height:90});
                     setTimeout(() => window.print(), 500);
                 },
                 locate: () => {
                     let inp = $('shelf-finder').value.trim(); if(!inp) return;
                     if(inp.includes("ISBN:") && inp.includes("SHELF:")) { inp = inp.split('|')[0].split(':')[1]; }
                     const b = AmanLib.data.books.find(x => x.isbn === inp || x.title.toLowerCase().includes(inp.toLowerCase()));
-                    if(b) { alert(`LOCATED ASSET MATRIX:\nBook Title: ${b.title}\nCoordinates Unit: ${b.shelf}\nAuthor Node: ${b.author}`); $('cat-search').value = b.title; AmanLib.Catalog.render(); } 
-                    else { AmanLib.UI.toast("Asset vector trace missing from workspace.", "bad"); }
+                    if(b) { alert(`LOCATED INDIVIDUAL ASSET BLOCK:\nBook: ${b.title}\nShelf Assignment: ${b.shelf}\nAuthor Vector: ${b.author}`); $('cat-search').value = b.title; AmanLib.Catalog.render(); } 
+                    else { AmanLib.UI.toast("Asset instance trace absent from environment workspace.", "bad"); }
                     $('shelf-finder').value = '';
                 }
             },
             Reservations: {
                 add: (isbn) => {
-                    const mid = prompt("Enter verification identity tracking tracker token parameter code:"); if(!mid) return;
-                    const m = AmanLib.data.members.find(x => x.id === mid); if(!m) return AmanLib.UI.toast("Account mapping identifier lookup failure.", "bad");
+                    const mid = prompt("Enter checking member authentication profile identifier:"); if(!mid) return;
+                    const m = AmanLib.data.members.find(x => x.id === mid); if(!m) return AmanLib.UI.toast("Profile reference matrix lookup failure.", "bad");
                     AmanLib.data.reservations.push({ date: new Date().toISOString().split('T')[0], memId: mid, isbn: isbn, status: 'Active' });
-                    AmanLib.logEvent('Circulation', `Hold queue structure locked down for identity node ${mid}`);
-                    AmanLib.save(); AmanLib.UI.toast("Queue sequence extended.", "good");
+                    AmanLib.logEvent('Circulation', `Hold verification constraint logged for member tracking trace ${mid}`);
+                    AmanLib.save(); AmanLib.UI.toast("Hold queue array expanded.", "good");
                 },
                 render: () => {
                     const t = $('t-res').querySelector('tbody');
-                    if(AmanLib.data.reservations.length === 0) { t.innerHTML = '<tr><td colspan="5" style="text-align:center; padding:20px;">No operational queue records loaded.</td></tr>'; return; }
+                    if(!t) return;
+                    if(AmanLib.data.reservations.length === 0) { t.innerHTML = '<tr><td colspan="5" style="text-align:center; padding:15px;">No parameters trace queue configuration profiles currently.</td></tr>'; return; }
                     t.innerHTML = AmanLib.data.reservations.map((r, i) => {
                         const m = AmanLib.data.members.find(x => x.id === r.memId); const b = AmanLib.data.books.find(x => x.isbn === r.isbn);
                         return `<tr>
@@ -1235,8 +1300,8 @@
                             <td><span class="tag t-warn">${r.status}</span></td>
                             <td>
                                 <div class="flex">
-                                    <button class="btn btn-pri" style="padding:4px 8px; font-size:11px;" onclick="AmanLib.Reservations.fulfillDirect(${i})">Fulfill Holding</button>
-                                    <button class="btn btn-dan" style="padding:4px 8px; font-size:11px;" onclick="AmanLib.Reservations.del(${i})">Purge Hold</button>
+                                    <button class="btn btn-pri" style="padding:3px 6px; font-size:11px;" onclick="AmanLib.Reservations.fulfillDirect(${i})">Settle Queue Hold</button>
+                                    <button class="btn btn-dan" style="padding:3px 6px; font-size:11px;" onclick="AmanLib.Reservations.del(${i})">Purge</button>
                                 </div>
                             </td>
                         </tr>`;
@@ -1245,13 +1310,13 @@
                 fulfillDirect: (idx) => {
                     const r = AmanLib.data.reservations[idx];
                     const cp = AmanLib.data.copies.find(c => c.isbn === r.isbn && c.status === 'AV' && c.condition !== 'Quarantine');
-                    if(!cp) return AmanLib.UI.toast('No processing assets match availability indicators currently.', 'bad');
+                    if(!cp) return AmanLib.UI.toast('No available stock units to satisfy target parameter hold constraint.', 'bad');
                     cp.status = 'OUT';
                     const d = new Date(); d.setDate(d.getDate() + 14);
                     AmanLib.data.txns.push({ id: 'TX-'+Date.now(), copyId: cp.id, isbn: cp.isbn, memId: r.memId, issueDate: new Date().toISOString().split('T')[0], dueDate: d.toISOString().split('T')[0], status: 'OPEN', fine: 0, waived: 0 });
                     AmanLib.data.reservations.splice(idx, 1);
-                    AmanLib.logEvent('Circulation', `Elevated queue position to active deployment contract asset ${cp.id}`);
-                    AmanLib.UI.toast('Hold fulfilled cleanly.', 'good');
+                    AmanLib.logEvent('Circulation', `Elevated reservation allocation to deployment matrix token: ${cp.id}`);
+                    AmanLib.UI.toast('Hold tracking satisfied clean.', 'good');
                     AmanLib.save();
                     AmanLib.Nav('dash');
                 },
@@ -1270,19 +1335,19 @@
                     const act = AmanLib.data.txns.filter(t => t.memId === id && t.status === 'OPEN').length;
                     
                     let totalHistory = AmanLib.data.txns.filter(t => t.memId === m.id).length;
-                    let privilegeTier = "Bronze Member";
+                    let privilegeTier = "Standard Baseline Class";
                     let extendedGracePeriodDays = 0;
-                    if(totalHistory > 15) { privilegeTier = "Gold Executive [Max Privileges Activated]"; extendedGracePeriodDays = 14; }
-                    else if(totalHistory > 5) { privilegeTier = "Silver Elite"; extendedGracePeriodDays = 7; }
+                    if(totalHistory > 15) { privilegeTier = "Tier-1 VIP Executive Privilege Allocation"; extendedGracePeriodDays = 14; }
+                    else if(totalHistory > 5) { privilegeTier = "Tier-2 Mid-Class Allocation"; extendedGracePeriodDays = 7; }
                     $('im-tier-tag').innerText = privilegeTier;
 
                     const lim = m.type === 'Student' ? 3 : 10;
-                    $('im-status').innerText = `${act} / ${lim} Active Operations Tracked`;
+                    $('im-status').innerText = `${act} / ${lim} Loan Channels Occupied`;
                     
                     let totalCirc = AmanLib.data.txns.filter(t => t.memId === id).length;
                     let lateCirc = AmanLib.data.txns.filter(t => t.memId === id && t.status === 'CLOSED' && new Date(t.retDate) > new Date(t.dueDate)).length;
                     let reliabilityScore = totalCirc > 0 ? Math.round(((totalCirc - lateCirc) / totalCirc) * 100) : 100;
-                    $('im-score-tag').innerText = "Reliability Profile Index: " + reliabilityScore + "%";
+                    $('im-score-tag').innerText = "Reliability Performance: " + reliabilityScore + "%";
 
                     if (act >= lim) {
                         $('im-status').className = 'tag t-bad';
@@ -1294,7 +1359,7 @@
                     
                     let exp = m.expiryDate ? new Date(m.expiryDate) : null;
                     let isExp = exp && exp < new Date();
-                    $('im-expiry-tag').innerText = "Expires: " + (m.expiryDate || 'N/A');
+                    $('im-expiry-tag').innerText = "Valid Till: " + (m.expiryDate || 'N/A');
                     $('im-expiry-tag').className = "tag " + (isExp ? "t-bad" : "t-ok");
                     $('im-status-tag').innerText = m.status || 'Active';
                     $('im-status-tag').className = "tag " + (m.status === 'Suspended' ? "t-bad" : "t-ok");
@@ -1312,26 +1377,26 @@
                     const b = AmanLib.data.books.find(x => x.isbn === isbn);
                     const c = AmanLib.data.copies.filter(x => x.isbn === isbn && x.status === 'AV' && x.condition !== 'Quarantine');
                     $('ib-title').innerText = b.title; $('ib-count').innerText = c.length;
-                    $('ib-copy').innerHTML = c.map(x => `<option value="${x.id}">${x.id} (${x.condition})</option>`).join('');
+                    $('ib-copy').innerHTML = c.map(x => `<option value="${x.id}">${x.id} [${x.condition}]</option>`).join('');
                     $('issue-book-card').classList.remove('hidden'); $('issue-book-res').classList.add('hidden');
                 },
                 submit: () => {
-                    if(!AmanLib.temp.issueMem || !$('ib-copy').value) return AmanLib.UI.toast('Operational variables missing definitions within active view layout.', 'warn');
-                    if(AmanLib.temp.issueMem.status === 'Suspended') return AmanLib.UI.toast('Borrower account administrative hold locked.', 'bad');
-                    if(AmanLib.temp.issueMem.expiryDate && new Date(AmanLib.temp.issueMem.expiryDate) < new Date()) return AmanLib.UI.toast('Account expiration boundary breached.', 'bad');
+                    if(!AmanLib.temp.issueMem || !$('ib-copy').value) return AmanLib.UI.toast('Workspace structural fields incomplete mapping variables.', 'warn');
+                    if(AmanLib.temp.issueMem.status === 'Suspended') return AmanLib.UI.toast('Administrative block locks borrower privilege access vectors.', 'bad');
+                    if(AmanLib.temp.issueMem.expiryDate && new Date(AmanLib.temp.issueMem.expiryDate) < new Date()) return AmanLib.UI.toast('Account parameters pass terminal expiration boundary.', 'bad');
                     
                     const act = AmanLib.data.txns.filter(t => t.memId === AmanLib.temp.issueMem.id && t.status === 'OPEN').length;
                     const lim = AmanLib.temp.issueMem.type === 'Student' ? 3 : 10;
                     if(act >= lim) {
                         if($('override-pass').value !== 'bypass123') {
-                            return AmanLib.UI.toast('Capacity threshold exceeded. Correct bypass password required.', 'bad');
+                            return AmanLib.UI.toast('Capacity limits exceeded. Override credential parameters missing.', 'bad');
                         }
                     }
 
                     const cid = $('ib-copy').value; const cp = AmanLib.data.copies.find(x => x.id === cid); cp.status = 'OUT';
                     AmanLib.data.txns.push({ id: 'TX-'+Date.now(), copyId: cid, isbn: cp.isbn, memId: AmanLib.temp.issueMem.id, issueDate: new Date().toISOString().split('T')[0], dueDate: $('issue-date').value, status: 'OPEN', fine: 0, waived: 0 });
-                    AmanLib.logEvent('Circulation', `Dispatched copy tracking token link node ${cid} directly to borrower identification block ${AmanLib.temp.issueMem.id}`);
-                    AmanLib.save(); AmanLib.Nav('dash'); AmanLib.UI.toast('Asset processing verification signature generated.', 'good');
+                    AmanLib.logEvent('Circulation', `Dispatched tracking code unit ${cid} directly to identity block alignment ${AmanLib.temp.issueMem.id}`);
+                    AmanLib.save(); AmanLib.Nav('dash'); AmanLib.UI.toast('Verification tracking signature generated successfully.', 'good');
                     $('issue-mem-card').classList.add('hidden'); $('issue-book-card').classList.add('hidden');
                     $('issue-mem-s').value=''; $('issue-book-s').value=''; $('override-pass').value='';
                 }
@@ -1339,10 +1404,10 @@
             Return: {
                 check: () => {
                     const cid = $('ret-id').value.trim(); const tx = AmanLib.data.txns.find(t => t.copyId === cid && t.status === 'OPEN');
-                    if(!tx) return AmanLib.UI.toast('Circulation records do not register an outstanding dependency for this token identifier.', 'bad');
+                    if(!tx) return AmanLib.UI.toast('Trace index registers zero outstanding dependency operations under this key.', 'bad');
                     AmanLib.temp.retTxn = tx;
                     const b = AmanLib.data.books.find(x => x.isbn === tx.isbn); const m = AmanLib.data.members.find(x => x.id === tx.memId);
-                    $('rp-title').innerText = b ? b.title : 'Unknown Asset'; $('rp-mem').innerText = m ? m.name : 'Unknown Profile'; $('rp-due').innerText = tx.dueDate;
+                    $('rp-title').innerText = b ? b.title : 'Unrecognized Book Entity'; $('rp-mem').innerText = m ? m.name : 'Unrecognized Profile Link'; $('rp-due').innerText = tx.dueDate;
                     const due = new Date(tx.dueDate); const today = new Date(); let fine = 0;
                     if(today > due) {
                         let days = Math.floor((today - due) / (1000*60*60*24));
@@ -1371,68 +1436,73 @@
                     const fAmt = parseFloat($('rp-fine').innerText.replace(/[^0-9.]/g,'')) || 0;
                     tx.status = 'CLOSED'; tx.retDate = new Date().toISOString().split('T')[0]; tx.fine = fAmt; tx.paid = paid; tx.waived = waived;
                     const cp = AmanLib.data.copies.find(c => c.id === tx.copyId);
-                    if(cp) { cp.status = (cond === 'Lost' ? 'LOST' : (cond === 'Quarantine' ? 'AV' : 'AV')); cp.condition = cond; }
+                    if(cp) { cp.status = (cond === 'Lost' ? 'LOST' : 'AV'); cp.condition = cond; }
                     
                     if(cond === 'Lost') {
                         const bObj = AmanLib.data.books.find(x => x.isbn === tx.isbn);
                         let replacementCost = bObj ? bObj.price : 500;
-                        AmanLib.data.ledger.push({ date: tx.retDate, type: 'LOST_BILL', desc: `Asset Lost Liability direct structural replacement bill charge: ${tx.copyId}`, amt: replacementCost });
-                        AmanLib.UI.toast(`Asset flagged lost. Replacement cost added to permanent liabilities framework.`, 'bad');
+                        AmanLib.data.ledger.push({ date: tx.retDate, type: 'LOST_BILL', desc: `Replacement liability penalty processed against lost asset unit: ${tx.copyId}`, amt: replacementCost });
+                        AmanLib.UI.toast(`Asset flagged lost. Permanent replacement cost applied.`, 'bad');
                     }
 
                     if(paid > 0) AmanLib.data.ledger.push({ date: tx.retDate, type: 'FINE', desc: `Fine Liquid Collection processed against asset reference node: ${tx.copyId}`, amt: paid });
-                    if(waived > 0) AmanLib.data.ledger.push({ date: tx.retDate, type: 'WAIVER', desc: `Administrative liability adjustment waived for identity link code: ${tx.copyId}`, amt: waived });
+                    if(waived > 0) AmanLib.data.ledger.push({ date: tx.retDate, type: 'WAIVER', desc: `Administrative fine deduction applied for tracking identification trace: ${tx.copyId}`, amt: waived });
+                    
                     const resIdx = AmanLib.data.reservations.findIndex(r => r.isbn === tx.isbn && r.status === 'Active');
-                    if(resIdx > -1) { AmanLib.data.reservations[resIdx].status = 'Fulfilled/Alerted'; alert(`ALERT PRESET DETECTED:\nHold constraint pending matching member code indicator allocation index: ${AmanLib.data.reservations[resIdx].memId}`); }
-                    AmanLib.logEvent('Circulation', `Ingested clear return pipeline structural verification vector for token tracking registry node: ${tx.copyId}`);
-                    AmanLib.save(); AmanLib.UI.toast('Circulation workflow finalized cleanly.', 'good');
+                    if(resIdx > -1) { AmanLib.data.reservations[resIdx].status = 'Fulfilled/Alerted'; alert(`HOLD TRIGGER WARNING NOTIFICATION:\nMatching reservation match waiting for deployment block: ${AmanLib.data.reservations[resIdx].memId}`); }
+                    
+                    AmanLib.logEvent('Circulation', `Ingested return verification signature vector for asset token tracking entry: ${tx.copyId}`);
+                    AmanLib.save(); AmanLib.UI.toast('Circulation workflow closed out successfully.', 'good');
                     $('ret-panel').classList.add('hidden'); $('ret-id').value='';
                 },
                 printReceipt: () => {
                     const { jsPDF } = window.jspdf; const doc = new jsPDF();
-                    doc.text("AMAN'S LIBRARY ENGINE - INVOICE TRANSACT", 14, 20);
-                    doc.text(`Invoice Status: Settled / Clear`, 14, 30);
-                    doc.text(`Asset Identifier Reference: ${AmanLib.temp.retTxn.copyId}`, 14, 40);
-                    doc.text(`Calculated Base Penalty: ${$('rp-fine').innerText}`, 14, 50);
-                    doc.text(`Administrative Liability Forgiven: ${$('rp-waived').value}`, 14, 60);
-                    doc.text(`Liquid Cash Transacted: ${$('rp-paid').value}`, 14, 70);
-                    doc.save(`Invoice_${AmanLib.temp.retTxn.copyId}.pdf`);
+                    doc.text("AMAN'S LIBRARY FRAMEWORK - STATEMENT DEPLOYMENT", 14, 20);
+                    doc.text(`Transaction Settlement Status: Clear`, 14, 30);
+                    doc.text(`Tracked Parameter Reference: ${AmanLib.temp.retTxn.copyId}`, 14, 40);
+                    doc.text(`Base Balance Penalty: ${$('rp-fine').innerText}`, 14, 50);
+                    doc.text(`Waiver Forgiven Balance Allocation: ${$('rp-waived').value}`, 14, 60);
+                    doc.text(`Net Received Settlement Capital: ${$('rp-paid').value}`, 14, 70);
+                    doc.save(`Invoice_Receipt_${AmanLib.temp.retTxn.copyId}.pdf`);
                 }
             },
             Members: {
                 render: () => {
                     const q = ($('mem-search').value||'').toLowerCase();
                     const list = AmanLib.data.members.filter(m => m.name.toLowerCase().includes(q) || m.id.toLowerCase().includes(q));
-                    $('mem-grid').innerHTML = list.map(m => {
-                        const act = AmanLib.data.txns.filter(t => t.memId === m.id && t.status === 'OPEN').length;
-                        return `<div class="glass" style="position:relative; border-top:3px solid ${m.status==='Suspended'?'var(--accent-pink)':'var(--accent-purple)'}">
-                            <div class="flex between"><div style="font-weight:bold; font-size:16px; color:#fff">${m.name}</div><span class="tag ${m.status==='Suspended'?'t-bad':'t-ok'}">${m.status||'Active'}</span></div>
-                            <div class="mono text-sm mb-2" style="color:var(--text-mute)">${m.id}</div>
-                            <div style="font-size:11px; margin-bottom:10px; color:var(--accent-gold);">Valid Until: ${m.expiryDate||'-'}</div>
-                            <div class="flex between">
-                                <span class="tag t-info">${m.type}</span>
-                                <span class="tag ${act>0?'t-warn':'t-ok'}">${act} Loans Active</span>
-                            </div>
-                            <div class="flex" style="margin-top:15px; gap:4px;">
-                                <button class="btn btn-sec" style="font-size:11px; padding:6px;" onclick="AmanLib.Members.card('${m.id}')" title="Print ID Card"><i class="ph ph-identification-card"></i></button>
-                                <button class="btn btn-sec" style="font-size:11px; padding:6px;" onclick="AmanLib.Members.prepEdit('${m.id}')" title="Edit Profile"><i class="ph ph-pencil"></i></button>
-                                <button class="btn btn-sec" style="font-size:11px; padding:6px; color:var(--accent-pink);" onclick="AmanLib.Members.toggleSuspension('${m.id}')" title="Toggle Lock"><i class="ph ph-prohibit"></i></button>
-                                <button class="btn btn-sec" style="font-size:11px; padding:6px; color:var(--accent-green);" onclick="AmanLib.Members.prolongLifespan('${m.id}')" title="Extend Membership 1 Year"><i class="ph ph-calendar-plus"></i> Year</button>
-                                <button class="btn btn-pri" style="font-size:11px; padding:6px 10px; flex:1;" onclick="AmanLib.Members.bulkRenew('${m.id}')">Extend All</button>
-                            </div>
-                        </div>`;
-                    }).join('');
+                    const grid = $('mem-grid');
+                    if(grid) {
+                        grid.innerHTML = list.map(m => {
+                            const act = AmanLib.data.txns.filter(t => t.memId === m.id && t.status === 'OPEN').length;
+                            return `<div class="glass" style="position:relative; border-top:3px solid ${m.status==='Suspended'?'var(--accent-pink)':'var(--accent-purple)'}; padding:15px;">
+                                <div class="flex between"><div style="font-weight:700; font-size:14px; color:#fff">${m.name}</div><span class="tag ${m.status==='Suspended'?'t-bad':'t-ok'}">${m.status||'Active'}</span></div>
+                                <div class="mono text-sm mb-2" style="color:var(--text-mute); margin-top:2px;">${m.id}</div>
+                                <div style="font-size:11px; margin-bottom:8px; color:var(--accent-gold);">Expires: ${m.expiryDate||'-'}</div>
+                                <div class="flex between">
+                                    <span class="tag t-info">${m.type}</span>
+                                    <span class="tag ${act>0?'t-warn':'t-ok'}">${act} Open Loans</span>
+                                </div>
+                                <div class="flex" style="margin-top:12px; gap:4px;">
+                                    <button class="btn btn-sec" style="font-size:11px; padding:4px;" onclick="AmanLib.Members.card('${m.id}')" title="Print ID Badge"><i class="ph ph-identification-card"></i></button>
+                                    <button class="btn btn-sec" style="font-size:11px; padding:4px;" onclick="AmanLib.Members.prepEdit('${m.id}')" title="Edit Profile Matrix"><i class="ph ph-pencil"></i></button>
+                                    <button class="btn btn-sec" style="font-size:11px; padding:4px; color:var(--accent-pink);" onclick="AmanLib.Members.toggleSuspension('${m.id}')" title="Toggle Administrative Restriction"><i class="ph ph-prohibit"></i></button>
+                                    <button class="btn btn-sec" style="font-size:11px; padding:4px; color:var(--accent-green);" onclick="AmanLib.Members.prolongLifespan('${m.id}')" title="Extend Membership Duration +12 Months"><i class="ph ph-calendar-plus"></i></button>
+                                    <button class="btn btn-pri" style="font-size:10px; padding:4px 8px; flex:1;" onclick="AmanLib.Members.bulkRenew('${m.id}')">Extend Matrix</button>
+                                </div>
+                            </div>`;
+                        }).join('');
+                    }
                 },
                 prepAdd: () => {
-                    $('nm-header').innerHTML = '<i class="ph ph-user-plus"></i> New Member';
-                    $('nm-btn').innerText = 'Register'; $('nm-mode').value = 'add';
+                    $('nm-header').innerHTML = '<i class="ph ph-user-plus"></i> Instatiate Member Profile';
+                    $('nm-btn').innerText = 'Inject Identity Node'; $('nm-mode').value = 'add';
                     ['nm-name','nm-phone','nm-email'].forEach(id => $(id).value='');
                     $('nm-type').selectedIndex = 0; $('nm-duration').value = 12;
                 },
                 prepEdit: (id) => {
                     const m = AmanLib.data.members.find(x => x.id === id); if(!m) return;
-                    $('nm-header').innerHTML = '<i class="ph ph-pencil"></i> Edit Member';
-                    $('nm-btn').innerText = 'Update Profile'; $('nm-mode').value = 'edit';
+                    $('nm-header').innerHTML = '<i class="ph ph-pencil"></i> Edit Profile Fields Alignment';
+                    $('nm-btn').innerText = 'Commit Field Updates'; $('nm-mode').value = 'edit';
                     $('nm-id').value = id; $('nm-name').value = m.name; $('nm-phone').value = m.phone; $('nm-email').value = m.email; $('nm-type').value = m.type; $('nm-duration').value = 12;
                     AmanLib.UI.modal('m-mem');
                 },
@@ -1442,30 +1512,30 @@
                         let currentExp = new Date(m.expiryDate || new Date());
                         currentExp.setMonth(currentExp.getMonth() + 12);
                         m.expiryDate = currentExp.toISOString().split('T')[0];
-                        AmanLib.logEvent('Security', `Extended user profile subscription lifetime for ID allocation trace token: ${id}`);
-                        AmanLib.UI.toast('Lifespan index pushed 12 calendar months forward.', 'good');
+                        AmanLib.logEvent('Security', `Extended user verification subscription timeline for target index node: ${id}`);
+                        AmanLib.UI.toast('Profile timeline offset pushed 12 calendar months forward.', 'good');
                         AmanLib.save();
                         AmanLib.Members.render();
                     }
                 },
                 save: () => {
-                    const mode = $('nm-mode').value; const n = $('nm-name').value; if(!n) return AmanLib.UI.toast('Data payload parameter constraints violate length metrics rules.', 'bad');
+                    const mode = $('nm-mode').value; const n = $('nm-name').value.trim(); if(!n) return AmanLib.UI.toast('Input string parameters lack structural length definitions.', 'bad');
                     const durationMonths = parseInt($('nm-duration').value) || 12;
                     const exp = new Date(); exp.setMonth(exp.getMonth() + durationMonths);
                     if(mode === 'add') {
                         const nid = 'M-' + Math.floor(1000 + Math.random() * 9000);
-                        AmanLib.data.members.push({ id: nid, name: n, phone: $('nm-phone').value, email: $('nm-email').value, type: $('nm-type').value, joined: new Date().toISOString().split('T')[0], expiryDate: exp.toISOString().split('T')[0], status: 'Active' });
-                        AmanLib.logEvent('Security', `Allocated new system permission registration profile boundary block: ${nid}`);
-                        AmanLib.UI.toast('Borrower parameters cached cleanly.', 'good');
+                        AmanLib.data.members.push({ id: nid, name: n, phone: $('nm-phone').value.trim(), email: $('nm-email').value.trim(), type: $('nm-type').value, joined: new Date().toISOString().split('T')[0], expiryDate: exp.toISOString().split('T')[0], status: 'Active' });
+                        AmanLib.logEvent('Security', `Allocated credential parameter blocks to profile entity: ${nid}`);
+                        AmanLib.UI.toast('Borrower trace identity indexed.', 'good');
                     } else {
                         const id = $('nm-id').value; const m = AmanLib.data.members.find(x => x.id === id);
-                        if(m) { m.name = n; m.phone = $('nm-phone').value; m.email = $('nm-email').value; m.type = $('nm-type').value; AmanLib.UI.toast('Modifications mirrored structural schema variables.', 'good'); }
+                        if(m) { m.name = n; m.phone = $('nm-phone').value.trim(); m.email = $('nm-email').value.trim(); m.type = $('nm-type').value; AmanLib.UI.toast('Modifications updated safely.', 'good'); }
                     }
                     AmanLib.save(); AmanLib.Members.render(); AmanLib.UI.closeM('m-mem');
                 },
                 toggleSuspension: (id) => {
                     const m = AmanLib.data.members.find(x => x.id === id);
-                    if(m) { m.status = m.status === 'Suspended' ? 'Active' : 'Suspended'; AmanLib.logEvent('Security', `Toggled suspension state profile layer: ${id} directly to ${m.status}`); AmanLib.save(); AmanLib.Members.render(); }
+                    if(m) { m.status = m.status === 'Suspended' ? 'Active' : 'Suspended'; AmanLib.logEvent('Security', `Toggled administrative holding restriction state for target: ${id}`); AmanLib.save(); AmanLib.Members.render(); }
                 },
                 bulkRenew: (id) => {
                     let count = 0;
@@ -1475,20 +1545,23 @@
                             t.dueDate = d.toISOString().split('T')[0]; count++;
                         }
                     });
-                    if(count > 0) { AmanLib.logEvent('Circulation', `Executed structural batch calendar offset translation map logic against borrower identifier target: ${id}`); AmanLib.UI.toast(`Extended ${count} verification parameters cleanly.`, 'good'); AmanLib.save(); }
-                    else { AmanLib.UI.toast('Zero matching structural entities trace open dependency variables inside circulation stack.', 'warn'); }
+                    if(count > 0) { AmanLib.logEvent('Circulation', `Executed matrix offset time shift calibration logic map against holder reference: ${id}`); AmanLib.UI.toast(`Extended ${count} structural open loops successfully.`, 'good'); AmanLib.save(); }
+                    else { AmanLib.UI.toast('No active open parameters match this identifier framework.', 'warn'); }
                 },
                 card: (id) => {
                     const m = AmanLib.data.members.find(x=>x.id===id);
-                    $('print-zone').innerHTML = `<div style="width:350px; border:1px solid #000; padding:20px; font-family:sans-serif; border-radius:10px; color:#000; background:#fff;"><div style="text-align:center; border-bottom:2px solid #000; padding-bottom:10px; margin-bottom:15px;"><h2 style="margin:0; font-size:20px; color:#000;">AMAN'S LIBRARY</h2><div style="font-size:10px; letter-spacing:2px;">MEMBER IDENTIFICATION</div></div><div style="display:flex; justify-content:space-between; align-items:center;"><div><h3 style="margin:0; font-size:18px; color:#000;">${m.name}</h3><div style="color:#555;">${m.type}</div><div style="font-family:monospace; margin-top:5px; font-weight:bold;">${m.id}</div></div><div id="qr-tg" style="width:80px; height:80px;"></div></div></div>`;
-                    new QRCode($('qr-tg'), {text:m.id, width:80, height:80});
+                    $('print-zone').innerHTML = `<div style="width:320px; border:1px solid #000; padding:15px; font-family:sans-serif; border-radius:8px; color:#000; background:#fff;"><div style="text-align:center; border-bottom:1px solid #000; padding-bottom:8px; margin-bottom:12px;"><h2 style="margin:0; font-size:16px; color:#000;">AMAN'S LIBRARY SYSTEM</h2><div style="font-size:9px; letter-spacing:1px;">IDENTITY PRIVILEGE CARD</div></div><div style="display:flex; justify-content:space-between; align-items:center;"><div><h3 style="margin:0; font-size:14px; color:#000;">${m.name}</h3><div style="color:#444; font-size:11px;">${m.type}</div><div style="font-family:monospace; margin-top:4px; font-weight:bold; font-size:12px;">${m.id}</div></div><div id="qr-tg" style="width:70px; height:70px;"></div></div></div>`;
+                    new QRCode($('qr-tg'), {text:m.id, width:70, height:70});
                     setTimeout(() => window.print(), 500);
                 }
             },
             Finance: {
                 render: () => {
                     const symbol = AmanLib.data.settings.curr || '₹';
-                    $('t-fin').querySelector('tbody').innerHTML = AmanLib.data.ledger.slice().reverse().map(l => `<tr><td>${l.date}</td><td><span class="tag ${l.type==='FINE'?'t-ok':'t-bad'}">${l.type}</span></td><td>${l.desc}</td><td style="font-weight:bold;">${l.type==='FINE'?'+':'-'}${symbol}${l.amt}</td></tr>`).join('');
+                    const tbodyFin = $('t-fin').querySelector('tbody');
+                    if(tbodyFin) {
+                        tbodyFin.innerHTML = AmanLib.data.ledger.slice().reverse().map(l => `<tr><td>${l.date}</td><td><span class="tag ${l.type==='FINE'?'t-ok':'t-bad'}">${l.type}</span></td><td>${l.desc}</td><td style="font-weight:700;">${l.type==='FINE'?'+':'-'}${symbol}${l.amt}</td></tr>`).join('');
+                    }
                     $('fin-total').innerText = symbol + AmanLib.data.ledger.filter(l=>l.type==='FINE').reduce((a,b)=>a+b.amt, 0);
                     let pend = 0; AmanLib.data.txns.filter(t => t.status==='CLOSED' && t.fine > (t.paid||0)).forEach(t => pend += (t.fine - t.paid));
                     $('fin-pend').innerText = symbol + pend;
@@ -1498,22 +1571,25 @@
                     let csv = "Date,Type,Description,Amount\n";
                     AmanLib.data.ledger.forEach(l => { csv += `"${l.date}","${l.type}","${l.desc.replace(/"/g, '""')}","${l.amt}"\n`; });
                     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-                    const link = document.createElement("a"); link.href = URL.createObjectURL(blob); link.setAttribute("download", "Library_Financials_Ledger.csv");
+                    const link = document.createElement("a"); link.href = URL.createObjectURL(blob); link.setAttribute("download", "Financials_Ledger_Manifest.csv");
                     document.body.appendChild(link); link.click(); document.body.removeChild(link);
                 }
             },
             Audit: {
                 render: () => {
-                    $('t-audit').querySelector('tbody').innerHTML = AmanLib.data.logs.slice().reverse().map(l => `<tr><td class="mono text-sm">${l.ts}</td><td><span class="tag t-info">${l.cat}</span></td><td>${l.details}</td></tr>`).join('') || '<tr><td colspan="3" style="text-align:center; padding:20px;">Administrative transaction telemetry trace buffer clear. No entities mapped.</td></tr>';
+                    const tbodyAudit = $('t-audit').querySelector('tbody');
+                    if(tbodyAudit) {
+                        tbodyAudit.innerHTML = AmanLib.data.logs.slice().reverse().map(l => `<tr><td class="mono text-sm">${l.ts}</td><td><span class="tag t-info">${l.cat}</span></td><td>${l.details}</td></tr>`).join('') || '<tr><td colspan="3" style="text-align:center; padding:15px;">Buffer stack logs empty. Context telemetry values trace clear.</td></tr>';
+                    }
                 },
                 pruneLogs: () => {
-                    if (confirm("Execute truncation sequence parameters against system log historical array entities?")) {
+                    if (confirm("Truncate history audit matrix array tracking sequences permanently?")) {
                         if(AmanLib.temp.privacyMode) {
-                            AmanLib.data.logs = AmanLib.data.logs.map(l => { return { ts: l.ts, cat: l.cat, details: "Anonymized log data trace string protection." }; });
+                            AmanLib.data.logs = AmanLib.data.logs.map(l => { return { ts: l.ts, cat: l.cat, details: "Anonymized internal sequence trace value line." }; });
                         } else {
-                            AmanLib.data.logs = [{ ts: new Date().toLocaleString(), cat: 'Security', details: 'Triggered administrative audit log purge sequence manual baseline override execution' }];
+                            AmanLib.data.logs = [{ ts: new Date().toLocaleString(), cat: 'Security', details: 'Triggered global administrative log registry truncation baseline manual sweep.' }];
                         }
-                        AmanLib.UI.toast('Memory registry allocation cleared down cleanly.', 'good');
+                        AmanLib.UI.toast('Operational track parameter stack tracking logs reset.', 'good');
                         AmanLib.save();
                         AmanLib.Audit.render();
                     }
@@ -1525,11 +1601,11 @@
                     else document.body.classList.remove('theme-navy');
                 },
                 seedMockData: () => {
-                    if(confirm("Populate environment configuration variables with demo database structural tracking units?")) {
+                    if(confirm("Populate structural setup values with complete mock validation baseline nodes?")) {
                         AmanLib.data.books = [
-                            { isbn: "9780134685991", title: "Effective Java Fundamentals", author: "Joshua Bloch", genre: "Tech", subgen: "Software Development", shelf: "Rack-T01", price: 750, year: 2018, reviews: [{score:5, commentary:"An industry classic framework handbook."}], seriesLink: "SERIES-1", illLocation: "Hub-Alpha" },
+                            { isbn: "9780134685991", title: "Effective Java Fundamentals", author: "Joshua Bloch", genre: "Tech", subgen: "Software Development", shelf: "Rack-T01", price: 750, year: 2018, reviews: [{score:5, commentary:"Industry standard handbook framework description models."}], seriesLink: "SERIES-1", illLocation: "Hub-Alpha" },
                             { isbn: "9780544003415", title: "The Lord of the Rings Omnibus", author: "J.R.R. Tolkien", genre: "Fiction", subgen: "High Fantasy Lore", shelf: "Fiction-A2", price: 1200, year: 1954, reviews: [] },
-                            { isbn: "9781101904220", title: "A Brief History of Time Mechanics", author: "Stephen Hawking", genre: "Science", subgen: "Astrophysics Core", shelf: "Sci-S04", price: 450, year: 1988, reviews: [{score:4, commentary:"Excellent theoretical physics breakdown models."}] }
+                            { isbn: "9781101904220", title: "A Brief History of Time Mechanics", author: "Stephen Hawking", genre: "Science", subgen: "Astrophysics Core", shelf: "Sci-S04", price: 450, year: 1988, reviews: [{score:4, commentary:"Theoretical physics structural paradigm blueprints."}] }
                         ];
                         AmanLib.data.copies = [
                             { id: "CP-1001", isbn: "9780134685991", status: "AV", condition: "Good" },
@@ -1545,17 +1621,17 @@
                             { id: "TX-11223344", copyId: "CP-1002", isbn: "9780134685991", memId: "M-9901", issueDate: "2026-05-01", dueDate: "2026-05-15", status: "OPEN", fine: 0, waived: 0 }
                         ];
                         AmanLib.data.ledger = [
-                            { date: "2026-05-20", type: "FINE", desc: "Simulated structural fine migration recovery payout confirmation token", amt: 50 }
+                            { date: "2026-05-20", type: "FINE", desc: "Simulated recovery balance collection payout verification structural token", amt: 50 }
                         ];
                         AmanLib.data.attendance = [
                             { memId: "M-9901", type: "IN", ts: "2026-06-01T10:00:00.000Z" }
                         ];
                         AmanLib.data.wishlist = [
-                            { id: "W-1", title: "Clean Architecture paradigms", votes: 4 }
+                            { id: "W-1", title: "Clean Architecture Design Paradigms", votes: 4 }
                         ];
-                        AmanLib.logEvent('Security', 'Injected mock structural baseline variables inside workspace environment layer setup configuration');
+                        AmanLib.logEvent('Security', 'Injected composite mock validation baseline arrays into environment layer workspace structural boundaries.');
                         AmanLib.save();
-                        AmanLib.UI.toast('Sandbox metrics successfully generated.', 'good');
+                        AmanLib.UI.toast('Sandbox environment validation data successfully generated.', 'good');
                         location.reload();
                     }
                 },
@@ -1577,16 +1653,17 @@
                     AmanLib.data.settings.fineTiers.Public = parseFloat($('set-fine-public').value) || 10;
                     
                     AmanLib.Settings.applyTheme(AmanLib.data.settings.theme);
-                    AmanLib.logEvent('Security', 'Overwrote environmental variables structural global initialization nodes');
-                    AmanLib.save(); AmanLib.UI.toast('Configuration values committed cleanly.', 'good');
+                    AmanLib.logEvent('Security', 'Overwrote environmental variables global structural setup properties.');
+                    AmanLib.save(); AmanLib.UI.toast('Configuration baseline metrics committed.', 'good');
                 },
                 nuke: () => {
-                    if(prompt("SECURITY BOUNDARY REACHED:\nType execution override pass string 'ResetProtection' to authorize clean slate initialization:") === "ResetProtection") {
-                        if(confirm("Permanently strip operational structural variables from working context? This layer cannot be rolled back.")) {
+                    if(prompt("FATAL ACCESS BOUNDARY REACHED:\nType verification clearance bypass string 'ResetProtection' to drop environmental data layers:") === "ResetProtection") {
+                        if(confirm("Permanently wipe core context variables? This drop sequence cannot be rolled back or recovered.")) {
                             AmanLib.data = { books: [], copies: [], members: [], txns: [], reservations: [], ledger: [], logs: [], attendance: [], wishlist: [], holidays: [], customFields: [], msgTemplates: {overdue:"", welcome:""}, settings: { name: "Aman's Library", days: 14, fine: 5, curr: '₹', theme: 'cyberpunk', fineTiers: { Student: 5, Staff: 2, Public: 10 } } };
-                            AmanLib.save(); setTimeout(() => location.reload(), 500);
+                            localStorage.removeItem('AmanLibStateMatrix');
+                            AmanLib.save(); setTimeout(() => location.reload(), 300);
                         }
-                    } else { AmanLib.UI.toast("Purge processing sequence execution call aborted.", "bad"); }
+                    } else { AmanLib.UI.toast("Purge processing sequence dropped by safety override logic.", "bad"); }
                 }
             },
             Backup: {
@@ -1595,16 +1672,16 @@
                     subset[segmentKey] = AmanLib.data[segmentKey];
                     subset["settings"] = AmanLib.data.settings;
                     const s = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(subset));
-                    const n = document.createElement('a'); n.setAttribute("href", s); n.setAttribute("download", `AmansLib_Segment_${segmentKey}_${new Date().toISOString().slice(0,10)}.json`);
+                    const n = document.createElement('a'); n.setAttribute("href", s); n.setAttribute("download", `AmansLib_Partition_${segmentKey}_Manifest.json`);
                     document.body.appendChild(n); n.click(); n.remove();
                 },
                 download: () => {
                     const d = AmanLib.data;
                     if(!d.books || !d.copies || !d.members || !d.txns || !d.reservations || !d.ledger) {
-                        return AmanLib.UI.toast("JSON structural parser checks failed. Object manifest incomplete.", "bad");
+                        return AmanLib.UI.toast("Parser structural integrity checks failed. Manifest object incomplete.", "bad");
                     }
                     const s = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(AmanLib.data));
-                    const n = document.createElement('a'); n.setAttribute("href", s); n.setAttribute("download", `AmansLib_SystemStateMatrix_${new Date().toISOString().slice(0,10)}.json`);
+                    const n = document.createElement('a'); n.setAttribute("href", s); n.setAttribute("download", `AmansLib_CompleteStateMatrix.json`);
                     document.body.appendChild(n); n.click(); n.remove();
                 },
                 restore: (input) => {
@@ -1613,9 +1690,15 @@
                     r.onload = function(e) {
                         try {
                             const parsed = JSON.parse(e.target.result);
-                            if(parsed.books && Array.isArray(parsed.books) && parsed.copies && parsed.members) { AmanLib.data = parsed; AmanLib.save(); alert("Manifest data streaming integrated. Refreshing workspace nodes."); location.reload(); } 
-                            else { alert("JSON manifest constraints verification schema error."); }
-                        } catch(err) { alert("Diagnostic exception error thrown parsing structural data array stream elements."); }
+                            if(parsed.books && Array.isArray(parsed.books) && parsed.copies && parsed.members) { 
+                                AmanLib.data = parsed; 
+                                localStorage.setItem('AmanLibStateMatrix', JSON.stringify(AmanLib.data));
+                                AmanLib.save(); 
+                                alert("System state matrix sequence restored. Initializing workspace components."); 
+                                location.reload(); 
+                            } 
+                            else { alert("JSON tracking parameters violation structural validation schema error."); }
+                        } catch(err) { alert("Diagnostic parsing failure tracing uploaded elements stream data properties."); }
                     };
                     r.readAsText(input.files[0]);
                 }
@@ -1629,7 +1712,7 @@
                 toast: (msg, type='info') => {
                     const c = { good:'var(--accent-green)', bad:'var(--accent-pink)', warn:'var(--accent-gold)', info:'var(--accent-blue)' };
                     const t = document.createElement('div'); t.className = 'toast'; t.style.borderLeftColor = c[type]; t.innerHTML = `<i class="ph-bold ph-info"></i> ${msg}`;
-                    $('toast-feed').prepend(t); setTimeout(() => t.remove(), 3500);
+                    $('toast-feed').prepend(t); setTimeout(() => t.remove(), 3000);
                 }
             }
         };
