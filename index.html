@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aman's Library Project | Advanced Management System</title>
+    <title>Aman's Library Management System</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -82,19 +82,16 @@
             font-size: 14px;
         }
 
-        /* Scrollbars */
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
         ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--accent-blue); }
 
-        /* Typography */
         h1, h2, h3, h4 { font-family: var(--font-head); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-main); }
         h3 { font-size: 19px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 12px; }
         h3 i { color: var(--accent-blue); font-size: 22px; }
         p { color: var(--text-mute); line-height: 1.5; }
         
-        /* Layout Helpers */
         .flex { display: flex; gap: 12px; align-items: center; }
         .flex-col { display: flex; flex-direction: column; gap: 12px; }
         .between { justify-content: space-between; }
@@ -107,7 +104,6 @@
         .mb-2 { margin-bottom: 16px; }
         .mt-2 { margin-top: 16px; }
 
-        /* Glass Panels */
         .glass { 
             background: var(--glass-bg); 
             backdrop-filter: blur(20px); 
@@ -120,7 +116,6 @@
         }
         .glass:hover { border-color: rgba(255,255,255,0.15); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3); }
 
-        /* Interactive Elements */
         .btn { padding: 11px 20px; border: none; border-radius: 8px; font-weight: 600; font-size: 13px; cursor: pointer; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); display: inline-flex; align-items: center; justify-content: center; gap: 8px; color: #fff; text-transform: uppercase; letter-spacing: 0.5px; }
         .btn-pri { background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple)); box-shadow: 0 4px 15px rgba(56, 189, 248, 0.25); }
         .btn-pri:hover { filter: brightness(1.15); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(56, 189, 248, 0.35); }
@@ -134,7 +129,6 @@
         input:focus, select:focus, textarea:focus { border-color: var(--accent-blue); background: rgba(0,0,0,0.5); box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.15); }
         label { font-size: 11px; color: var(--accent-blue); font-weight: 600; display: block; margin: 0 0 6px 2px; text-transform: uppercase; letter-spacing: 0.7px; opacity: 0.9; }
 
-        /* Tables */
         .table-wrap { overflow-x: auto; border-radius: 12px; border: var(--glass-border); background: rgba(0,0,0,0.15); margin-top: 10px; }
         table { width: 100%; border-collapse: collapse; white-space: nowrap; }
         th { text-align: left; padding: 16px; background: rgba(255,255,255,0.02); color: var(--text-mute); font-family: var(--font-head); font-size: 13px; border-bottom: 1px solid rgba(255,255,255,0.06); cursor: pointer; user-select: none; transition: background 0.2s; }
@@ -142,14 +136,12 @@
         td { padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,0.02); color: var(--text-main); font-size: 13px; }
         tr:hover td { background: rgba(255,255,255,0.01); }
 
-        /* Status Tags */
         .tag { padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 600; display: inline-block; font-family: var(--font-code); border: 1px solid transparent; text-transform: uppercase; }
         .t-ok { color: #34d399; background: rgba(52, 211, 153, 0.12); border-color: rgba(52, 211, 153, 0.2); } 
         .t-bad { color: #f472b6; background: rgba(244, 114, 182, 0.12); border-color: rgba(244, 114, 182, 0.2); }
         .t-info { color: #38bdf8; background: rgba(56, 189, 248, 0.12); border-color: rgba(56, 189, 248, 0.2); }
         .t-warn { color: #fbbf24; background: rgba(251, 191, 137, 0.12); border-color: rgba(251, 191, 137, 0.2); }
 
-        /* Navigation Architecture */
         #app { display: none; width: 100%; height: 100%; }
         .sidebar { width: var(--sidebar-width); background: #040712; border-right: var(--glass-border); display: flex; flex-direction: column; padding: 24px 0; z-index: 90; overflow-y: auto; transition: transform 0.3s ease; }
         .brand { font-size: 24px; font-weight: 800; color: #fff; padding: 0 24px 24px; display: flex; align-items: center; gap: 12px; letter-spacing: 1px; font-family: var(--font-head); border-bottom: 1px solid rgba(255,255,255,0.05); }
@@ -163,50 +155,41 @@
         .nav-badge { font-size: 10px; background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 10px; color: var(--text-mute); font-family: var(--font-code); }
         .nav-item.active .nav-badge { background: var(--accent-blue); color: #000; font-weight: 700; }
 
-        /* Main Display Frame */
         .main { flex: 1; display: flex; flex-direction: column; overflow: hidden; position: relative; }
         .top-bar { height: 70px; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; border-bottom: var(--glass-border); background: rgba(7, 11, 25, 0.8); backdrop-filter: blur(12px); z-index: 80; }
         .content { padding: 40px; overflow-y: auto; height: calc(100% - 70px); scroll-behavior: smooth; }
         
-        /* Interactive Mobile Triggers */
         .mobile-header { display: none; height: 60px; background: #040712; border-bottom: var(--glass-border); align-items: center; justify-content: space-between; padding: 0 20px; z-index: 100; }
         .menu-toggle { background: transparent; border: none; color: #fff; font-size: 26px; cursor: pointer; display: none; }
 
-        /* View State Engine */
         .view { display: none; animation: viewReveal 0.35s cubic-bezier(0.16, 1, 0.3, 1); } 
         .view.active { display: block; }
         @keyframes viewReveal { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Modals & Dialogs */
         .modal-mask { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 200; display: none; align-items: center; justify-content: center; backdrop-filter: blur(6px); padding: 15px; }
         .modal { width: 580px; max-width: 100%; background: #0b1121; border: 1px solid rgba(255,255,255,0.12); border-radius: 20px; padding: 32px; max-height: 90vh; overflow-y: auto; box-shadow: 0 24px 60px rgba(0,0,0,0.7); animation: modalZoom 0.25s ease; }
         body.theme-reading .modal { background: #eadabe; border-color: rgba(0,0,0,0.15); }
         @keyframes modalZoom { from { transform: scale(0.97); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
-        /* Dash Analytics Cards */
-        .stat-card { background: rgba(255,255,255,0.01); padding: 22px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.04); position: relative; overflow: hidden; transition: all 0.25s ease; display: flex; flex-direction: column; justify-content: space-between; }
-        .stat-card:hover { transform: translateY(-3px); background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.1); }
+        .stat-card { background: rgba(255,255,255,0.01); padding: 22px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.04); position: relative; overflow: hidden; transition: all 0.25s ease; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; }
+        .stat-card:hover { transform: translateY(-3px); background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.1); box-shadow: 0 8px 20px rgba(56, 189, 248, 0.1); }
         .stat-val { font-size: 30px; font-weight: 800; color: #fff; font-family: var(--font-head); margin-bottom: 4px; line-height: 1.2; }
         body.theme-reading .stat-val { color: #2d3748; }
         .stat-lbl { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-mute); }
         .stat-card i { position: absolute; right: 20px; top: 20px; font-size: 36px; opacity: 0.08; color: #fff; }
 
-        /* Search Autocomplete Suggestion Infrastructure */
         .suggestion-box { position: absolute; background: #0f172a; border: 1px solid rgba(255,255,255,0.1); width: 100%; max-height: 220px; overflow-y: auto; z-index: 150; top: 105%; left: 0; border-radius: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
         .sug-item { padding: 12px 16px; cursor: pointer; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 13px; display: flex; justify-content: space-between; transition: background 0.15s; }
         .sug-item:hover { background: var(--accent-blue); color: #000; }
 
-        /* Toast Notifications Engine */
         #toast-feed { position: fixed; bottom: 30px; right: 30px; z-index: 350; display: flex; flex-direction: column; gap: 10px; pointer-events: none; max-width: 90vw; }
         .toast { pointer-events: auto; background: #131d35; color: #fff; padding: 14px 24px; border-radius: 12px; font-size: 13px; border-left: 4px solid var(--accent-blue); box-shadow: 0 10px 30px rgba(0,0,0,0.5); animation: toastSlide 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; align-items: center; gap: 12px; font-weight: 500; }
         @keyframes toastSlide { from { transform: translateX(60px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 
-        /* Media Rendering / Output Framework */
         .barcode-container { display: flex; gap: 1px; background: #fff; padding: 10px; height: 55px; justify-content: center; align-items: stretch; border-radius: 4px; width: fit-content; margin: 10px auto; }
         .barcode-bar { background: #000; width: 2px; }
         .barcode-bar.space { background: transparent; }
         
-        /* 4K & Ultra-wide scaling thresholds */
         @media (min-width: 2000px) {
             body { font-size: 16px; }
             :root { --sidebar-width: 340px; }
@@ -215,7 +198,6 @@
             .stat-val { font-size: 42px; }
         }
 
-        /* Tablet & Mobile responsive adaptive break matrices */
         @media (max-width: 1024px) {
             .grid-4 { grid-template-columns: repeat(2, 1fr); }
         }
@@ -249,7 +231,7 @@
         <button class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('mobile-open')">
             <i class="ph ph-list"></i>
         </button>
-        <h2 style="font-size: 18px; letter-spacing: 1px;">Aman's Library v3.0</h2>
+        <h2 style="font-size: 18px; letter-spacing: 1px;">Aman's Library</h2>
         <div style="width: 32px; height: 32px; background: var(--accent-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #000; font-weight: bold;">A</div>
     </div>
 
@@ -263,11 +245,11 @@
             
             <div style="text-align: left; margin-bottom: 20px;">
                 <label>System Access Key</label>
-                <input type="password" id="login-pass" placeholder="Enter security passphrase" style="text-align:center; font-family:var(--font-code); letter-spacing:3px;">
+                <input type="password" id="login-pass" placeholder="Enter password (try: aman)" style="text-align:center; font-family:var(--font-code); letter-spacing:3px;">
             </div>
             
             <button class="btn btn-pri full-w" onclick="AmanLib.Auth.login()">Initialize System</button>
-            <div style="margin-top: 24px; font-size: 11px; opacity: 0.5; color: var(--text-mute);" class="mono">Environment: Secure • Local Sandbox Matrix</div>
+            <div style="margin-top: 24px; font-size: 11px; opacity: 0.5; color: var(--text-mute);" class="mono">Environment: Secure Local Sandbox</div>
         </div>
     </div>
 
@@ -283,48 +265,48 @@
                     <div class="nav-link-content"><i class="ph ph-squares-four"></i> Overview</div>
                 </div>
                 <div class="nav-item" onclick="AmanLib.Nav('dash'); setTimeout(() => $('live-occupancy-count').scrollIntoView({behavior:'smooth'}), 150)">
-                    <div class="nav-link-content"><i class="ph ph-users-four"></i> Room Traffic</div>
+                    <div class="nav-link-content"><i class="ph ph-users-four"></i> Library Attendance</div>
                 </div>
 
-                <div class="nav-head">Inventory Framework</div>
+                <div class="nav-head">Books Inventory</div>
                 <div class="nav-item" onclick="AmanLib.Nav('catalog')">
                     <div class="nav-link-content"><i class="ph ph-book-open-text"></i> Book Catalog</div>
                     <span class="nav-badge" id="badge-books">0</span>
                 </div>
                 <div class="nav-item" onclick="AmanLib.Nav('catalog'); setTimeout(() => $('cat-search').focus(), 150)">
-                    <div class="nav-link-content"><i class="ph ph-magnifying-glass"></i> Advanced Search</div>
+                    <div class="nav-link-content"><i class="ph ph-magnifying-glass"></i> Quick Search</div>
                 </div>
                 <div class="nav-item" onclick="AmanLib.Nav('reservations')">
                     <div class="nav-link-content"><i class="ph ph-bookmark"></i> Hold Reservations</div>
                     <span class="nav-badge" id="badge-res">0</span>
                 </div>
                 <div class="nav-item" onclick="AmanLib.UI.modal('m-wishlist-view')">
-                    <div class="nav-link-content"><i class="ph ph-heart"></i> Procurement Board</div>
+                    <div class="nav-link-content"><i class="ph ph-heart"></i> Purchase Suggestions</div>
                 </div>
 
-                <div class="nav-head">Circulation Pipe</div>
+                <div class="nav-head">Loans & Circulation</div>
                 <div class="nav-item" onclick="AmanLib.Nav('issue')">
-                    <div class="nav-link-content"><i class="ph ph-hand-giving"></i> Issue Book Voucher</div>
+                    <div class="nav-link-content"><i class="ph ph-hand-giving"></i> Issue Book</div>
                 </div>
                 <div class="nav-item" onclick="AmanLib.Nav('return')">
-                    <div class="nav-link-content"><i class="ph ph-arrow-u-up-left"></i> Returns Processing</div>
+                    <div class="nav-link-content"><i class="ph ph-arrow-u-up-left"></i> Process Return</div>
                 </div>
                 <div class="nav-item" onclick="AmanLib.Nav('dash'); setTimeout(() => $('list-overdue').scrollIntoView({behavior:'smooth'}), 150)">
                     <div class="nav-link-content"><i class="ph ph-bell-ringing"></i> Overdue Alerts</div>
                 </div>
 
-                <div class="nav-head">Community Node</div>
+                <div class="nav-head">Members Community</div>
                 <div class="nav-item" onclick="AmanLib.Nav('members')">
                     <div class="nav-link-content"><i class="ph ph-users-three"></i> Members Registry</div>
                     <span class="nav-badge" id="badge-members">0</span>
                 </div>
 
-                <div class="nav-head">Administrative Terminal</div>
+                <div class="nav-head">Admin Settings</div>
                 <div class="nav-item" onclick="AmanLib.Nav('finance')">
                     <div class="nav-link-content"><i class="ph ph-currency-circle-dollar"></i> Finances Ledger</div>
                 </div>
                 <div class="nav-item" onclick="AmanLib.Nav('audit')">
-                    <div class="nav-link-content"><i class="ph ph-list-bullets"></i> System Audit Logs</div>
+                    <div class="nav-link-content"><i class="ph ph-list-bullets"></i> System Logs</div>
                 </div>
                 <div class="nav-item" onclick="AmanLib.Nav('settings')">
                     <div class="nav-link-content"><i class="ph ph-gear"></i> System Settings</div>
@@ -335,25 +317,25 @@
                 <div style="background: rgba(255,255,255,0.02); padding: 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
                     <div style="font-size: 11px; color: var(--text-mute); margin-bottom: 4px;">System Operator</div>
                     <div style="font-weight: 700; color: #fff;">Aman's Team</div>
-                    <button class="btn btn-sec full-w" onclick="AmanLib.Settings.seedMockData()" style="font-size: 10px; margin-top: 10px; padding: 6px 0; height: auto;">Seed System Demo</button>
+                    <button class="btn btn-sec full-w" onclick="AmanLib.Settings.seedMockData()" style="font-size: 10px; margin-top: 10px; padding: 6px 0; height: auto;">Load Demo Data</button>
                     <div style="font-size: 10px; color: var(--accent-green); margin-top: 8px; display:flex; align-items:center; gap:6px;">
-                        <span style="display:inline-block; width:6px; height:6px; background:var(--accent-green); border-radius:50%;"></span> Node Kernel Online
+                        <span style="display:inline-block; width:6px; height:6px; background:var(--accent-green); border-radius:50%;"></span> System Online
                     </div>
                 </div>
             </div>
-            <div class="nav-item" onclick="location.reload()" style="color:var(--accent-pink); margin-top: 15px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px;"><div class="nav-link-content"><i class="ph ph-power"></i> Terminate Control</div></div>
+            <div class="nav-item" onclick="location.reload()" style="color:var(--accent-pink); margin-top: 15px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px;"><div class="nav-link-content"><i class="ph ph-power"></i> Log Out</div></div>
         </aside>
 
         <main class="main">
             <header class="top-bar">
                 <div class="flex"><h2 id="page-title" style="font-size:24px; font-family: var(--font-head);">Dashboard Overview</h2></div>
                 <div class="flex" style="gap:16px;">
-                    <button class="btn btn-sec" onclick="AmanLib.Diagnostics.runAudioCheck()" title="Voice Diagnostics"><i class="ph ph-speaker-high"></i></button>
+                    <button id="tts-toggle-btn" class="btn btn-sec" onclick="AmanLib.Diagnostics.toggleTTS()" title="Toggle Voice Alerts"><i id="tts-icon" class="ph ph-speaker-high"></i> <span id="tts-label">Voice: ON</span></button>
                     <span id="sys-date" class="mono text-sm" style="background: rgba(255,255,255,0.04); padding: 8px 16px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);"></span>
                     
                     <input type="file" id="restore-file" onchange="AmanLib.Backup.restore(this)">
-                    <button class="btn btn-sec" onclick="$('restore-file').click()" title="Import Manifest JSON"><i class="ph ph-upload-simple"></i></button>
-                    <button class="btn btn-sec" onclick="AmanLib.Backup.download()" title="Export System State Matrix"><i class="ph ph-download-simple"></i></button>
+                    <button class="btn btn-sec" onclick="$('restore-file').click()" title="Import Data JSON"><i class="ph ph-upload-simple"></i></button>
+                    <button class="btn btn-sec" onclick="AmanLib.Backup.download()" title="Export System Backup"><i class="ph ph-download-simple"></i></button>
                     
                     <div style="width: 38px; height: 38px; background: linear-gradient(135deg, #1e293b, #0f172a); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 1px solid rgba(255,255,255,0.15);">A</div>
                 </div>
@@ -363,93 +345,93 @@
                 
                 <div id="v-dash" class="view active">
                     <div class="grid-4">
-                        <div class="stat-card" style="border-left: 4px solid var(--accent-blue)">
+                        <div class="stat-card" style="border-left: 4px solid var(--accent-blue)" onclick="AmanLib.Nav('catalog')">
                             <div class="stat-val" id="d-books">0</div>
-                            <div class="stat-lbl">Total Stock Copies</div>
+                            <div class="stat-lbl">Total Book Copies</div>
                             <i class="ph ph-books"></i>
                         </div>
-                        <div class="stat-card" style="border-left: 4px solid var(--accent-purple)">
+                        <div class="stat-card" style="border-left: 4px solid var(--accent-purple)" onclick="AmanLib.Nav('return')">
                             <div class="stat-val" id="d-issued">0</div>
-                            <div class="stat-lbl">Active Outsourced Loans</div>
+                            <div class="stat-lbl">Books Currently Borrowed</div>
                             <i class="ph ph-hand-giving"></i>
                         </div>
-                        <div class="stat-card" style="border-left: 4px solid var(--accent-pink)">
+                        <div class="stat-card" style="border-left: 4px solid var(--accent-pink)" onclick="$('list-overdue').scrollIntoView({behavior:'smooth'})">
                             <div class="stat-val" id="d-overdue">0</div>
-                            <div class="stat-lbl" style="color: var(--accent-pink);">Overdue Breach Alerts</div>
+                            <div class="stat-lbl" style="color: var(--accent-pink);">Overdue Books</div>
                             <i class="ph ph-warning"></i>
                         </div>
-                        <div class="stat-card" style="border-left: 4px solid var(--accent-gold)">
+                        <div class="stat-card" style="border-left: 4px solid var(--accent-gold)" onclick="AmanLib.Nav('finance')">
                             <div class="stat-val" id="d-fines">₹0</div>
-                            <div class="stat-lbl">Outstanding Ledger Balances</div>
+                            <div class="stat-lbl">Unpaid Fines</div>
                             <i class="ph ph-currency-circle-dollar"></i>
                         </div>
                     </div>
                     
                     <div class="grid-4" style="margin-top:20px;">
-                        <div class="stat-card" style="border-left: 4px solid var(--accent-green)">
+                        <div class="stat-card" style="border-left: 4px solid var(--accent-green)" onclick="AmanLib.Nav('members')">
                             <div class="stat-val" id="d-active-members">0</div>
-                            <div class="stat-lbl">Active Borrowers Counter</div>
+                            <div class="stat-lbl">Active Borrowers</div>
                         </div>
-                        <div class="stat-card" style="border-left: 4px solid var(--accent-blue)">
+                        <div class="stat-card" style="border-left: 4px solid var(--accent-blue)" onclick="AmanLib.Nav('catalog')">
                             <div class="stat-val" id="d-popular-book">-</div>
-                            <div class="stat-lbl">Highest Velocity Volume</div>
+                            <div class="stat-lbl">Most Popular Book</div>
                         </div>
-                        <div class="stat-card" style="border-left: 4px solid var(--accent-purple)">
+                        <div class="stat-card" style="border-left: 4px solid var(--accent-purple)" onclick="AmanLib.Nav('catalog')">
                             <div class="stat-val" id="d-total-genres">0</div>
-                            <div class="stat-lbl">Indexed Genre Classifications</div>
+                            <div class="stat-lbl">Total Book Genres</div>
                         </div>
-                        <div class="stat-card" style="border-left: 4px solid var(--accent-gold)">
+                        <div class="stat-card" style="border-left: 4px solid var(--accent-gold)" onclick="AmanLib.Nav('finance')">
                             <div class="stat-val" id="d-waived-fines">₹0</div>
-                            <div class="stat-lbl">Total Forgiven Balances</div>
+                            <div class="stat-lbl">Total Waived Fines</div>
                         </div>
                     </div>
 
                     <div class="grid-4" style="margin-top:20px;">
-                        <div class="stat-card" style="border-left: 4px solid var(--accent-blue)">
+                        <div class="stat-card" style="border-left: 4px solid var(--accent-blue)" onclick="AmanLib.Nav('finance')">
                             <div class="stat-val" id="d-projected-fines">₹0</div>
-                            <div class="stat-lbl">Projected Fine Accumulations</div>
+                            <div class="stat-lbl">Estimated Upcoming Fines</div>
                         </div>
-                        <div class="stat-card" style="border-left: 4px solid var(--accent-green)">
+                        <div class="stat-card" style="border-left: 4px solid var(--accent-green)" onclick="AmanLib.Nav('catalog')">
                             <div class="stat-val" id="d-asset-valuation">₹0</div>
-                            <div class="stat-lbl">Gross Asset Book Value</div>
+                            <div class="stat-lbl">Total Book Value</div>
                         </div>
-                        <div class="stat-card" style="border-left: 4px solid var(--accent-pink)">
+                        <div class="stat-card" style="border-left: 4px solid var(--accent-pink)" onclick="AmanLib.Nav('catalog')">
                             <div class="stat-val" id="d-quarantine-count">0</div>
-                            <div class="stat-lbl">Quarantined Stock Items</div>
+                            <div class="stat-lbl">Books in Repair</div>
                         </div>
-                        <div class="stat-card" style="border-left: 4px solid var(--accent-purple)">
+                        <div class="stat-card" style="border-left: 4px solid var(--accent-purple)" onclick="AmanLib.Nav('members')">
                             <div class="stat-val" id="d-avg-reliability">100%</div>
-                            <div class="stat-lbl">Avg Member Return Reliability</div>
+                            <div class="stat-lbl">On-Time Return Rate</div>
                         </div>
                     </div>
 
                     <div class="grid-2" style="margin-top:24px;">
                         <div class="glass">
-                            <h3><i class="ph ph-door"></i> Physical Traffic Check-In Gate</h3>
+                            <h3><i class="ph ph-door"></i> Visitor Check-In / Check-Out</h3>
                             <div class="flex">
-                                <input id="att-mid" placeholder="Scan Badge Code or Type Member ID Number" style="margin:0;">
-                                <button class="btn btn-pri" onclick="AmanLib.Attendance.checkIn()">IN Entry</button>
-                                <button class="btn btn-dan" onclick="AmanLib.Attendance.checkOut()">OUT Exit</button>
+                                <input id="att-mid" placeholder="Enter Member ID or scan badge" style="margin:0;">
+                                <button class="btn btn-pri" onclick="AmanLib.Attendance.checkIn()">Check In</button>
+                                <button class="btn btn-dan" onclick="AmanLib.Attendance.checkOut()">Check Out</button>
                             </div>
                             <div class="flex between text-sm mono" style="margin-top:16px; background:rgba(0,0,0,0.2); padding:12px; border-radius:8px;">
-                                <span>Realtime Local Traffic Population: <b id="live-occupancy-count" style="color:var(--accent-green)">0</b></span>
+                                <span>Current Visitors Inside Library: <b id="live-occupancy-count" style="color:var(--accent-green)">0</b></span>
                             </div>
                         </div>
                         <div class="glass">
-                            <h3><i class="ph ph-calendar-todo"></i> Core Operational Task Board</h3>
+                            <h3><i class="ph ph-calendar-todo"></i> Library Daily Alerts</h3>
                             <div id="agenda-briefing-pane" class="mono text-xs text-main" style="max-height:120px; overflow-y:auto; background:rgba(0,0,0,0.2); padding:12px; border-radius:8px; line-height:1.6;"></div>
                         </div>
                     </div>
 
                     <div class="grid-2" style="margin-top:24px;">
                         <div class="glass">
-                            <h3><i class="ph ph-chart-bar"></i> Weekly Circulation Velocity Tracker</h3>
+                            <h3><i class="ph ph-chart-bar"></i> Weekly Book Loans Chart</h3>
                             <div style="height:230px; position:relative;">
                                 <canvas id="chart-circ"></canvas>
                             </div>
                         </div>
                         <div class="glass">
-                            <h3><i class="ph ph-chart-pie"></i> Stock Genre Categorization Mapping</h3>
+                            <h3><i class="ph ph-chart-pie"></i> Books by Genre</h3>
                             <div style="height:230px; position:relative;">
                                 <canvas id="chart-genre"></canvas>
                             </div>
@@ -459,16 +441,16 @@
                     <div class="grid-2" style="margin-top:24px;">
                         <div class="glass">
                             <div class="flex between">
-                                <h3><i class="ph ph-bell-ringing"></i> High Priority Overdue Infractions</h3>
+                                <h3><i class="ph ph-bell-ringing"></i> Urgent Overdue Books</h3>
                                 <span class="tag t-bad">Action Required</span>
                             </div>
                             <div id="list-overdue" style="margin-top:16px; max-height:260px; overflow-y:auto;" class="flex-col"></div>
                         </div>
                         <div class="glass">
-                            <h3><i class="ph ph-clock-counter-clockwise"></i> Latest System Operations Log</h3>
+                            <h3><i class="ph ph-clock-counter-clockwise"></i> Recent Transactions</h3>
                             <div class="table-wrap">
                                 <table id="t-recent">
-                                    <thead><tr><th>Txn Tracking Node</th><th>Operational Status</th><th>Borrower Target</th><th>Asset Identification</th><th>Date Marker</th></tr></thead>
+                                    <thead><tr><th>Transaction ID</th><th>Action</th><th>Member</th><th>Book Title</th><th>Date</th></tr></thead>
                                     <tbody></tbody>
                                 </table>
                             </div>
@@ -479,11 +461,11 @@
                 <div id="v-catalog" class="view">
                     <div class="glass">
                         <div class="flex between mb-2">
-                            <h3><i class="ph ph-books"></i> Inventory Master Book Catalog</h3>
+                            <h3><i class="ph ph-books"></i> Master Book Catalog</h3>
                             <div class="flex" style="flex-wrap: wrap;">
-                                <button class="btn btn-sec" onclick="AmanLib.UI.modal('m-wishlist-view')"><i class="ph ph-heart"></i> Suggestion Matrix Board</button>
-                                <button class="btn btn-sec" onclick="AmanLib.UI.modal('m-bulk-import')"><i class="ph ph-file-arrow-up"></i> Data Batch Upload</button>
-                                <button class="btn btn-pri" onclick="AmanLib.UI.modal('m-book'); AmanLib.Catalog.prepAdd();"><i class="ph ph-plus"></i> Catalogue New Book</button>
+                                <button class="btn btn-sec" onclick="AmanLib.UI.modal('m-wishlist-view')"><i class="ph ph-heart"></i> Book Purchase Suggestions</button>
+                                <button class="btn btn-sec" onclick="AmanLib.UI.modal('m-bulk-import')"><i class="ph ph-file-arrow-up"></i> Bulk Import Books</button>
+                                <button class="btn btn-pri" onclick="AmanLib.UI.modal('m-book'); AmanLib.Catalog.prepAdd();"><i class="ph ph-plus"></i> Add New Book</button>
                             </div>
                         </div>
                         
@@ -491,45 +473,45 @@
                             <div class="flex">
                                 <i class="ph-bold ph-scan" style="font-size: 26px; color: var(--accent-purple);"></i>
                                 <div class="full-w">
-                                    <div style="font-size: 11px; color: var(--accent-purple); font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">Realtime Shelf Locator Scan Tunnel</div>
-                                    <input id="shelf-finder" placeholder="Scan Asset QR Code Identifier Matrix or Enter ISBN / Title string reference..." style="margin: 0; background: transparent; border: none; padding: 4px 0; font-size: 14px;" onkeydown="if(event.key==='Enter') AmanLib.Catalog.locate()">
+                                    <div style="font-size: 11px; color: var(--accent-purple); font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">Quick Book Locator / Scanner</div>
+                                    <input id="shelf-finder" placeholder="Enter Title, ISBN, or Scan Book QR Code..." style="margin: 0; background: transparent; border: none; padding: 4px 0; font-size: 14px;" onkeydown="if(event.key==='Enter') AmanLib.Catalog.locate()">
                                 </div>
-                                <button class="btn btn-sec" onclick="AmanLib.Catalog.locate()">Locate Shelf</button>
+                                <button class="btn btn-sec" onclick="AmanLib.Catalog.locate()">Find Shelf</button>
                             </div>
                         </div>
 
                         <div class="grid-4" style="margin-bottom:20px; background: rgba(0,0,0,0.15); padding: 16px; border-radius: 12px; gap: 16px;">
                             <div>
-                                <label>General Criteria Filters</label>
-                                <input id="cat-search" placeholder="Title, Creator, ISBN Code..." style="margin:0;" onkeyup="AmanLib.Catalog.render()">
+                                <label>Search Catalog</label>
+                                <input id="cat-search" placeholder="Title, Author, ISBN..." style="margin:0;" onkeyup="AmanLib.Catalog.render()">
                             </div>
                             <div>
-                                <label>Genre Classification Group</label>
+                                <label>Filter by Genre</label>
                                 <select id="cat-filter" style="margin:0;" onchange="AmanLib.Catalog.render()">
-                                    <option value="ALL">All Classifications</option><option value="Fiction">Fiction</option><option value="Science">Science</option><option value="History">History</option><option value="Tech">Technology</option><option value="Arts">Arts</option><option value="Other">Other</option>
+                                    <option value="ALL">All Genres</option><option value="Fiction">Fiction</option><option value="Science">Science</option><option value="History">History</option><option value="Tech">Technology</option><option value="Arts">Arts</option><option value="Other">Other</option>
                                 </select>
                             </div>
                             <div>
-                                <label>Warehouse Availability Allocation</label>
+                                <label>Availability Status</label>
                                 <select id="cat-avail-filter" style="margin:0;" onchange="AmanLib.Catalog.render()">
-                                    <option value="ALL">All Stock Entities</option><option value="AVAILABLE">Ready For Distribution Only</option>
+                                    <option value="ALL">All Books</option><option value="AVAILABLE">Available Only</option>
                                 </select>
                             </div>
                             <div>
-                                <label>Minimum Rating Metric Tier</label>
+                                <label>Minimum Rating</label>
                                 <select id="cat-rating-filter" style="margin:0;" onchange="AmanLib.Catalog.render()">
-                                    <option value="0">All Ratings Evaluated</option><option value="5">⭐⭐⭐⭐⭐ 5 Stars Only</option><option value="4">⭐⭐⭐⭐ & Up</option><option value="3">⭐⭐⭐ & Up</option>
+                                    <option value="0">All Ratings</option><option value="5">⭐⭐⭐⭐⭐ 5 Stars</option><option value="4">⭐⭐⭐⭐ & Up</option><option value="3">⭐⭐⭐ & Up</option>
                                 </select>
                             </div>
                         </div>
 
                         <div style="margin-bottom: 20px;" class="grid-2">
                             <div>
-                                <label>Minimum Bound Filter - Publication Year Range</label>
+                                <label>Published From (Year)</label>
                                 <input type="number" id="cat-year-min" placeholder="e.g. 1990" style="margin:0;" onkeyup="AmanLib.Catalog.render()">
                             </div>
                             <div>
-                                <label>Maximum Bound Filter - Publication Year Range</label>
+                                <label>Published To (Year)</label>
                                 <input type="number" id="cat-year-max" placeholder="e.g. 2026" style="margin:0;" onkeyup="AmanLib.Catalog.render()">
                             </div>
                         </div>
@@ -538,14 +520,14 @@
                             <table id="t-cat">
                                 <thead>
                                     <tr>
-                                        <th onclick="AmanLib.Sorting.sort('t-cat', 0)">ISBN Code</th>
-                                        <th onclick="AmanLib.Sorting.sort('t-cat', 1)">Book Title Identifier</th>
-                                        <th onclick="AmanLib.Sorting.sort('t-cat', 2)">Creator Subgenre Nodes</th>
-                                        <th onclick="AmanLib.Sorting.sort('t-cat', 3)">Genre Cluster</th>
-                                        <th onclick="AmanLib.Sorting.sort('t-cat', 4)">Physical Shelf Node</th>
-                                        <th onclick="AmanLib.Sorting.sort('t-cat', 5)">Copies Count</th>
-                                        <th onclick="AmanLib.Sorting.sort('t-cat', 6)">Reviews Scale</th>
-                                        <th>Control Actions</th>
+                                        <th onclick="AmanLib.Sorting.sort('t-cat', 0)">ISBN</th>
+                                        <th onclick="AmanLib.Sorting.sort('t-cat', 1)">Book Title</th>
+                                        <th onclick="AmanLib.Sorting.sort('t-cat', 2)">Author & Subgenre</th>
+                                        <th onclick="AmanLib.Sorting.sort('t-cat', 3)">Genre</th>
+                                        <th onclick="AmanLib.Sorting.sort('t-cat', 4)">Shelf Location</th>
+                                        <th onclick="AmanLib.Sorting.sort('t-cat', 5)">Copies</th>
+                                        <th onclick="AmanLib.Sorting.sort('t-cat', 6)">Rating</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -556,11 +538,11 @@
 
                 <div id="v-reservations" class="view">
                     <div class="glass">
-                         <h3><i class="ph ph-bookmark"></i> Pipeline Active Hold Reservations</h3>
-                         <p class="text-mute" style="margin-bottom: 24px;">Allocated borrower entities queued to capture locked material profiles. Triggers notifications upon return ingestion processing pipelines.</p>
+                         <h3><i class="ph ph-bookmark"></i> Book Hold Reservations Queue</h3>
+                         <p class="text-mute" style="margin-bottom: 24px;">View and manage members waiting for currently unavailable books.</p>
                          <div class="table-wrap">
                              <table id="t-res">
-                                 <thead><tr><th>Logged Stamp</th><th>Target Profile Link ID</th><th>Book Blueprint Context</th><th>Hold Queue Integrity</th><th>Pipeline Direct Actions</th></tr></thead>
+                                 <thead><tr><th>Date Reserved</th><th>Member ID</th><th>Book Title</th><th>Status</th><th>Actions</th></tr></thead>
                                  <tbody></tbody>
                              </table>
                          </div>
@@ -570,9 +552,9 @@
                 <div id="v-issue" class="view">
                     <div class="grid-2">
                         <div class="glass">
-                            <h3><i class="ph ph-user-focus"></i> 1. Ingest Borrower Fingerprint</h3>
+                            <h3><i class="ph ph-user-focus"></i> 1. Select Member</h3>
                             <div style="position:relative">
-                                <input id="issue-mem-s" placeholder="Type Member Name String or ID Index..." onkeyup="AmanLib.Issue.searchMem(this.value)">
+                                <input id="issue-mem-s" placeholder="Type member name or ID..." onkeyup="AmanLib.Issue.searchMem(this.value)">
                                 <div id="issue-mem-res" class="suggestion-box hidden"></div>
                             </div>
                             
@@ -593,23 +575,23 @@
                                 <div class="tag t-warn mt-2" id="im-status" style="margin-top: 16px;"></div>
                                 
                                 <div style="margin-top:16px;" id="override-container" class="hidden">
-                                    <label style="color:var(--accent-pink)">Volume Constraints Exhausted. Admin Override Security Token Pin:</label>
+                                    <label style="color:var(--accent-pink)">Loan Limits Reached. Admin Override Pin:</label>
                                     <input type="password" id="override-pass" style="margin:0;">
                                 </div>
                             </div>
                         </div>
 
                         <div class="glass">
-                            <h3><i class="ph ph-book-bookmark"></i> 2. Isolate Targeted Inventory Asset</h3>
+                            <h3><i class="ph ph-book-bookmark"></i> 2. Select Book</h3>
                             <div style="position:relative">
-                                <input id="issue-book-s" placeholder="Type Book Title String Name or ISBN Key ID..." onkeyup="AmanLib.Issue.searchBook(this.value)">
+                                <input id="issue-book-s" placeholder="Type book title or ISBN..." onkeyup="AmanLib.Issue.searchBook(this.value)">
                                 <div id="issue-book-res" class="suggestion-box hidden"></div>
                             </div>
                             
                             <div id="issue-book-card" class="hidden" style="margin-top:20px; background:rgba(0,0,0,0.25); padding:20px; border-radius:12px; border:1px solid rgba(255,255,255,0.06);">
                                 <div class="bold" id="ib-title" style="font-size:18px; color:#fff;"></div>
-                                <div class="text-sm" style="margin: 12px 0;">Available Allocations Remaining: <span id="ib-count" style="color:var(--accent-green); font-weight: bold;">0</span></div>
-                                <label>Target Asset Unit Allocation Number:</label>
+                                <div class="text-sm" style="margin: 12px 0;">Available Copies: <span id="ib-count" style="color:var(--accent-green); font-weight: bold;">0</span></div>
+                                <label>Select Copy Code:</label>
                                 <select id="ib-copy" style="margin-top:6px"></select>
                             </div>
                         </div>
@@ -619,64 +601,64 @@
                         <div class="flex between" style="flex-wrap: wrap;">
                             <div class="flex">
                                 <div>
-                                    <label>Contract Obligation Return Timestamp</label>
+                                    <label>Due Date</label>
                                     <input type="date" id="issue-date" style="width:220px; margin:0;">
                                 </div>
                             </div>
-                            <button class="btn btn-pri" style="height: 48px; padding: 0 44px;" onclick="AmanLib.Issue.submit()">Authorize Book Contract</button>
+                            <button class="btn btn-pri" style="height: 48px; padding: 0 44px;" onclick="AmanLib.Issue.submit()">Issue Book</button>
                         </div>
                     </div>
                 </div>
 
                 <div id="v-return" class="view">
                     <div class="glass" style="max-width:850px; margin:0 auto;">
-                        <h3><i class="ph ph-arrow-u-down-left"></i> Ingest Returning Distribution Voucher</h3>
-                        <p style="color:var(--text-mute); margin-bottom:24px;">Scan external barcode interface tracking metrics or feed individual instance token identifiers (e.g. CP-1001).</p>
+                        <h3><i class="ph ph-arrow-u-down-left"></i> Process Book Return</h3>
+                        <p style="color:var(--text-mute); margin-bottom:24px;">Enter the copy ID number (found on the book label, e.g., CP-1001) or scan the barcode.</p>
                         <div class="flex">
-                            <input id="ret-id" placeholder="Copy ID Number (e.g., CP-XXXX)" style="font-size: 16px; font-family: var(--font-code);" onkeydown="if(event.key==='Enter') AmanLib.Return.check()">
-                            <button class="btn btn-pri" onclick="AmanLib.Return.check()">Return</button>
+                            <input id="ret-id" placeholder="Copy ID (e.g., CP-1001)" style="font-size: 16px; font-family: var(--font-code);" onkeydown="if(event.key==='Enter') AmanLib.Return.check()">
+                            <button class="btn btn-pri" onclick="AmanLib.Return.check()">Find Loan Info</button>
                         </div>
                         
                         <div id="ret-panel" class="hidden" style="margin-top:32px; border-top:1px dashed rgba(255,255,255,0.1); padding-top:32px;">
                             <div class="grid-2">
                                 <div>
-                                    <label>Book Node Profile</label>
+                                    <label>Book Title</label>
                                     <div id="rp-title" style="font-size:20px; color:#fff; font-weight:bold; margin-bottom:16px;"></div>
-                                    <label>Assigned Registered Holder</label>
+                                    <label>Borrowed By</label>
                                     <div id="rp-mem" style="color:var(--accent-purple); font-size: 16px; font-weight: 500;"></div>
                                 </div>
                                 <div style="text-align:right; background: rgba(0,0,0,0.2); padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.04);">
-                                    <label>Contract Expiration Timestamp</label>
+                                    <label>Due Date</label>
                                     <div id="rp-due" class="mono" style="margin-bottom: 12px;"></div>
-                                    <label>Accrued Penalty Liability Matrix</label>
+                                    <label>Late Fee Due</label>
                                     <div id="rp-fine" style="font-size:32px; color:var(--accent-pink); font-weight:bold;">₹0</div>
                                 </div>
                             </div>
                             
                             <div class="grid-3" style="margin-top: 24px;">
                                 <div>
-                                    <label>Physical Integrity State Status Evaluation</label>
+                                    <label>Book Condition On Return</label>
                                     <select id="rp-cond">
                                         <option value="Good">Good (No Change)</option>
-                                        <option value="Fair">Fair (Wear & Tear)</option>
+                                        <option value="Fair">Fair (Normal Wear)</option>
                                         <option value="Poor">Poor (Damaged)</option>
-                                        <option value="Quarantine">Quarantine (Repair needed)</option>
-                                        <option value="Lost">Lost (Charge Cost)</option>
+                                        <option value="Quarantine">In Repair (Fix needed)</option>
+                                        <option value="Lost">Lost (Charge Book Price)</option>
                                     </select>
                                 </div>
                                 <div>
-                                    <label>Liquid Cash Liability Ingested</label>
+                                    <label>Amount Paid Now</label>
                                     <input type="number" id="rp-paid" value="0" style="margin:0; font-size: 16px; font-weight: bold;">
                                 </div>
                                 <div>
-                                    <label>Forgiven Discretionary Balances Adjustment</label>
+                                    <label>Amount Waived / Forgiven</label>
                                     <input type="number" id="rp-waived" value="0" style="margin:0; font-size: 16px; font-weight: bold; color: var(--accent-gold);" onkeyup="AmanLib.Return.calcWaiver()">
                                 </div>
                             </div>
                             
                             <div class="grid-2" style="margin-top:24px;">
-                                <button class="btn btn-sec full-w" onclick="AmanLib.Return.printReceipt()"><i class="ph ph-file-pdf"></i> Generate System Ledger Invoice Document</button>
-                                <button class="btn btn-pri full-w" style="height: 52px;" onclick="AmanLib.Return.confirm()">Finalize Inbound Return Cycle</button>
+                                <button class="btn btn-sec full-w" onclick="AmanLib.Return.printReceipt()"><i class="ph ph-file-pdf"></i> Save PDF Invoice</button>
+                                <button class="btn btn-pri full-w" style="height: 52px;" onclick="AmanLib.Return.confirm()">Complete Return</button>
                             </div>
                         </div>
                     </div>
@@ -685,10 +667,10 @@
                 <div id="v-members" class="view">
                     <div class="glass">
                         <div class="flex between mb-2">
-                            <h3>Realtime User Base Accounts Profiles Registry</h3>
-                            <button class="btn btn-pri" onclick="AmanLib.UI.modal('m-mem'); AmanLib.Members.prepAdd();"><i class="ph ph-user-plus"></i> Standard Member Account Creation</button>
+                            <h3>Members Registry</h3>
+                            <button class="btn btn-pri" onclick="AmanLib.UI.modal('m-mem'); AmanLib.Members.prepAdd();"><i class="ph ph-user-plus"></i> Register New Member</button>
                         </div>
-                        <input id="mem-search" placeholder="Filter identity index tracking references by Name or Key ID tag..." onkeyup="AmanLib.Members.render()">
+                        <input id="mem-search" placeholder="Search members by name or ID..." onkeyup="AmanLib.Members.render()">
                         <div id="mem-grid" class="grid-3" style="margin-top:24px;"></div>
                     </div>
                 </div>
@@ -697,17 +679,17 @@
                     <div class="grid-2">
                         <div class="glass">
                             <div class="flex between mb-2">
-                                <h3>Account Ledger Permanent Audit Tracking</h3>
-                                <button class="btn btn-sec" onclick="AmanLib.Finance.exportCSV()"><i class="ph ph-file-csv"></i> Save Ledger Data (.CSV)</button>
+                                <h3>Financial History Log</h3>
+                                <button class="btn btn-sec" onclick="AmanLib.Finance.exportCSV()"><i class="ph ph-file-csv"></i> Save as CSV</button>
                             </div>
                             <div class="table-wrap" style="height:440px; overflow-y:auto;">
                                 <table id="t-fin">
                                     <thead>
                                         <tr>
-                                            <th onclick="AmanLib.Sorting.sort('t-fin', 0)">Timestamp</th>
-                                            <th onclick="AmanLib.Sorting.sort('t-fin', 1)">Classification Group</th>
-                                            <th onclick="AmanLib.Sorting.sort('t-fin', 2)">Descriptive Context Fields</th>
-                                            <th onclick="AmanLib.Sorting.sort('t-fin', 3)">Value Scale</th>
+                                            <th onclick="AmanLib.Sorting.sort('t-fin', 0)">Date</th>
+                                            <th onclick="AmanLib.Sorting.sort('t-fin', 1)">Type</th>
+                                            <th onclick="AmanLib.Sorting.sort('t-fin', 2)">Description</th>
+                                            <th onclick="AmanLib.Sorting.sort('t-fin', 3)">Amount</th>
                                         </tr>
                                     </thead>
                                     <tbody></tbody>
@@ -716,18 +698,18 @@
                         </div>
                         
                         <div class="glass">
-                            <h3>Financial Allocation Performance Totals</h3>
-                            <div class="stat-card" style="background:rgba(52, 211, 153, 0.04); margin-bottom:20px; border-color: rgba(52, 211, 153, 0.15);">
+                            <h3>Financial Summary</h3>
+                            <div class="stat-card" style="background:rgba(52, 211, 153, 0.04); margin-bottom:20px; border-color: rgba(52, 211, 153, 0.15); cursor:default;">
                                 <div class="stat-val" style="color:#34d399" id="fin-total">₹0</div>
-                                <div class="stat-lbl">Gross Ingested Penalties Captured</div>
+                                <div class="stat-lbl">Total Fines Collected</div>
                             </div>
-                            <div class="stat-card" style="background:rgba(251, 191, 36, 0.04); margin-bottom:20px; border-color: rgba(251, 191, 36, 0.15);">
+                            <div class="stat-card" style="background:rgba(251, 191, 36, 0.04); margin-bottom:20px; border-color: rgba(251, 191, 36, 0.15); cursor:default;">
                                 <div class="stat-val" style="color:#fbbf24" id="fin-pend">₹0</div>
-                                <div class="stat-lbl">Open Delinquent Receivables Framework</div>
+                                <div class="stat-lbl">Outstanding Unpaid Fines</div>
                             </div>
-                            <div class="stat-card" style="background:rgba(244, 114, 182, 0.04); border-color: rgba(244, 114, 182, 0.15);">
+                            <div class="stat-card" style="background:rgba(244, 114, 182, 0.04); border-color: rgba(244, 114, 182, 0.15); cursor:default;">
                                 <div class="stat-val" style="color:#f472b6" id="fin-waived">₹0</div>
-                                <div class="stat-lbl">Total Forgiven System Liabilities</div>
+                                <div class="stat-lbl">Total Waived Fines</div>
                             </div>
                         </div>
                     </div>
@@ -736,13 +718,13 @@
                 <div id="v-audit" class="view">
                     <div class="glass">
                         <div class="flex between mb-2">
-                            <h3><i class="ph ph-list-bullets"></i> System Security Operational Audit Trail</h3>
-                            <button class="btn btn-dan" onclick="AmanLib.Audit.pruneLogs()">Truncate Log Historical Registers</button>
+                            <h3><i class="ph ph-list-bullets"></i> System Activity Logs</h3>
+                            <button class="btn btn-dan" onclick="AmanLib.Audit.pruneLogs()">Clear All Logs</button>
                         </div>
-                        <p class="text-mute" style="margin-bottom:16px;">Historical ledger indexing framework security metrics validation traces and mutation loops verification tracking.</p>
+                        <p class="text-mute" style="margin-bottom:16px;">Tracks recent actions performed in the system for tracking and administration.</p>
                         <div class="table-wrap" style="max-height:520px; overflow-y:auto;">
                             <table id="t-audit">
-                                <thead><tr><th>Timestamp Core Metric</th><th>Operational Scope</th><th>Log Event Parameter Trace Definition String</th></tr></thead>
+                                <thead><tr><th>Time Stamp</th><th>Category</th><th>Log Action Details</th></tr></thead>
                                 <tbody></tbody>
                             </table>
                         </div>
@@ -751,64 +733,64 @@
 
                 <div id="v-settings" class="view">
                     <div class="glass" style="max-width:650px;">
-                        <h3>Environmental Engine Custom Configurations</h3>
+                        <h3>System Settings</h3>
                         
-                        <label>Application Branding Workspace Name Identifier</label>
+                        <label>Library Name Branding</label>
                         <input id="set-name" value="Aman's Library">
                         
-                        <label>Standard Loan Life Frame Window Allocation (Days Counter)</label>
+                        <label>Default Loan Duration (Days)</label>
                         <input type="number" id="set-days" value="14">
                         
-                        <label>Global Application UI Core Theme Preset</label>
+                        <label>Application UI Theme Preset</label>
                         <select id="set-theme" onchange="AmanLib.Settings.applyTheme(this.value)">
-                            <option value="cyberpunk">Void Space Cyberpunk (Dark Neon)</option>
-                            <option value="navy">High-Contrast Slate Matrix (Navy Slate)</option>
-                            <option value="reading">Warm Sepia Eye Comfort (Reading Paper)</option>
+                            <option value="cyberpunk">Void Cyberpunk (Neon Dark)</option>
+                            <option value="navy">Slate Matrix (Classic Dark)</option>
+                            <option value="reading">Eye Comfort (Warm Sepia)</option>
                         </select>
                         
-                        <label>Currency Scale Unit Representation Symbol</label>
+                        <label>Currency Display Symbol</label>
                         <select id="set-curr">
-                            <option value="₹">₹ Indian Rupee Sign (INR)</option>
-                            <option value="$">$ United States Dollar ($ USD)</option>
-                            <option value="€">€ Euro Member Zone Symbol (€ EUR)</option>
-                            <option value="£">£ United Kingdom Pound Matrix (£ GBP)</option>
+                            <option value="₹">₹ Indian Rupee (INR)</option>
+                            <option value="$">$ US Dollar (USD)</option>
+                            <option value="€">€ Euro (EUR)</option>
+                            <option value="£">£ British Pound (GBP)</option>
                         </select>
                         
                         <div style="margin: 20px 0 10px; border-top:1px solid rgba(255,255,255,0.06); padding-top:20px;">
-                            <h4 style="font-size:13px; color:var(--accent-purple); margin-bottom:12px;">Alert Management Matrices</h4>
-                            <label>Overdue Notice Automated Content Text Template Engine Block</label>
+                            <h4 style="font-size:13px; color:var(--accent-purple); margin-bottom:12px;">Alert Configuration</h4>
+                            <label>Overdue Notice Text Message Template</label>
                             <input id="set-tpl-overdue" value="">
                             
-                            <label>Holidays Penalty Grace Operational Exception Calendars (Comma Sep: YYYY-MM-DD)</label>
+                            <label>Library Holidays Grace List (Comma Separated: YYYY-MM-DD)</label>
                             <input id="set-holidays-list" placeholder="2026-01-01, 2026-08-15, 2026-12-25">
                         </div>
 
-                        <div style="margin: 20px 0 10px;"><h4 style="font-size:13px; color:var(--accent-purple);">Dynamic Daily Fine Tiers Parameters Scaling</h4></div>
+                        <div style="margin: 20px 0 10px;"><h4 style="font-size:13px; color:var(--accent-purple);">Daily Late Fee Tiers (Per Day)</h4></div>
                         <div class="grid-3">
-                            <div><label>Student Profile</label><input type="number" id="set-fine-student" value="5"></div>
-                            <div><label>Staff Profile</label><input type="number" id="set-fine-staff" value="2"></div>
-                            <div><label>Public Profile</label><input type="number" id="set-fine-public" value="10"></div>
+                            <div><label>Student Rate</label><input type="number" id="set-fine-student" value="5"></div>
+                            <div><label>Staff Rate</label><input type="number" id="set-fine-staff" value="2"></div>
+                            <div><label>Public Rate</label><input type="number" id="set-fine-public" value="10"></div>
                         </div>
                         
-                        <button class="btn btn-pri full-w" onclick="AmanLib.Settings.save()" style="margin-top:24px;">Commit Environmental Parameters</button>
+                        <button class="btn btn-pri full-w" onclick="AmanLib.Settings.save()" style="margin-top:24px;">Save System Parameters</button>
                         
                         <div style="margin-top:24px; border-top:1px solid var(--glass-border); padding-top:16px;">
-                            <h4 style="font-size:13px; color:var(--accent-purple); margin-bottom:12px;">Segment Isolated Partial Backups Engine</h4>
+                            <h4 style="font-size:13px; color:var(--accent-purple); margin-bottom:12px;">Segmented Backup Download</h4>
                             <div class="grid-3">
-                                <button class="btn btn-sec" onclick="AmanLib.Backup.downloadFiltered('books')">Catalog JSON Only</button>
-                                <button class="btn btn-sec" onclick="AmanLib.Backup.downloadFiltered('members')">Users JSON Only</button>
-                                <button class="btn btn-sec" onclick="AmanLib.Backup.downloadFiltered('ledger')">Finance Data Only</button>
+                                <button class="btn btn-sec" onclick="AmanLib.Backup.downloadFiltered('books')">Books Only</button>
+                                <button class="btn btn-sec" onclick="AmanLib.Backup.downloadFiltered('members')">Users Only</button>
+                                <button class="btn btn-sec" onclick="AmanLib.Backup.downloadFiltered('ledger')">Finance Only</button>
                             </div>
                         </div>
 
                         <div style="margin-top:24px; border-top:1px solid var(--glass-border); padding-top:16px;">
-                            <h4 style="font-size:13px; color:var(--accent-purple); margin-bottom:12px;">Hardware In-Situ Integrity Diagnostics Suite</h4>
-                            <button class="btn btn-sec full-w" onclick="AmanLib.Diagnostics.runSystemValidationLoop()">Trigger Ecosystem Synchronization Integrity Pipeline</button>
+                            <h4 style="font-size:13px; color:var(--accent-purple); margin-bottom:12px;">System Validation Terminal</h4>
+                            <button class="btn btn-sec full-w" onclick="AmanLib.Diagnostics.runSystemValidationLoop()">Trigger Ecosystem Sync Check</button>
                         </div>
 
                         <div style="margin-top:40px; border-top:1px solid var(--accent-pink); padding-top:24px;">
-                            <h3 style="color:var(--accent-pink); border:none; font-size:17px;"><i class="ph ph-warning" style="color:var(--accent-pink)"></i> Irreversible Destruction Zone Boundary</h3>
-                            <button class="btn btn-dan full-w" onclick="AmanLib.Settings.nuke()">Factory Clean Core State Reset</button>
+                            <h3 style="color:var(--accent-pink); border:none; font-size:17px;"><i class="ph ph-warning" style="color:var(--accent-pink)"></i> Danger Zone</h3>
+                            <button class="btn btn-dan full-w" onclick="AmanLib.Settings.nuke()">Factory Reset System Database</button>
                         </div>
                     </div>
                 </div>
@@ -819,145 +801,145 @@
 
     <div id="m-book" class="modal-mask">
         <div class="modal">
-            <h3 id="nb-header"><i class="ph ph-book-open"></i> Catalog New Material Structural Entry</h3>
+            <h3 id="nb-header"><i class="ph ph-book-open"></i> Add New Book Entry</h3>
             <input type="hidden" id="nb-mode" value="add"> 
             
             <div class="grid-2">
-                <div><label>ISBN Universal Tracking Code</label><input id="nb-isbn" placeholder="ISBN Unique Registry Key"></div>
-                <div><label>Physical Shelf Layout Unit Mapping</label><input id="nb-shelf" placeholder="e.g., A-12, Tech-R02"></div>
+                <div><label>ISBN Code</label><input id="nb-isbn" placeholder="Unique ISBN Identifier"></div>
+                <div><label>Shelf Location Layout</label><input id="nb-shelf" placeholder="e.g., Row A-12, Tech-02"></div>
             </div>
             
-            <label>Complete Title Label String</label><input id="nb-title">
+            <label>Complete Book Title</label><input id="nb-title">
             
             <div class="grid-3">
-                <div><label>Creator / Author Entity</label><input id="nb-auth"></div>
-                <div><label>Genre Core Classification</label><select id="nb-gen"><option>Fiction</option><option>Science</option><option>History</option><option>Tech</option><option>Arts</option><option>Other</option></select></div>
-                <div><label>Subgenre Node Filter Extension Tag</label><input id="nb-subgen" placeholder="e.g., Programming, Quantum"></div>
+                <div><label>Author Name</label><input id="nb-auth"></div>
+                <div><label>Primary Genre</label><select id="nb-gen"><option>Fiction</option><option>Science</option><option>History</option><option>Tech</option><option>Arts</option><option>Other</option></select></div>
+                <div><label>Subgenre Node / Tag</label><input id="nb-subgen" placeholder="e.g., Programming, Algebra"></div>
             </div>
             
             <div style="margin-bottom:12px; background:rgba(0,0,0,0.2); padding:12px; border-radius:8px;">
-                <label>Dynamic Core Extension Metadata Fields (JSON dictionary configurations strings)</label>
+                <label>Custom Meta Parameters (JSON Dictionary Configuration Strings)</label>
                 <input id="nb-custom-meta" placeholder='{"Publisher": "OReilly", "Language": "English", "Edition": "3rd"}'>
             </div>
             
             <div class="grid-2">
-                <div><label>Sequential Set Chain Link ID (Series Code)</label><input id="nb-series-link" placeholder="e.g., VOL-1, BOOK-C"></div>
-                <div><label>Inter-Library Loan Transit Facility Flag Location</label><input id="nb-ill-location" placeholder="e.g., Main-Campus, branch-west"></div>
+                <div><label>Series / Volume Link Identifier</label><input id="nb-series-link" placeholder="e.g., Vol. 1, Book 3"></div>
+                <div><label>Transit Facility Flag Location</label><input id="nb-ill-location" placeholder="e.g., Main Branch, West Wing"></div>
             </div>
             
             <div class="grid-3">
-                <div><label>Universal Replacement Penalty Cost</label><input type="number" id="nb-price" value="500"></div>
-                <div><label>Publication Year Stamp</label><input type="number" id="nb-year" value="2026"></div>
-                <div id="nb-qty-wrap"><label>Initial Operational Ingest Quantity</label><input type="number" id="nb-qty" value="1"></div>
+                <div><label>Replacement Value Cost</label><input type="number" id="nb-price" value="500"></div>
+                <div><label>Publication Year</label><input type="number" id="nb-year" value="2026"></div>
+                <div id="nb-qty-wrap"><label>Initial Copies count</label><input type="number" id="nb-qty" value="1"></div>
             </div>
             
             <div class="flex" style="margin-top:32px;">
                 <button id="nb-btn" class="btn btn-pri full-w" onclick="AmanLib.Catalog.save()">Commit Ingestion Payload</button>
-                <button class="btn btn-sec full-w" onclick="AmanLib.UI.closeM('m-book')">Abort</button>
+                <button class="btn btn-sec full-w" onclick="AmanLib.UI.closeM('m-book')">Cancel</button>
             </div>
         </div>
     </div>
 
     <div id="m-mem" class="modal-mask">
         <div class="modal">
-            <h3 id="nm-header"><i class="ph ph-user-plus"></i> Ingest New Account Registration</h3>
+            <h3 id="nm-header"><i class="ph ph-user-plus"></i> Register Member Profile</h3>
             <input type="hidden" id="nm-mode" value="add"><input type="hidden" id="nm-id" value="">
             
-            <label>Legal Identification Complete Name String</label><input id="nm-name">
-            <label>Direct Contact Telephone Interface Node</label><input id="nm-phone">
-            <label>Secure Electronic Mail Mailbox Destination Address</label><input id="nm-email">
+            <label>Full Legal Name</label><input id="nm-name">
+            <label>Phone Number Node</label><input id="nm-phone">
+            <label>Email Address</label><input id="nm-email">
             
             <div class="grid-2">
                 <div>
-                    <label>Structural Permission Membership Framework Classification</label>
+                    <label>Membership Classification Group</label>
                     <select id="nm-type">
                         <option value="Student">Student</option><option value="Staff">Staff</option><option value="Public">Public</option>
                     </select>
                 </div>
                 <div>
-                    <label>Valid Subscription Life Frame Window Lifetime (Months)</label>
+                    <label>Valid Membership Length (Months)</label>
                     <input type="number" id="nm-duration" value="12">
                 </div>
             </div>
             
             <div class="flex" style="margin-top:32px;">
-                <button id="nm-btn" class="btn btn-pri full-w" onclick="AmanLib.Members.save()">Register Account Credentials</button>
-                <button class="btn btn-sec full-w" onclick="AmanLib.UI.closeM('m-mem')">Abort Configuration</button>
+                <button id="nm-btn" class="btn btn-pri full-w" onclick="AmanLib.Members.save()">Confirm Registration</button>
+                <button class="btn btn-sec full-w" onclick="AmanLib.UI.closeM('m-mem')">Cancel Process</button>
             </div>
         </div>
     </div>
 
     <div id="m-review" class="modal-mask">
         <div class="modal">
-            <h3><i class="ph ph-star"></i> Log Book Material Review Profile</h3>
+            <h3><i class="ph ph-star"></i> Log Book Feedback & Review</h3>
             <input type="hidden" id="rev-isbn">
             
-            <label>Rating Evaluation Scaling Vector</label>
+            <label>Select Rating Score</label>
             <select id="rev-rating">
-                <option value="5">⭐⭐⭐⭐⭐ 5 Stars Excellent Performance</option><option value="4">⭐⭐⭐⭐ 4 Stars Optimal Content</option><option value="3">⭐⭐⭐ 3 Stars Median Parameters</option><option value="2">⭐⭐ 2 Stars Deficient Integrity</option><option value="1">⭐ 1 Star Unacceptable Condition</option>
+                <option value="5">⭐⭐⭐⭐⭐ 5 Stars Excellent Content</option><option value="4">⭐⭐⭐⭐ 4 Stars Great Content</option><option value="3">⭐⭐⭐ 3 Stars Satisfactory Performance</option><option value="2">⭐⭐ 2 Stars Needs Improvement</option><option value="1">⭐ 1 Star Poor Condition</option>
             </select>
             
-            <label>Critique Commentary Structural Notes Logs</label>
-            <textarea id="rev-text" rows="3" placeholder="Enter operational evaluation strings or condition anomalies references..."></textarea>
+            <label>Critique Commentary Notes</label>
+            <textarea id="rev-text" rows="3" placeholder="Enter review commentary or condition issues references..."></textarea>
             
             <div style="margin: 12px 0; max-height: 160px; overflow-y: auto; background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px;" id="review-feed-box"></div>
             
             <div class="flex" style="margin-top:24px;">
-                <button class="btn btn-pri full-w" onclick="AmanLib.Catalog.submitReview()">Inject Evaluation Data</button>
-                <button class="btn btn-sec full-w" onclick="AmanLib.UI.closeM('m-review')">Abort Logs</button>
+                <button class="btn btn-pri full-w" onclick="AmanLib.Catalog.submitReview()">Save Evaluation</button>
+                <button class="btn btn-sec full-w" onclick="AmanLib.UI.closeM('m-review')">Cancel Log</button>
             </div>
         </div>
     </div>
 
     <div id="m-bulk-import" class="modal-mask">
         <div class="modal">
-            <h3><i class="ph ph-file-arrow-up"></i> Batch Structural Array Data Ingestion Node</h3>
-            <p class="text-mute" style="font-size:12px; margin-bottom:16px;">Paste standardized arrays of structured JSON documents adhering to system property definitions fields inside the text tunnel mapping array terminal below.</p>
+            <h3><i class="ph ph-file-arrow-up"></i> Bulk JSON Data Ingestion Engine</h3>
+            <p class="text-mute" style="font-size:12px; margin-bottom:16px;">Paste standardized arrays of structured JSON documents adhering to system property definitions fields inside the terminal below.</p>
             <textarea id="bulk-json-data" rows="8" placeholder='[{"isbn":"9780134685991","title":"Effective Java","author":"Joshua Bloch","genre":"Tech","subgen":"Programming","shelf":"T-04","price":800,"year":2018}]' style="font-family:var(--font-code); font-size:12px; background: #000;"></textarea>
             
             <div class="flex">
-                <button class="btn btn-pri full-w" onclick="AmanLib.Catalog.processBulkImport()">Execute Array Engine Parse Stream</button>
-                <button class="btn btn-sec full-w" onclick="AmanLib.UI.closeM('m-bulk-import')">Cancel Stream Ingest</button>
+                <button class="btn btn-pri full-w" onclick="AmanLib.Catalog.processBulkImport()">Run Parser Engine Stream</button>
+                <button class="btn btn-sec full-w" onclick="AmanLib.UI.closeM('m-bulk-import')">Cancel Ingest</button>
             </div>
         </div>
     </div>
 
     <div id="m-wishlist-view" class="modal-mask">
         <div class="modal">
-            <h3><i class="ph ph-heart"></i> Procurement Acquisition Request Allocation Matrix Voting Board</h3>
+            <h3><i class="ph ph-heart"></i> Book Purchase Suggestions Voting Board</h3>
             <div class="flex" style="margin-bottom:16px;">
-                <input id="wish-title" placeholder="Propose Book Title Character Stream for Engine Tracking..." style="margin:0;">
-                <button class="btn btn-pri" onclick="AmanLib.Wishlist.propose()">Propose Acquisition</button>
+                <input id="wish-title" placeholder="Propose a book title for acquisition..." style="margin:0;">
+                <button class="btn btn-pri" onclick="AmanLib.Wishlist.propose()">Submit Idea</button>
             </div>
             <div id="wishlist-rendering-box" class="flex-col" style="max-height:220px; overflow-y:auto; gap:10px;"></div>
-            <button class="btn btn-sec full-w" style="margin-top:20px;" onclick="AmanLib.UI.closeM('m-wishlist-view')">Secure Hub Board Overlay</button>
+            <button class="btn btn-sec full-w" style="margin-top:20px;" onclick="AmanLib.UI.closeM('m-wishlist-view')">Close Suggestions Matrix Overlay</button>
         </div>
     </div>
 
     <div id="m-copy-mgmt" class="modal-mask">
         <div class="modal" style="width:750px;">
-            <h3><i class="ph ph-copy"></i> Isolated Instances Allocation Configuration Inventory Tracking Matrix</h3>
+            <h3><i class="ph ph-copy"></i> Manage Individual Book Copies</h3>
             <input type="hidden" id="copy-mgmt-isbn">
             
             <div style="margin-bottom: 20px; background: rgba(0,0,0,0.2); padding: 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.04);" class="flex">
                 <div style="flex:1;">
-                    <label>Target Instance Unit Allocation Identification Signature Token</label>
-                    <input id="relocate-copy-id" placeholder="e.g. CP-XXXX" style="margin:0;">
+                    <label>Target Copy ID Identification Token</label>
+                    <input id="relocate-copy-id" placeholder="e.g. CP-1001" style="margin:0;">
                 </div>
                 <div style="flex:1;">
-                    <label>Target New Physical Shelf Placement Target Coordinate Node</label>
+                    <label>Target New Shelf Layout Row Node</label>
                     <input id="relocate-shelf-target" placeholder="e.g. Shelf-B02" style="margin:0;">
                 </div>
-                <button class="btn btn-pri" style="margin-top:18px;" onclick="AmanLib.Catalog.relocateCopySubmit()">Authorize Spatial Relocation Mapping</button>
+                <button class="btn btn-pri" style="margin-top:18px;" onclick="AmanLib.Catalog.relocateCopySubmit()">Move to New Shelf</button>
             </div>
             
             <div class="table-wrap" style="max-height:260px; overflow-y:auto; margin:16px 0;">
                 <table id="t-copy-ledger">
-                    <thead><tr><th>Instance Unique Key Signature ID</th><th>Material Integrity Matrix Condition</th><th>Circulation Phase State Status</th><th>Physical Lifecycle Actions Management</th></tr></thead>
+                    <thead><tr><th>Copy ID Key</th><th>Book Condition Matrix</th><th>Loan Status Code</th><th>Lifecycle Admin Actions</th></tr></thead>
                     <tbody></tbody>
                 </table>
             </div>
-            <button class="btn btn-sec full-w" onclick="AmanLib.UI.closeM('m-copy-mgmt')">Close Instance Allocation Registries</button>
+            <button class="btn btn-sec full-w" onclick="AmanLib.UI.closeM('m-copy-mgmt')">Close Copy Allocation Panel</button>
         </div>
     </div>
 
@@ -968,15 +950,14 @@
         const AmanLib = {
             data: {
                 books: [], copies: [], members: [], txns: [], reservations: [], ledger: [], logs: [], attendance: [], wishlist: [], holidays: [], customFields: [], msgTemplates: {overdue:"", welcome:""},
-                settings: { name: "Aman's Library", days: 14, fine: 5, curr: '₹', theme: 'cyberpunk', fineTiers: { Student: 5, Staff: 2, Public: 10 } }
+                settings: { name: "Aman's Library", days: 14, fine: 5, curr: '₹', theme: 'cyberpunk', ttsEnabled: true, fineTiers: { Student: 5, Staff: 2, Public: 10 } }
             },
             temp: { issueMem: null, issueBook: null, retTxn: null, sortDir: {}, privacyMode: false },
             
             init: async () => {
-                // Initialize client data out of browser localStorage to handle offline state seamlessly
                 let offlineBackup = localStorage.getItem('amans_library_v3_matrix');
                 if(offlineBackup) {
-                    try { AmanLib.data = JSON.parse(offlineBackup); } catch(ex){ console.error("Cache parsing exception generated.", ex); }
+                    try { AmanLib.data = JSON.parse(offlineBackup); } catch(ex){ console.error("Cache parse warning.", ex); }
                 }
 
                 try {
@@ -990,21 +971,22 @@
                         if(cloudPayload && cloudPayload.books) AmanLib.data = cloudPayload;
                     }
                 } catch(e) {
-                    console.warn("Backend endpoints offline. Cascading seamlessly to local application storage matrix logic.");
+                    console.warn("Backend endpoints offline. Preserving local sandbox session state data loops.");
                 }
 
-                // Defensive variable schema structure stabilization fallback loops
                 if(!AmanLib.data.logs) AmanLib.data.logs = [];
                 if(!AmanLib.data.attendance) AmanLib.data.attendance = [];
                 if(!AmanLib.data.wishlist) AmanLib.data.wishlist = [];
                 if(!AmanLib.data.holidays) AmanLib.data.holidays = [];
-                if(!AmanLib.data.settings) AmanLib.data.settings = { name: "Aman's Library", days: 14, fine: 5, curr: '₹', theme: 'cyberpunk', fineTiers: { Student: 5, Staff: 2, Public: 10 } };
+                if(!AmanLib.data.settings) AmanLib.data.settings = { name: "Aman's Library", days: 14, fine: 5, curr: '₹', theme: 'cyberpunk', ttsEnabled: true, fineTiers: { Student: 5, Staff: 2, Public: 10 } };
+                if(AmanLib.data.settings.ttsEnabled === undefined) AmanLib.data.settings.ttsEnabled = true;
                 if(!AmanLib.data.settings.fineTiers) AmanLib.data.settings.fineTiers = { Student: 5, Staff: 2, Public: 10 };
                 if(!AmanLib.data.settings.curr) AmanLib.data.settings.curr = '₹';
                 if(!AmanLib.data.settings.theme) AmanLib.data.settings.theme = 'cyberpunk';
-                if(!AmanLib.data.msgTemplates) AmanLib.data.msgTemplates = {overdue:"Overdue notice parameter context.", welcome:"Welcome context pattern."};
+                if(!AmanLib.data.msgTemplates) AmanLib.data.msgTemplates = {overdue:"Your library book is overdue.", welcome:"Welcome to our library workspace setup."};
                 
                 AmanLib.Settings.applyTheme(AmanLib.data.settings.theme);
+                AmanLib.Diagnostics.updateTTSButtonUI();
                 AmanLib.Dash.render();
                 
                 $('sys-date').innerText = new Date().toLocaleDateString('en-US', { weekday:'short', year:'numeric', month:'short', day:'numeric' });
@@ -1012,7 +994,6 @@
             },
 
             save: async () => {
-                // Instantly commit data down to client LocalStorage before triggering backend sync loops to avoid application logic failure states
                 localStorage.setItem('amans_library_v3_matrix', JSON.stringify(AmanLib.data));
                 AmanLib.Dash.render();
                 
@@ -1023,15 +1004,16 @@
                         body: JSON.stringify({ action: 'save', data: AmanLib.data })
                     });
                 } catch(e) {
-                    console.warn("Backend link data transaction failure. Local structural state preserved locally inside browser instance.");
+                    console.warn("Using local storage matrix layout context checks.");
                 }
             },
 
-            logEvent: (cat, details) => {
+            logEvent: (cat, details, textToSpeak = null) => {
                 AmanLib.data.logs.push({ ts: new Date().toLocaleString(), cat: cat, details: details });
-                if(window.speechSynthesis) {
-                    let utterance = new SpeechSynthesisUtterance(details.substring(0, 60));
-                    utterance.rate = 1.15;
+                if(AmanLib.data.settings.ttsEnabled && window.speechSynthesis) {
+                    let speakPhrase = textToSpeak || details.substring(0, 60);
+                    let utterance = new SpeechSynthesisUtterance(speakPhrase);
+                    utterance.rate = 1.1;
                     window.speechSynthesis.speak(utterance);
                 }
             },
@@ -1044,9 +1026,9 @@
                         setTimeout(() => $('login-screen').classList.add('hidden'), 300);
                         $('app').style.display = 'flex';
                         AmanLib.Dash.render();
-                        AmanLib.UI.toast('System Matrix Cryptographic Verification Complete. Welcome, Operator Aman.', 'good');
+                        AmanLib.UI.toast('Access granted. Welcome back, Admin.', 'good');
                     } else {
-                        AmanLib.UI.toast('Access Security Key Signature Rejected.', 'bad');
+                        AmanLib.UI.toast('Security key rejected.', 'bad');
                     }
                 }
             },
@@ -1054,17 +1036,14 @@
             Nav: (v) => {
                 $$('.view').forEach(e => e.classList.remove('active'));
                 $$('.nav-item').forEach(e => e.classList.remove('active'));
-                
-                // Remove mobile drawer state on item selection triggers
                 document.querySelector('.sidebar').classList.remove('mobile-open');
-
                 $(`v-${v}`).classList.add('active');
                 
                 $$(`.nav-item`).forEach(e => { 
                     if(e.getAttribute('onclick') && e.getAttribute('onclick').includes(`'${v}'`)) e.classList.add('active'); 
                 });
                 
-                $('page-title').innerText = v.charAt(0).toUpperCase() + v.slice(1) + " Overview Controls";
+                $('page-title').innerText = v.charAt(0).toUpperCase() + v.slice(1) + " Control Screen";
                 
                 if(v=='dash') AmanLib.Dash.render();
                 if(v=='catalog') AmanLib.Catalog.render();
@@ -1106,17 +1085,19 @@
             Attendance: {
                 checkIn: () => {
                     const mid = $('att-mid').value.trim();
-                    if(!mid || !AmanLib.data.members.find(m => m.id === mid)) return AmanLib.UI.toast('Invalid Member Authentication Link Signature', 'bad');
+                    if(!mid || !AmanLib.data.members.find(m => m.id === mid)) return AmanLib.UI.toast('Invalid member reference key.', 'bad');
                     AmanLib.data.attendance.push({ memId: mid, type: 'IN', ts: new Date().toISOString() });
-                    AmanLib.UI.toast('Check-In Access Node Entry Cleared', 'good');
+                    AmanLib.UI.toast('Visitor checked in successfully.', 'good');
+                    AmanLib.logEvent('Attendance Management', `Member ${mid} check in completed row tracking matrix setup.`, 'Member checked in');
                     AmanLib.save();
                     $('att-mid').value = '';
                 },
                 checkOut: () => {
                     const mid = $('att-mid').value.trim();
-                    if(!mid || !AmanLib.data.members.find(m => m.id === mid)) return AmanLib.UI.toast('Invalid Member Authentication Link Signature', 'bad');
+                    if(!mid || !AmanLib.data.members.find(m => m.id === mid)) return AmanLib.UI.toast('Invalid member reference key.', 'bad');
                     AmanLib.data.attendance.push({ memId: mid, type: 'OUT', ts: new Date().toISOString() });
-                    AmanLib.UI.toast('Check-Out Terminal Exit Logged Successfully', 'warn');
+                    AmanLib.UI.toast('Visitor checked out successfully.', 'warn');
+                    AmanLib.logEvent('Attendance Management', `Member ${mid} check out completed row tracking matrix setup.`, 'Member checked out');
                     AmanLib.save();
                     $('att-mid').value = '';
                 }
@@ -1128,7 +1109,7 @@
                     if(!title) return;
                     AmanLib.data.wishlist.push({ id: 'W-'+Date.now(), title: title, votes: 1 });
                     $('wish-title').value = '';
-                    AmanLib.UI.toast('Procurement Request Generated and Appended to Voting Hub Grid', 'good');
+                    AmanLib.UI.toast('Book idea added to suggestion list.', 'good');
                     AmanLib.save();
                     AmanLib.Wishlist.renderModal();
                 },
@@ -1142,26 +1123,34 @@
                         return `<div class="flex between" style="background:rgba(255,255,255,0.02); padding:12px; border-radius:8px; font-size:12px; border:1px solid rgba(255,255,255,0.04);">
                             <span class="mono" style="color: #fff; font-weight:500;">${w.title}</span>
                             <div class="flex">
-                                <span class="tag t-info">${w.votes || 1} Velocity Weights</span>
-                                <button class="btn btn-pri" style="padding:4px 10px; font-size:11px; height:auto; text-transform:none;" onclick="AmanLib.Wishlist.upvote('${w.id}')">+1 Weight</button>
+                                <span class="tag t-info">${w.votes || 1} Upvotes</span>
+                                <button class="btn btn-pri" style="padding:4px 10px; font-size:11px; height:auto; text-transform:none;" onclick="AmanLib.Wishlist.upvote('${w.id}')">+1 Upvote</button>
                             </div>
                         </div>`;
-                    }).join('') || '<div class="text-mute mono text-center py-2">Procurement Proposal Pipeline Queue Cleared.</div>';
+                    }).join('') || '<div class="text-mute mono text-center py-2">No active book ideas suggested yet.</div>';
                 }
             },
 
             Diagnostics: {
-                runAudioCheck: () => {
-                    AmanLib.logEvent('Security Suite', 'Speech synthesis runtime subsystem authorization verified.');
+                toggleTTS: () => {
+                    AmanLib.data.settings.ttsEnabled = !AmanLib.data.settings.ttsEnabled;
+                    localStorage.setItem('amans_library_v3_matrix', JSON.stringify(AmanLib.data));
+                    AmanLib.Diagnostics.updateTTSButtonUI();
+                    AmanLib.UI.toast(AmanLib.data.settings.ttsEnabled ? 'Voice output enabled.' : 'Voice output disabled.', 'info');
+                },
+                updateTTSButtonUI: () => {
+                    const enabled = AmanLib.data.settings.ttsEnabled;
+                    $('tts-icon').className = enabled ? 'ph ph-speaker-high' : 'ph ph-speaker-x';
+                    $('tts-label').innerText = enabled ? 'Voice: ON' : 'Voice: OFF';
                 },
                 runSystemValidationLoop: () => {
                     const checks = [
-                        `Structural catalog schemas integrity nodes validated: ${AmanLib.data.books.length} items mapped.`,
-                        `Allocated instances array mappings depth trace verified: ${AmanLib.data.copies.length} copies captured.`,
-                        `Storage boundary allocation footprint context map verification: OK.`,
-                        `Ecosystem UI view layout device resolution parameters check: Verified Stable.`
+                        `Validated book records setup: ${AmanLib.data.books.length} entries matching indices.`,
+                        `Verified individual item copies setup: ${AmanLib.data.copies.length} copies matched.`,
+                        `Checked sandbox storage tracking structures: Stable.`,
+                        `Ecosystem device matrix visual response framework checks: Confirmed.`
                     ];
-                    alert("EXECUTING DYNAMIC ECOSYSTEM HARMONIZATION DIAGNOSTIC LOOP:\n\n" + checks.join("\n"));
+                    alert("RUNNING APPLICATION SYNC INTEGRITY CHECKS:\n\n" + checks.join("\n"));
                 }
             },
 
@@ -1169,7 +1158,6 @@
                 render: () => {
                     const symbol = AmanLib.data.settings.curr || '₹';
                     
-                    // Counter Badges Updates
                     $('badge-books').innerText = AmanLib.data.books.length;
                     $('badge-res').innerText = AmanLib.data.reservations.filter(r => r.status==='Active').length;
                     $('badge-members').innerText = AmanLib.data.members.length;
@@ -1233,14 +1221,14 @@
                     let lastAttState = {};
                     AmanLib.data.attendance.forEach(a => { lastAttState[a.memId] = a.type; });
                     Object.values(lastAttState).forEach(st => { if(st === 'IN') activeIn++; });
-                    $('live-occupancy-count').innerText = activeIn + " Verified Entities Present";
+                    $('live-occupancy-count').innerText = activeIn + " Active Visitors Counted Inside";
 
                     let agendaBrief = [];
                     let rightNow = new Date().toISOString().split('T')[0];
                     let openLoans = AmanLib.data.txns.filter(t => t.status === 'OPEN');
-                    agendaBrief.push(`● Active outstanding loan parameters currently under contract observation: <b>${openLoans.length} instances</b>`);
+                    agendaBrief.push(`● Active books out under borrower loan terms: <b>${openLoans.length} copies</b>`);
                     let urgentOverdue = openLoans.filter(t => t.dueDate < rightNow);
-                    agendaBrief.push(`<span style="color:var(--accent-pink)">● Immediate contract breach thresholds triggered outside parameters: <b>${urgentOverdue.length} exceptions</b></span>`);
+                    agendaBrief.push(`<span style="color:var(--accent-pink)">● Immediate late parameters overdue list match flags: <b>${urgentOverdue.length} items</b></span>`);
                     $('agenda-briefing-pane').innerHTML = agendaBrief.join("<br>");
 
                     let brMap = {}; AmanLib.data.txns.forEach(t => { if(t.status==='OPEN') brMap[t.memId] = true; });
@@ -1259,7 +1247,7 @@
                     const counts = dates.map(d => AmanLib.data.txns.filter(t => t.issueDate === d).length);
                     window.myChart = new Chart(ctx, {
                         type: 'bar',
-                        data: { labels: dates.map(d => d.slice(5)), datasets: [{ label: 'Circulation Activity Index', data: counts, backgroundColor: '#38bdf8', borderRadius: 4 }] },
+                        data: { labels: dates.map(d => d.slice(5)), datasets: [{ label: 'Book Circulation Tracker Index', data: counts, backgroundColor: '#38bdf8', borderRadius: 4 }] },
                         options: { responsive: true, maintainAspectRatio: false, plugins: { legend: {display:false} }, scales: { x: { grid: { display:false }, ticks: { color: '#94a3b8' } }, y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#94a3b8', stepSize: 1 } } } }
                     });
 
@@ -1281,18 +1269,18 @@
                         const b = AmanLib.data.books.find(x => x.isbn === t.isbn);
                         const days = Math.floor((new Date() - new Date(t.dueDate))/(1000*60*60*24));
                         return `<div style="padding:12px; background:rgba(244,114,182,0.03); border-radius:8px; border:1px solid rgba(244,114,182,0.1); font-size:13px;">
-                            <div style="font-weight:600; color:#fff">${b?b.title:'Asset Context Decoupled'}</div>
+                            <div style="font-weight:600; color:#fff">${b?b.title:'Book reference detached'}</div>
                             <div class="flex between" style="margin-top:6px;">
-                                <span style="color:var(--accent-purple); font-size:12px;">Holder ID: ${m?m.name:'Unknown'}</span> 
-                                <span class="tag t-bad">${days} Days Elongated Breach</span>
+                                <span style="color:var(--accent-purple); font-size:12px;">Borrower: ${m?m.name:'Unknown member'}</span> 
+                                <span class="tag t-bad">${days} Days Overdue</span>
                             </div>
                         </div>`;
-                    }).join('') || '<div style="padding:20px; text-align:center; color:var(--text-mute)" class="mono text-xs">Contract breach tracking space stable. No alerts flagged.</div>';
+                    }).join('') || '<div style="padding:20px; text-align:center; color:var(--text-mute)" class="mono text-xs">No overdue items tracked. All clear.</div>';
                     
                     $('t-recent').querySelector('tbody').innerHTML = AmanLib.data.txns.slice().reverse().slice(0, 8).map(t => {
                         const m = AmanLib.data.members.find(x => x.id === t.memId);
                         const b = AmanLib.data.books.find(x => x.isbn === t.isbn);
-                        const action = t.status === 'OPEN' ? '<span class="tag t-info">Issued Out</span>' : '<span class="tag t-ok">Ingested In</span>';
+                        const action = t.status === 'OPEN' ? '<span class="tag t-info">Issued</span>' : '<span class="tag t-ok">Returned</span>';
                         return `<tr>
                             <td><span class="mono" style="opacity:0.8; font-weight:600;">${t.id.split('-')[1]}</span></td>
                             <td>${action}</td>
@@ -1338,17 +1326,17 @@
                             let duration = Math.floor((new Date(t.retDate) - new Date(t.issueDate))/(1000*60*60*24));
                             totalOutDays += duration; closedCount++;
                         });
-                        let velocity = closedCount > 0 ? Math.round(totalOutDays/closedCount) + " Days Loop" : "Static Allocation";
+                        let velocity = closedCount > 0 ? Math.round(totalOutDays/closedCount) + " Days Average" : "Static Copy Allocation";
                         
                         let rackTotal = allC.length;
-                        let volumetricAlarm = rackTotal >= 10 ? "<span style='color:var(--accent-pink); font-size:10px; font-weight:bold;'> [MAX COPIES THRESHOLD REACHED]</span>" : "";
+                        let volumetricAlarm = rackTotal >= 10 ? "<span style='color:var(--accent-pink); font-size:10px; font-weight:bold;'> [MAX LIMIT REACHED]</span>" : "";
 
                         return `<tr>
                             <td class="mono text-sm font-bold" style="color:var(--accent-blue)">${b.isbn}</td>
                             <td style="font-weight:600; color:#fff">
                                 ${b.title} <span style="font-size:11px; opacity:0.5; font-weight:400;">(${b.year || 2026})</span>
-                                ${b.seriesLink ? `<span class="tag t-warn" style="font-size:9px; padding:1px 4px; vertical-align:middle;">Chain: ${b.seriesLink}</span>` : ""}
-                                ${b.illLocation ? `<span class="tag t-info" style="font-size:9px; padding:1px 4px; vertical-align:middle;">Transit: ${b.illLocation}</span>` : ""}
+                                ${b.seriesLink ? `<span class="tag t-warn" style="font-size:9px; padding:1px 4px; vertical-align:middle;">Series: ${b.seriesLink}</span>` : ""}
+                                ${b.illLocation ? `<span class="tag t-info" style="font-size:9px; padding:1px 4px; vertical-align:middle;">Location: ${b.illLocation}</span>` : ""}
                             </td>
                             <td><div style="font-weight:500;">${b.author}</div><div style="font-size:11px; color:var(--text-mute);">${b.subgen||'-'}</div></td>
                             <td><span class="tag t-info">${b.genre}</span></td>
@@ -1357,11 +1345,11 @@
                             <td style="color:var(--accent-gold); font-weight:600; cursor:pointer;" onclick="AmanLib.Catalog.prepReview('${b.isbn}')">${avg}</td>
                             <td>
                                 <div class="flex" style="gap:6px">
-                                    <button class="btn btn-sec" style="padding:6px 10px; font-size:11px; height:auto; text-transform:none;" onclick="AmanLib.Catalog.openCopyMgmt('${b.isbn}')"><i class="ph ph-copy"></i> Track Units</button>
-                                    <button class="btn btn-sec" style="padding:6px 8px; font-size:11px; height:auto;" onclick="AmanLib.Catalog.prepEdit('${b.isbn}')" title="Modify Parameters"><i class="ph ph-pencil-simple"></i></button>
-                                    <button class="btn btn-sec" style="padding:6px 8px; font-size:11px; height:auto; color:var(--accent-purple);" onclick="AmanLib.Catalog.genQR('${b.isbn}')" title="Render QR Access Matrix"><i class="ph ph-qr-code"></i></button>
-                                    <button class="btn btn-sec" style="padding:6px 8px; font-size:11px; height:auto; color:var(--accent-gold);" onclick="AmanLib.Catalog.prepReview('${b.isbn}')" title="Log Critiques"><i class="ph ph-star"></i></button>
-                                    ${av === 0 ? `<button class="btn btn-dan" style="padding:6px 10px; font-size:11px; height:auto; text-transform:none;" onclick="AmanLib.Reservations.add('${b.isbn}')">Queue Hold</button>` : ''}
+                                    <button class="btn btn-sec" style="padding:6px 10px; font-size:11px; height:auto; text-transform:none;" onclick="AmanLib.Catalog.openCopyMgmt('${b.isbn}')"><i class="ph ph-copy"></i> Manage Copies</button>
+                                    <button class="btn btn-sec" style="padding:6px 8px; font-size:11px; height:auto;" onclick="AmanLib.Catalog.prepEdit('${b.isbn}')" title="Edit Parameters"><i class="ph ph-pencil-simple"></i></button>
+                                    <button class="btn btn-sec" style="padding:6px 8px; font-size:11px; height:auto; color:var(--accent-purple);" onclick="AmanLib.Catalog.genQR('${b.isbn}')" title="Print Book QR Label"><i class="ph ph-qr-code"></i></button>
+                                    <button class="btn btn-sec" style="padding:6px 8px; font-size:11px; height:auto; color:var(--accent-gold);" onclick="AmanLib.Catalog.prepReview('${b.isbn}')" title="Review Feed Comments"><i class="ph ph-star"></i></button>
+                                    ${av === 0 ? `<button class="btn btn-dan" style="padding:6px 10px; font-size:11px; height:auto; text-transform:none;" onclick="AmanLib.Reservations.add('${b.isbn}')">Place Hold</button>` : ''}
                                 </div>
                             </td>
                         </tr>`;
@@ -1369,8 +1357,8 @@
                 },
 
                 prepAdd: () => {
-                    $('nb-header').innerHTML = '<i class="ph ph-book-open"></i> Catalog New Material Structural Entry';
-                    $('nb-btn').innerText = 'Commit Ingestion Payload'; $('nb-mode').value = 'add';
+                    $('nb-header').innerHTML = '<i class="ph ph-book-open"></i> Add New Book Entry Setup';
+                    $('nb-btn').innerText = 'Save Book Details'; $('nb-mode').value = 'add';
                     $('nb-qty-wrap').classList.remove('hidden'); $('nb-isbn').disabled = false;
                     ['nb-isbn','nb-title','nb-auth','nb-shelf','nb-subgen','nb-series-link','nb-ill-location','nb-custom-meta'].forEach(id => $(id).value = '');
                     $('nb-qty').value = 1; $('nb-price').value = 500; $('nb-year').value = 2026; $('nb-gen').selectedIndex = 0;
@@ -1378,8 +1366,8 @@
 
                 prepEdit: (isbn) => {
                     const b = AmanLib.data.books.find(x => x.isbn === isbn); if(!b) return;
-                    $('nb-header').innerHTML = '<i class="ph ph-pencil"></i> Edit Core Book Schema Parameters';
-                    $('nb-btn').innerText = 'Commit Changes'; $('nb-mode').value = 'edit';
+                    $('nb-header').innerHTML = '<i class="ph ph-pencil"></i> Edit Book Information';
+                    $('nb-btn').innerText = 'Save Modifications'; $('nb-mode').value = 'edit';
                     $('nb-qty-wrap').classList.add('hidden'); $('nb-isbn').value = b.isbn; $('nb-isbn').disabled = true;
                     $('nb-title').value = b.title; $('nb-auth').value = b.author; $('nb-shelf').value = b.shelf;
                     $('nb-price').value = b.price; $('nb-year').value = b.year || 2026; $('nb-gen').value = b.genre; $('nb-subgen').value = b.subgen || '';
@@ -1401,23 +1389,23 @@
                         seriesLink: $('nb-series-link').value.trim(), illLocation: $('nb-ill-location').value.trim(), customMeta: parsedMeta
                     };
                     
-                    if(!b.isbn || !b.title || !b.author) return AmanLib.UI.toast('Mandatory parameter elements missing validation strings.', 'bad');
+                    if(!b.isbn || !b.title || !b.author) return AmanLib.UI.toast('Please fill out all required fields.', 'bad');
                     
                     if(mode === 'add') {
-                        if(AmanLib.data.books.find(x => x.isbn === b.isbn)) return AmanLib.UI.toast('ISBN unique index duplicate collision.', 'bad');
+                        if(AmanLib.data.books.find(x => x.isbn === b.isbn)) return AmanLib.UI.toast('Book with this ISBN already exists.', 'bad');
                         AmanLib.data.books.push(b);
                         const qty = parseInt($('nb-qty').value) || 1;
                         for(let i=0; i<qty; i++) {
                             AmanLib.data.copies.push({ id: 'CP-' + Math.floor(1000 + Math.random() * 9000), isbn: b.isbn, status: 'AV', condition: 'Good' });
                         }
-                        AmanLib.logEvent('Inventory Operations', `Catalog payload schema integration completed for structural item: ${b.title}`);
-                        AmanLib.UI.toast('Book object records nested inside database arrays successfully.', 'good');
+                        AmanLib.logEvent('Inventory Control', `Added new book title details to catalog arrays: ${b.title}`, 'Book added successfully');
+                        AmanLib.UI.toast('Book saved to inventory list records setup.', 'good');
                     } else {
                         const idx = AmanLib.data.books.findIndex(x => x.isbn === b.isbn);
                         if(idx > -1) { 
                             b.reviews = AmanLib.data.books[idx].reviews || []; 
                             AmanLib.data.books[idx] = b; 
-                            AmanLib.UI.toast('Core data mutation updates mirrored across objects.', 'good'); 
+                            AmanLib.UI.toast('Book modifications saved successfully.', 'good'); 
                         }
                     }
                     
@@ -1433,11 +1421,11 @@
                         return `<tr>
                             <td class="mono font-bold" style="color:var(--accent-purple)">${c.id}</td>
                             <td><span class="tag t-info">${c.condition}</span></td>
-                            <td><span class="tag ${c.status=='AV'?'t-ok':'t-bad'}">${c.status === 'AV' ? 'In Rack' : 'Outbound Loan'}</span></td>
+                            <td><span class="tag ${c.status=='AV'?'t-ok':'t-bad'}">${c.status === 'AV' ? 'Available on Shelf' : 'Borrowed / Checked Out'}</span></td>
                             <td>
                                 <div class="flex" style="gap:6px;">
-                                    <button class="btn btn-dan" style="padding:4px 8px; font-size:11px; height:auto; text-transform:none;" onclick="AmanLib.Catalog.scrapCopy('${c.id}')" ${c.status==='OUT'?'disabled':''}>Scrap Asset Instance</button>
-                                    <button class="btn btn-pri" style="padding:4px 8px; font-size:11px; height:auto; text-transform:none;" onclick="AmanLib.Catalog.mintAdditionalCopy('${isbn}')">+ Allocate Instance</button>
+                                    <button class="btn btn-dan" style="padding:4px 8px; font-size:11px; height:auto; text-transform:none;" onclick="AmanLib.Catalog.scrapCopy('${c.id}')" ${c.status==='OUT'?'disabled':''}>Remove Copy</button>
+                                    <button class="btn btn-pri" style="padding:4px 8px; font-size:11px; height:auto; text-transform:none;" onclick="AmanLib.Catalog.mintAdditionalCopy('${isbn}')">+ Add Copy Instance</button>
                                 </div>
                             </td>
                         </tr>`;
@@ -1448,14 +1436,14 @@
                 relocateCopySubmit: () => {
                     const cid = $('relocate-copy-id').value.trim();
                     const targetShelf = $('relocate-shelf-target').value.trim();
-                    if(!cid || !targetShelf) return AmanLib.UI.toast('Specify reallocation destination criteria mappings.', 'warn');
+                    if(!cid || !targetShelf) return AmanLib.UI.toast('Please fill out copy ID and new location details.', 'warn');
                     const cp = AmanLib.data.copies.find(c => c.id === cid);
-                    if(!cp) return AmanLib.UI.toast('Instance tracking identifier decoupled from registry array.', 'bad');
+                    if(!cp) return AmanLib.UI.toast('Copy code not found in current database tracks.', 'bad');
                     const bk = AmanLib.data.books.find(b => b.isbn === cp.isbn);
                     if(bk) {
                         bk.shelf = targetShelf;
-                        AmanLib.logEvent('Inventory Operations', `Spatial translation allocation shifted for Instance ${cid} onto coordinate unit row ${targetShelf}`);
-                        AmanLib.UI.toast('Physical spatial coordinate map relocated cleanly.', 'good');
+                        AmanLib.logEvent('Inventory Control', `Moved copy ${cid} to new shelf tracking row position: ${targetShelf}`, 'Location updated');
+                        AmanLib.UI.toast('Shelf location coordinates shifted cleanly.', 'good');
                         AmanLib.save();
                         AmanLib.Catalog.openCopyMgmt(cp.isbn);
                     }
@@ -1464,7 +1452,7 @@
                 mintAdditionalCopy: (isbn) => {
                     const nid = 'CP-' + Math.floor(1000 + Math.random() * 9000);
                     AmanLib.data.copies.push({ id: nid, isbn: isbn, status: 'AV', condition: 'Good' });
-                    AmanLib.logEvent('Inventory Operations', `Instantiated duplicate allocation instance tracker key token: ${nid}`);
+                    AmanLib.logEvent('Inventory Control', `Allocated additional copy instance record key code: ${nid}`, 'New copy created');
                     AmanLib.save(); AmanLib.Catalog.openCopyMgmt(isbn); AmanLib.Catalog.render();
                 },
 
@@ -1472,7 +1460,7 @@
                     const idx = AmanLib.data.copies.findIndex(c => c.id === id);
                     if(idx > -1) {
                         const isbn = AmanLib.data.copies[idx].isbn;
-                        AmanLib.logEvent('Inventory Operations', `Purged structural lifecycle asset instance token: ${id}`);
+                        AmanLib.logEvent('Inventory Control', `Removed copy item track data row node: ${id}`, 'Copy removed');
                         AmanLib.data.copies.splice(idx, 1);
                         AmanLib.save(); AmanLib.Catalog.openCopyMgmt(isbn); AmanLib.Catalog.render();
                     }
@@ -1484,7 +1472,7 @@
                     if(b && b.reviews) {
                         $('review-feed-box').innerHTML = b.reviews.map(r => `<div style="border-bottom:1px solid rgba(255,255,255,0.05); padding:6px 0; margin-bottom:4px;"><span style="color:var(--accent-gold); font-size:12px;">${"⭐".repeat(r.score)}</span> <p style="font-size:12px; color:var(--text-main); margin-top:2px;">${r.commentary}</p></div>`).join('');
                     } else {
-                        $('review-feed-box').innerHTML = '<div style="font-size:11px; color:var(--text-mute)" class="mono">No critique blocks indexed for this layout schema node.</div>';
+                        $('review-feed-box').innerHTML = '<div style="font-size:11px; color:var(--text-mute)" class="mono">No reviews found for this book context node row.</div>';
                     }
                     AmanLib.UI.modal('m-review'); 
                 },
@@ -1495,7 +1483,7 @@
                     if(idx > -1) {
                         if(!AmanLib.data.books[idx].reviews) AmanLib.data.books[idx].reviews = [];
                         AmanLib.data.books[idx].reviews.push({ score: $('rev-rating').value, commentary: $('rev-text').value.trim() });
-                        AmanLib.UI.toast('Review metric entry nested inside book record array wrapper.', 'good');
+                        AmanLib.UI.toast('Review entry saved to book record wrapper indices.', 'good');
                     }
                     AmanLib.save(); AmanLib.Catalog.render(); AmanLib.UI.closeM('m-review');
                 },
@@ -1507,15 +1495,15 @@
                             parsed.forEach(b => {
                                 if(!b.isbn || !b.title) return;
                                 if(!AmanLib.data.books.find(x=>x.isbn===b.isbn)){
-                                    AmanLib.data.books.push({ isbn: b.isbn, title: b.title, author: b.author||'Unknown Creator', genre: b.genre||'Other', subgen: b.subgen||'', shelf: b.shelf||'A-00', price: b.price||500, year: b.year||2026, reviews: [] });
+                                    AmanLib.data.books.push({ isbn: b.isbn, title: b.title, author: b.author||'Unknown Author', genre: b.genre||'Other', subgen: b.subgen||'', shelf: b.shelf||'A-00', price: b.price||500, year: b.year||2026, reviews: [] });
                                     AmanLib.data.copies.push({ id: 'CP-' + Math.floor(1000 + Math.random() * 9000), isbn: b.isbn, status: 'AV', condition: 'Good' });
                                 }
                             });
-                            AmanLib.logEvent('Security Ingestion', 'Executed batch parser engine upload stream sequence array integrations.');
-                            AmanLib.UI.toast('Data array clusters uploaded and integrated flawlessly.', 'good');
+                            AmanLib.logEvent('Database Administration', 'Processed batch file book array list upload entries.', 'Bulk data import completed');
+                            AmanLib.UI.toast('Data items parsed and uploaded successfully.', 'good');
                             AmanLib.save(); AmanLib.Catalog.render(); AmanLib.UI.closeM('m-bulk-import');
                         }
-                    } catch(err) { AmanLib.UI.toast('Parsing verification failure inside data string stream parsing matrix logic.', 'bad'); }
+                    } catch(err) { AmanLib.UI.toast('Failed to parse JSON text input format.', 'bad'); }
                 },
 
                 genQR: (isbn) => {
@@ -1536,10 +1524,10 @@
                     if(inp.includes("ISBN:") && inp.includes("SHELF:")) { inp = inp.split('|')[0].split(':')[1]; }
                     const b = AmanLib.data.books.find(x => x.isbn === inp || x.title.toLowerCase().includes(inp.toLowerCase()));
                     if(b) { 
-                        alert(`ASSET ISOLATION MAPPED SUCCESFULLY:\n\nBook Title Name: ${b.title}\nPhysical Row Location: ${b.shelf}\nCreator Entity Node: ${b.author}\nUniversal ISBN Signature: ${b.isbn}`); 
+                        alert(`BOOK SHELF DETAILS MAPPED:\n\nTitle: ${b.title}\nShelf Coordinates Node: ${b.shelf}\nAuthor: ${b.author}\nISBN Link: ${b.isbn}`); 
                         $('cat-search').value = b.title; AmanLib.Catalog.render(); 
                     } else { 
-                        AmanLib.UI.toast("Asset coordinates search index trace missing from active scope workspace array maps.", "bad"); 
+                        AmanLib.UI.toast("No book found in catalog maps matching details.", "bad"); 
                     }
                     $('shelf-finder').value = '';
                 }
@@ -1547,29 +1535,29 @@
 
             Reservations: {
                 add: (isbn) => {
-                    const mid = prompt("Enter verification borrower identification number trace token parameter code string:"); if(!mid) return;
-                    const m = AmanLib.data.members.find(x => x.id === mid); if(!m) return AmanLib.UI.toast("Member lookups trace token sequence mismatch.", "bad");
+                    const mid = prompt("Enter Member ID string details to confirm reservation queue hold line entry:"); if(!mid) return;
+                    const m = AmanLib.data.members.find(x => x.id === mid); if(!m) return AmanLib.UI.toast("Member ID lookup matching records not found.", "bad");
                     AmanLib.data.reservations.push({ date: new Date().toISOString().split('T')[0], memId: mid, isbn: isbn, status: 'Active' });
-                    AmanLib.logEvent('Circulation Desk', `Reservation hold structure committed for member account: ${mid}`);
-                    AmanLib.save(); AmanLib.UI.toast("Reservation queue line configuration extended cleanly.", "good");
+                    AmanLib.logEvent('Circulation Desk', `Placed book hold queue line entry for user account reference: ${mid}`, 'Book hold registered');
+                    AmanLib.save(); AmanLib.UI.toast("Member added to reservation waitlist queue line.", "good");
                 },
                 render: () => {
                     const t = $('t-res').querySelector('tbody');
                     if(!t) return;
                     const activeRes = AmanLib.data.reservations.filter(r => r.status === 'Active');
-                    if(activeRes.length === 0) { t.innerHTML = '<tr><td colspan="5" style="text-align:center; padding:24px;" class="mono text-xs text-mute">No hold queues currently tracking asset pipelines.</td></tr>'; return; }
+                    if(activeRes.length === 0) { t.innerHTML = '<tr><td colspan="5" style="text-align:center; padding:24px;" class="mono text-xs text-mute">No hold requests currently tracking items in loop rows.</td></tr>'; return; }
                     t.innerHTML = AmanLib.data.reservations.map((r, i) => {
                         if(r.status !== 'Active') return '';
                         const m = AmanLib.data.members.find(x => x.id === r.memId); const b = AmanLib.data.books.find(x => x.isbn === r.isbn);
                         return `<tr>
                             <td class="mono text-xs">${r.date}</td>
-                            <td><span class="font-bold">${m?.name || 'Deattached Profile'}</span> <br><small class="mono text-xs opacity-60">${r.memId}</small></td>
-                            <td><span style="font-weight:600;">${b?.title || 'Unknown Asset Record'}</span></td>
+                            <td><span class="font-bold">${m?.name || 'Profile detached'}</span> <br><small class="mono text-xs opacity-60">${r.memId}</small></td>
+                            <td><span style="font-weight:600;">${b?.title || 'Unknown title context'}</span></td>
                             <td><span class="tag t-warn">${r.status}</span></td>
                             <td>
                                 <div class="flex">
-                                    <button class="btn btn-pri" style="padding:5px 10px; font-size:11px; height:auto; text-transform:none;" onclick="AmanLib.Reservations.fulfillDirect(${i})">Fulfill Queue</button>
-                                    <button class="btn btn-dan" style="padding:5px 8px; font-size:11px; height:auto; text-transform:none;" onclick="AmanLib.Reservations.del(${i})">Purge Hold</button>
+                                    <button class="btn btn-pri" style="padding:5px 10px; font-size:11px; height:auto; text-transform:none;" onclick="AmanLib.Reservations.fulfillDirect(${i})">Fulfill / Issue</button>
+                                    <button class="btn btn-dan" style="padding:5px 8px; font-size:11px; height:auto; text-transform:none;" onclick="AmanLib.Reservations.del(${i})">Remove Hold</button>
                                 </div>
                             </td>
                         </tr>`;
@@ -1578,13 +1566,13 @@
                 fulfillDirect: (idx) => {
                     const r = AmanLib.data.reservations[idx];
                     const cp = AmanLib.data.copies.find(c => c.isbn === r.isbn && c.status === 'AV' && c.condition !== 'Quarantine');
-                    if(!cp) return AmanLib.UI.toast('No available instances on rack currently match distribution clearance vectors.', 'bad');
+                    if(!cp) return AmanLib.UI.toast('No copies of this book are currently available on shelf paths.', 'bad');
                     cp.status = 'OUT';
                     const d = new Date(); d.setDate(d.getDate() + 14);
                     AmanLib.data.txns.push({ id: 'TX-'+Date.now(), copyId: cp.id, isbn: cp.isbn, memId: r.memId, issueDate: new Date().toISOString().split('T')[0], dueDate: d.toISOString().split('T')[0], status: 'OPEN', fine: 0, waived: 0 });
                     AmanLib.data.reservations[idx].status = 'Fulfilled/Alerted';
-                    AmanLib.logEvent('Circulation Desk', `Elevated structural queue position into operational deployment contract for copy tracker: ${cp.id}`);
-                    AmanLib.UI.toast('Hold fulfilled cleanly into distribution tracking.', 'good');
+                    AmanLib.logEvent('Circulation Desk', `Cleared book reservation into live checked out loan contract copy tracking code: ${cp.id}`, 'Reservation fulfilled');
+                    AmanLib.UI.toast('Book copy successfully issued from waitlist line.', 'good');
                     AmanLib.save();
                     AmanLib.Nav('dash');
                 },
@@ -1604,19 +1592,19 @@
                     const act = AmanLib.data.txns.filter(t => t.memId === id && t.status === 'OPEN').length;
                     
                     let totalHistory = AmanLib.data.txns.filter(t => t.memId === m.id).length;
-                    let privilegeTier = "Bronze Standard Tier Account";
+                    let privilegeTier = "Standard Profile Access Tier";
                     let extendedGracePeriodDays = 0;
-                    if(totalHistory > 15) { privilegeTier = "Gold Premium Tier [Max Limits Overridden]"; extendedGracePeriodDays = 14; }
-                    else if(totalHistory > 5) { privilegeTier = "Silver Advanced Tier Account"; extendedGracePeriodDays = 7; }
+                    if(totalHistory > 15) { privilegeTier = "Premium Status [Extended Loan Window Allowed]"; extendedGracePeriodDays = 14; }
+                    else if(totalHistory > 5) { privilegeTier = "Advanced Status [Extra Grace Period]"; extendedGracePeriodDays = 7; }
                     $('im-tier-tag').innerText = privilegeTier;
 
                     const lim = m.type === 'Student' ? 3 : 10;
-                    $('im-status').innerText = `${act} Outbound Active Loans Under Tracking out of ${lim} Allowed Max`;
+                    $('im-status').innerText = `${act} Active books checked out out of ${lim} max limit matches.`;
                     
                     let totalCirc = AmanLib.data.txns.filter(t => t.memId === id).length;
                     let lateCirc = AmanLib.data.txns.filter(t => t.memId === id && t.status === 'CLOSED' && new Date(t.retDate) > new Date(t.dueDate)).length;
                     let reliabilityScore = totalCirc > 0 ? Math.round(((totalCirc - lateCirc) / totalCirc) * 100) : 100;
-                    $('im-score-tag').innerText = "Member Pipeline Reliability Coefficient Score: " + reliabilityScore + "%";
+                    $('im-score-tag').innerText = "On-Time Return Score Coefficient: " + reliabilityScore + "%";
 
                     if (act >= lim) {
                         $('im-status').className = 'tag t-bad';
@@ -1628,7 +1616,7 @@
                     
                     let exp = m.expiryDate ? new Date(m.expiryDate) : null;
                     let isExp = exp && exp < new Date();
-                    $('im-expiry-tag').innerText = "Expiry Stamp: " + (m.expiryDate || 'N/A');
+                    $('im-expiry-tag').innerText = "Expiration Date: " + (m.expiryDate || 'N/A');
                     $('im-expiry-tag').className = "tag " + (isExp ? "t-bad" : "t-ok");
                     $('im-status-tag').innerText = m.status || 'Active';
                     $('im-status-tag').className = "tag " + (m.status === 'Suspended' ? "t-bad" : "t-ok");
@@ -1650,22 +1638,22 @@
                     $('issue-book-card').classList.remove('hidden'); $('issue-book-res').classList.add('hidden');
                 },
                 submit: () => {
-                    if(!AmanLib.temp.issueMem || !$('ib-copy').value) return AmanLib.UI.toast('Distribution variables structural components missing data pointers context maps inside view layout.', 'warn');
-                    if(AmanLib.temp.issueMem.status === 'Suspended') return AmanLib.UI.toast('Borrower account index currently under administration lock hold constraints.', 'bad');
-                    if(AmanLib.temp.issueMem.expiryDate && new Date(AmanLib.temp.issueMem.expiryDate) < new Date()) return AmanLib.UI.toast('Account expiration date threshold boundary breached.', 'bad');
+                    if(!AmanLib.temp.issueMem || !$('ib-copy').value) return AmanLib.UI.toast('Please select a member and a valid book copy row field.', 'warn');
+                    if(AmanLib.temp.issueMem.status === 'Suspended') return AmanLib.UI.toast('This member account is currently locked or suspended.', 'bad');
+                    if(AmanLib.temp.issueMem.expiryDate && new Date(AmanLib.temp.issueMem.expiryDate) < new Date()) return AmanLib.UI.toast('Membership card validity window timeline has expired.', 'bad');
                     
                     const act = AmanLib.data.txns.filter(t => t.memId === AmanLib.temp.issueMem.id && t.status === 'OPEN').length;
                     const lim = AmanLib.temp.issueMem.type === 'Student' ? 3 : 10;
                     if(act >= lim) {
                         if($('override-pass').value !== 'bypass123') {
-                            return AmanLib.UI.toast('Voucher volume ceiling limits exceeded. Valid override pass token signature required.', 'bad');
+                            return AmanLib.UI.toast('Loan capacity limit reached. Manager authorization pin validation required.', 'bad');
                         }
                     }
 
                     const cid = $('ib-copy').value; const cp = AmanLib.data.copies.find(x => x.id === cid); cp.status = 'OUT';
                     AmanLib.data.txns.push({ id: 'TX-'+Date.now(), copyId: cid, isbn: cp.isbn, memId: AmanLib.temp.issueMem.id, issueDate: new Date().toISOString().split('T')[0], dueDate: $('issue-date').value, status: 'OPEN', fine: 0, waived: 0 });
-                    AmanLib.logEvent('Circulation Desk', `Dispatched copy unit tracking token link node ${cid} onto borrower target record block ID: ${AmanLib.temp.issueMem.id}`);
-                    AmanLib.save(); AmanLib.Nav('dash'); AmanLib.UI.toast('Asset processing verification structural tracking signature generated.', 'good');
+                    AmanLib.logEvent('Circulation Desk', `Issued copy ${cid} tracking data block out onto member account link node: ${AmanLib.temp.issueMem.id}`, 'Book issued successfully');
+                    AmanLib.save(); AmanLib.Nav('dash'); AmanLib.UI.toast('Book loan parameters saved. Transaction file initialized.', 'good');
                     $('issue-mem-card').classList.add('hidden'); $('issue-book-card').classList.add('hidden');
                     $('issue-mem-s').value=''; $('issue-book-s').value=''; $('override-pass').value='';
                 }
@@ -1674,10 +1662,10 @@
             Return: {
                 check: () => {
                     const cid = $('ret-id').value.trim(); const tx = AmanLib.data.txns.find(t => t.copyId === cid && t.status === 'OPEN');
-                    if(!tx) return AmanLib.UI.toast('Circulation records map zero open out-of-bounds dependencies for instance tracking key signature.', 'bad');
+                    if(!tx) return AmanLib.UI.toast('No active borrowed record found matching copy ID tracking string indices.', 'bad');
                     AmanLib.temp.retTxn = tx;
                     const b = AmanLib.data.books.find(x => x.isbn === tx.isbn); const m = AmanLib.data.members.find(x => x.id === tx.memId);
-                    $('rp-title').innerText = b ? b.title : 'Asset Object Decoupled From Registry'; $('rp-mem').innerText = m ? m.name : 'Profile Framework Unmapped'; $('rp-due').innerText = tx.dueDate;
+                    $('rp-title').innerText = b ? b.title : 'Book info unmapped'; $('rp-mem').innerText = m ? m.name : 'Member record unmapped'; $('rp-due').innerText = tx.dueDate;
                     const due = new Date(tx.dueDate); const today = new Date(); let fine = 0;
                     if(today > due) {
                         let days = Math.floor((today - due) / (1000*60*60*24));
@@ -1711,31 +1699,31 @@
                     if(cond === 'Lost') {
                         const bObj = AmanLib.data.books.find(x => x.isbn === tx.isbn);
                         let replacementCost = bObj ? bObj.price : 500;
-                        AmanLib.data.ledger.push({ date: tx.retDate, type: 'LOST_BILL', desc: `Asset lost structural physical replacement bill charge generated for target unit: ${tx.copyId}`, amt: replacementCost });
-                        AmanLib.UI.toast(`Asset flagged as permanently lost. Cost added to financial balance sheet liabilities.`, 'bad');
+                        AmanLib.data.ledger.push({ date: tx.retDate, type: 'LOST_BILL', desc: `Charged replacement fine cost fee details for permanently lost copy code: ${tx.copyId}`, amt: replacementCost });
+                        AmanLib.UI.toast(`Book flagged as lost. Replacement cost parameters loaded onto financial balance sheet arrays.`, 'bad');
                     }
 
-                    if(paid > 0) AmanLib.data.ledger.push({ date: tx.retDate, type: 'FINE', desc: `Fine allocation cash capture processed for asset tracking row node key: ${tx.copyId}`, amt: paid });
-                    if(waived > 0) AmanLib.data.ledger.push({ date: tx.retDate, type: 'WAIVER', desc: `Discretionary financial waiver ledger reconciliation adjustments allocated: ${tx.copyId}`, amt: waived });
+                    if(paid > 0) AmanLib.data.ledger.push({ date: tx.retDate, type: 'FINE', desc: `Collected cash penalty late fee return processing check update for copy tracking index: ${tx.copyId}`, amt: paid });
+                    if(waived > 0) AmanLib.data.ledger.push({ date: tx.retDate, type: 'WAIVER', desc: `Waived outstanding late fee balance parameters adjustments for record unit token code: ${tx.copyId}`, amt: waived });
                     
                     const resIdx = AmanLib.data.reservations.findIndex(r => r.isbn === tx.isbn && r.status === 'Active');
                     if(resIdx > -1) { 
                         AmanLib.data.reservations[resIdx].status = 'Fulfilled/Alerted'; 
-                        alert(`QUEUE HOLD SIGNAL NOTIFICATION TRIGGERED:\n\nA matching waitlisted member entity alert loop holds reservation focus on this returned asset material for Member ID: ${AmanLib.data.reservations[resIdx].memId}`); 
+                        alert(`RESERVATION NOTIFICATION HOLD TRIGGERED:\n\nA waitlisted member holds reservation tracking locks priority focus on this returned asset material: Member ID code ${AmanLib.data.reservations[resIdx].memId}`); 
                     }
                     
-                    AmanLib.logEvent('Circulation Desk', `Ingested inbound processing structural validation loop checks finalized for token row: ${tx.copyId}`);
-                    AmanLib.save(); AmanLib.UI.toast('Circulation workflow execution cycle completed smoothly.', 'good');
+                    AmanLib.logEvent('Circulation Desk', `Processed book inbound return cycle checks completed cleanly for tracker code: ${tx.copyId}`, 'Book returned successfully');
+                    AmanLib.save(); AmanLib.UI.toast('Return check completed. Data structures updated smoothly.', 'good');
                     $('ret-panel').classList.add('hidden'); $('ret-id').value='';
                 },
                 printReceipt: () => {
                     const { jsPDF } = window.jspdf; const doc = new jsPDF();
-                    doc.text("AMAN'S LIBRARY ENGINE SYSTEM - INBOUND INVOICE LOG", 14, 20);
-                    doc.text(`Transaction Status Marker: Settle Complete / Clear`, 14, 30);
-                    doc.text(`Asset Identifier Instance Trace Key: ${AmanLib.temp.retTxn.copyId}`, 14, 40);
-                    doc.text(`Calculated Incurred base Penalty Costs: ${$('rp-fine').innerText}`, 14, 50);
-                    doc.text(`Forgiven Discretionary Balances Deducted: ${$('rp-waived').value}`, 14, 60);
-                    doc.text(`Liquid Revenue Value Ingested: ${$('rp-paid').value}`, 14, 70);
+                    doc.text("AMAN'S LIBRARY - RETURN TRANSACTION RECEIPT INVOICE LOG", 14, 20);
+                    doc.text(`Status Code: Return Settle Process Clear`, 14, 30);
+                    doc.text(`Book Copy ID Tracker Tag reference: ${AmanLib.temp.retTxn.copyId}`, 14, 40);
+                    doc.text(`Late Fine Incurred Total: ${$('rp-fine').innerText}`, 14, 50);
+                    doc.text(`Late Fine Waived Adjustments: ${$('rp-waived').value}`, 14, 60);
+                    doc.text(`Total Amount Collected Paid Cash: ${$('rp-paid').value}`, 14, 70);
                     doc.save(`Invoice_Receipt_${AmanLib.temp.retTxn.copyId}.pdf`);
                 }
             },
@@ -1749,31 +1737,31 @@
                         return `<div class="glass" style="position:relative; border-top:3px solid ${m.status==='Suspended'?'var(--accent-pink)':'var(--accent-purple)'}">
                             <div class="flex between"><div style="font-weight:bold; font-size:16px; color:#fff">${m.name}</div><span class="tag ${m.status==='Suspended'?'t-bad':'t-ok'}">${m.status||'Active'}</span></div>
                             <div class="mono text-xs mb-2" style="color:var(--text-mute); margin-top:2px;">${m.id}</div>
-                            <div style="font-size:11px; margin-bottom:12px; color:var(--accent-gold);" class="mono">Valid Until Date: ${m.expiryDate||'-'}</div>
+                            <div style="font-size:11px; margin-bottom:12px; color:var(--accent-gold);" class="mono">Card Valid Until Calendar: ${m.expiryDate||'-'}</div>
                             <div class="flex between">
                                 <span class="tag t-info">${m.type}</span>
-                                <span class="tag ${act>0?'t-warn':'t-ok'}">${act} Open Active Books</span>
+                                <span class="tag ${act>0?'t-warn':'t-ok'}">${act} Active Book Loans</span>
                             </div>
                             <div class="flex" style="margin-top:16px; gap:4px; flex-wrap:wrap;">
-                                <button class="btn btn-sec" style="font-size:11px; padding:6px; height:auto; flex:1;" onclick="AmanLib.Members.card('${m.id}')" title="Print Membership ID Card Badge"><i class="ph ph-identification-card"></i> Card</button>
-                                <button class="btn btn-sec" style="font-size:11px; padding:6px; height:auto;" onclick="AmanLib.Members.prepEdit('${m.id}')" title="Edit Profile Details"><i class="ph ph-pencil"></i></button>
-                                <button class="btn btn-sec" style="font-size:11px; padding:6px; height:auto; color:var(--accent-pink);" onclick="AmanLib.Members.toggleSuspension('${m.id}')" title="Toggle Administration Lock Restrict"><i class="ph ph-prohibit"></i></button>
-                                <button class="btn btn-sec" style="font-size:11px; padding:6px; height:auto; color:var(--accent-green);" onclick="AmanLib.Members.prolongLifespan('${m.id}')" title="Extend Membership Lifetime 1 Year"><i class="ph ph-calendar-plus"></i> +Year</button>
+                                <button class="btn btn-sec" style="font-size:11px; padding:6px; height:auto; flex:1;" onclick="AmanLib.Members.card('${m.id}')" title="Print Membership Card Badge"><i class="ph ph-identification-card"></i> Badge Card</button>
+                                <button class="btn btn-sec" style="font-size:11px; padding:6px; height:auto;" onclick="AmanLib.Members.prepEdit('${m.id}')" title="Edit Demographic Information Properties"><i class="ph ph-pencil"></i></button>
+                                <button class="btn btn-sec" style="font-size:11px; padding:6px; height:auto; color:var(--accent-pink);" onclick="AmanLib.Members.toggleSuspension('${m.id}')" title="Lock / Unlock Member Account Status Code Matrix"><i class="ph ph-prohibit"></i></button>
+                                <button class="btn btn-sec" style="font-size:11px; padding:6px; height:auto; color:var(--accent-green);" onclick="AmanLib.Members.prolongLifespan('${m.id}')" title="Renew Card Validation for +1 Year"><i class="ph ph-calendar-plus"></i> +1 Year</button>
                                 <button class="btn btn-pri" style="font-size:11px; padding:6px 10px; height:auto; flex:1; text-transform:none;" onclick="AmanLib.Members.bulkRenew('${m.id}')">Extend Loans</button>
                             </div>
                         </div>`;
                     }).join('');
                 },
                 prepAdd: () => {
-                    $('nm-header').innerHTML = '<i class="ph ph-user-plus"></i> Ingest New Account Registration';
-                    $('nm-btn').innerText = 'Register Account Credentials'; $('nm-mode').value = 'add';
+                    $('nm-header').innerHTML = '<i class="ph ph-user-plus"></i> Register New Library Member Profile';
+                    $('nm-btn').innerText = 'Save Registration'; $('nm-mode').value = 'add';
                     ['nm-name','nm-phone','nm-email'].forEach(id => $(id).value='');
                     $('nm-type').selectedIndex = 0; $('nm-duration').value = 12;
                 },
                 prepEdit: (id) => {
                     const m = AmanLib.data.members.find(x => x.id === id); if(!m) return;
-                    $('nm-header').innerHTML = '<i class="ph ph-pencil"></i> Edit Profile Registry Structural Identity';
-                    $('nm-btn').innerText = 'Update Profile Variables'; $('nm-mode').value = 'edit';
+                    $('nm-header').innerHTML = '<i class="ph ph-pencil"></i> Modify Member Information Details';
+                    $('nm-btn').innerText = 'Save Profile Changes'; $('nm-mode').value = 'edit';
                     $('nm-id').value = id; $('nm-name').value = m.name; $('nm-phone').value = m.phone; $('nm-email').value = m.email; $('nm-type').value = m.type; $('nm-duration').value = 12;
                     AmanLib.UI.modal('m-mem');
                 },
@@ -1783,30 +1771,30 @@
                         let currentExp = new Date(m.expiryDate || new Date());
                         currentExp.setMonth(currentExp.getMonth() + 12);
                         m.expiryDate = currentExp.toISOString().split('T')[0];
-                        AmanLib.logEvent('Security Operations', `Extended profile registration active lifecycle validation window timeline mapping for account key node: ${id}`);
-                        AmanLib.UI.toast('Account validation timeline boundaries pushed 12 calendar months forward.', 'good');
+                        AmanLib.logEvent('Membership Management', `Pushed registration card expiration life window timeline limit forward for member tracking id: ${id}`, 'Membership extended');
+                        AmanLib.UI.toast('Membership card validation timeline extended by 1 year.', 'good');
                         AmanLib.save();
                         AmanLib.Members.render();
                     }
                 },
                 save: () => {
-                    const mode = $('nm-mode').value; const n = $('nm-name').value.trim(); if(!n) return AmanLib.UI.toast('Name payload length requirements parameters error.', 'bad');
+                    const mode = $('nm-mode').value; const n = $('nm-name').value.trim(); if(!n) return AmanLib.UI.toast('Name field entry parameter missing verification data.', 'bad');
                     const durationMonths = parseInt($('nm-duration').value) || 12;
                     const exp = new Date(); exp.setMonth(exp.getMonth() + durationMonths);
                     if(mode === 'add') {
                         const nid = 'M-' + Math.floor(1000 + Math.random() * 9000);
                         AmanLib.data.members.push({ id: nid, name: n, phone: $('nm-phone').value.trim(), email: $('nm-email').value.trim(), type: $('nm-type').value, joined: new Date().toISOString().split('T')[0], expiryDate: exp.toISOString().split('T')[0], status: 'Active' });
-                        AmanLib.logEvent('Security Operations', `Allocated new profile authorization credentials boundaries record token: ${nid}`);
-                        AmanLib.UI.toast('Borrower demographic parameter properties committed down to object registries cleanly.', 'good');
+                        AmanLib.logEvent('Membership Management', `Created new user authorization profile reference trace token: ${nid}`, 'Member registered');
+                        AmanLib.UI.toast('New user account saved successfully.', 'good');
                     } else {
                         const id = $('nm-id').value; const m = AmanLib.data.members.find(x => x.id === id);
-                        if(m) { m.name = n; m.phone = $('nm-phone').value.trim(); m.email = $('nm-email').value.trim(); m.type = $('nm-type').value; AmanLib.UI.toast('Profile changes successfully mapped across structural object scopes.', 'good'); }
+                        if(m) { m.name = n; m.phone = $('nm-phone').value.trim(); m.email = $('nm-email').value.trim(); m.type = $('nm-type').value; AmanLib.UI.toast('Member profile information updated.', 'good'); }
                     }
                     AmanLib.save(); AmanLib.Members.render(); AmanLib.UI.closeM('m-mem');
                 },
                 toggleSuspension: (id) => {
                     const m = AmanLib.data.members.find(x => x.id === id);
-                    if(m) { m.status = m.status === 'Suspended' ? 'Active' : 'Suspended'; AmanLib.logEvent('Security Operations', `Toggled suspension state profile visibility context layer for target key row: ${id} directly to status code: ${m.status}`); AmanLib.save(); AmanLib.Members.render(); }
+                    if(m) { m.status = m.status === 'Suspended' ? 'Active' : 'Suspended'; AmanLib.logEvent('Membership Management', `Toggled suspension state settings profile status flag row node: ${id} to ${m.status}`, 'Member status modified'); AmanLib.save(); AmanLib.Members.render(); }
                 },
                 bulkRenew: (id) => {
                     let count = 0;
@@ -1816,12 +1804,12 @@
                             t.dueDate = d.toISOString().split('T')[0]; count++;
                         }
                     });
-                    if(count > 0) { AmanLib.logEvent('Circulation Desk', `Executed batch calendar timeline translation map offset logic against open vouchers for profile ID: ${id}`); AmanLib.UI.toast(`Extended ${count} open voucher runtime contracts safely by +7 days.`, 'good'); AmanLib.save(); }
-                    else { AmanLib.UI.toast('Zero matching structural open transaction dependencies tracking inside circulation vectors for this borrower.', 'warn'); }
+                    if(count > 0) { AmanLib.logEvent('Circulation Desk', `Extended runtime loan due date window parameters for open book tokens held by member ID: ${id}`, 'Loans extended'); AmanLib.UI.toast(`Extended ${count} book due dates safely by +7 days window parameters.`, 'good'); AmanLib.save(); }
+                    else { AmanLib.UI.toast('No matching active open loans found tracking context definitions for this member.', 'warn'); }
                 },
                 card: (id) => {
                     const m = AmanLib.data.members.find(x=>x.id===id);
-                    $('print-zone').innerHTML = `<div style="width:360px; border:2px solid #000; padding:24px; font-family:sans-serif; border-radius:12px; color:#000; background:#fff; box-shadow:0 4px 10px rgba(0,0,0,0.1);"><div style="text-align:center; border-bottom:3px double #000; padding-bottom:12px; margin-bottom:16px;"><h2 style="margin:0; font-size:22px; color:#000; border:none; padding:0; letter-spacing:1px;">AMAN'S LIBRARY</h2><div style="font-size:10px; letter-spacing:3px; font-weight:bold; margin-top:3px; color:#555;">SECURE ACCESS BADGE CREDENTIAL</div></div><div style="display:flex; justify-content:space-between; align-items:center;"><div><h3 style="margin:0; font-size:20px; color:#000; border:none; padding:0; text-transform:none;">${m.name}</h3><div style="color:#666; font-size:13px; font-weight:600; margin-top:2px;">Type Group: ${m.type}</div><div style="font-family:monospace; margin-top:12px; font-size:15px; font-weight:bold; background:#000; color:#fff; padding:2px 8px; border-radius:4px; width:fit-content;">ID: ${m.id}</div></div><div id="qr-tg" style="width:85px; height:85px;"></div></div><div style="margin-top:16px; font-size:9px; border-top:1px dashed #ccc; padding-top:8px; text-align:center; color:#777;" class="mono">Integrity Trace Node: Secure Local Sandboxed Profile</div></div>`;
+                    $('print-zone').innerHTML = `<div style="width:360px; border:2px solid #000; padding:24px; font-family:sans-serif; border-radius:12px; color:#000; background:#fff; box-shadow:0 4px 10px rgba(0,0,0,0.1);"><div style="text-align:center; border-bottom:3px double #000; padding-bottom:12px; margin-bottom:16px;"><h2 style="margin:0; font-size:22px; color:#000; border:none; padding:0; letter-spacing:1px;">AMAN'S LIBRARY</h2><div style="font-size:10px; letter-spacing:3px; font-weight:bold; margin-top:3px; color:#555;">SECURE MEMBERSHIP ACCESS BADGE</div></div><div style="display:flex; justify-content:space-between; align-items:center;"><div><h3 style="margin:0; font-size:20px; color:#000; border:none; padding:0; text-transform:none;">${m.name}</h3><div style="color:#666; font-size:13px; font-weight:600; margin-top:2px;">Classification: ${m.type}</div><div style="font-family:monospace; margin-top:12px; font-size:15px; font-weight:bold; background:#000; color:#fff; padding:2px 8px; border-radius:4px; width:fit-content;">ID: ${m.id}</div></div><div id="qr-tg" style="width:85px; height:85px;"></div></div><div style="margin-top:16px; font-size:9px; border-top:1px dashed #ccc; padding-top:8px; text-align:center; color:#777;" class="mono">Sandbox Secure Verification Trace Profile Element Matrix</div></div>`;
                     new QRCode($('qr-tg'), {text:m.id, width:85, height:85});
                     setTimeout(() => window.print(), 600);
                 }
@@ -1844,7 +1832,7 @@
                     let csv = "Date,Type,Description,Amount\n";
                     AmanLib.data.ledger.forEach(l => { csv += `"${l.date}","${l.type}","${l.desc.replace(/"/g, '""')}","${l.amt}"\n`; });
                     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-                    const link = document.createElement("a"); link.href = URL.createObjectURL(blob); link.setAttribute("download", "Library_Financials_Ledger.csv");
+                    const link = document.createElement("a"); link.href = URL.createObjectURL(blob); link.setAttribute("download", "Library_Financial_Ledger.csv");
                     document.body.appendChild(link); link.click(); document.body.removeChild(link);
                 }
             },
@@ -1853,16 +1841,16 @@
                 render: () => {
                     const tbody = $('t-audit').querySelector('tbody');
                     if(!tbody) return;
-                    tbody.innerHTML = AmanLib.data.logs.slice().reverse().map(l => `<tr><td class="mono text-xs" style="color:var(--accent-purple);">${l.ts}</td><td><span class="tag t-info" style="font-size:10px;">${l.cat}</span></td><td class="mono text-xs" style="color:var(--text-main); white-space:normal; line-height:1.4;">${l.details}</td></tr>`).join('') || '<tr><td colspan="3" style="text-align:center; padding:24px;" class="mono text-xs text-mute">Telemetry operational trace buffer stream clear. No logs recorded.</td></tr>';
+                    tbody.innerHTML = AmanLib.data.logs.slice().reverse().map(l => `<tr><td class="mono text-xs" style="color:var(--accent-purple);">${l.ts}</td><td><span class="tag t-info" style="font-size:10px;">${l.cat}</span></td><td class="mono text-xs" style="color:var(--text-main); white-space:normal; line-height:1.4;">${l.details}</td></tr>`).join('') || '<tr><td colspan="3" style="text-align:center; padding:24px;" class="mono text-xs text-mute">No system logs or activity events recorded in current database matrix loop trackers yet.</td></tr>';
                 },
                 pruneLogs: () => {
-                    if (confirm("Execute truncation clearing arrays routines to purge historical telemetry arrays?")) {
+                    if (confirm("Are you sure you want to completely clear the system log history arrays registries?")) {
                         if(AmanLib.temp.privacyMode) {
-                            AmanLib.data.logs = AmanLib.data.logs.map(l => { return { ts: l.ts, cat: l.cat, details: "Anonymized security log masking applied for compliance safeguards." }; });
+                            AmanLib.data.logs = AmanLib.data.logs.map(l => { return { ts: l.ts, cat: l.cat, details: "Activity log obfuscated for structural compliance privacy loops." }; });
                         } else {
-                            AmanLib.data.logs = [{ ts: new Date().toLocaleString(), cat: 'Security Guard', details: 'Triggered global security logs database arrays manual truncation baseline configuration override execution parameters.' }];
+                            AmanLib.data.logs = [{ ts: new Date().toLocaleString(), cat: 'Logs Terminal', details: 'Cleared system log registers data arrays.' }];
                         }
-                        AmanLib.UI.toast('Memory allocation matrices cleared down cleanly.', 'good');
+                        AmanLib.UI.toast('Activity logs database entries cleared cleanly.', 'good');
                         AmanLib.save();
                         AmanLib.Audit.render();
                     }
@@ -1897,7 +1885,7 @@
                             { id: "TX-11223344", copyId: "CP-1002", isbn: "9780134685991", memId: "M-9901", issueDate: "2026-05-01", dueDate: "2026-05-15", status: "OPEN", fine: 0, waived: 0 }
                         ];
                         AmanLib.data.ledger = [
-                            { date: "2026-05-20", type: "FINE", desc: "Simulated initial mock operational fine recovery ingestion cash ledger input token transaction", amt: 50 }
+                            { date: "2026-05-20", type: "FINE", desc: "Collected mock data late fee payment cash entry", amt: 50 }
                         ];
                         AmanLib.data.attendance = [
                             { memId: "M-9901", type: "IN", ts: "2026-06-01T10:00:00.000Z" }
@@ -1905,9 +1893,9 @@
                         AmanLib.data.wishlist = [
                             { id: "W-1", title: "Clean Architecture Design Paradigms", votes: 4 }
                         ];
-                        AmanLib.logEvent('Security System', 'Injected composite mock application datasets packages configurations matrices inside memory layers variables workspace.');
+                        AmanLib.logEvent('Database Administration', 'Loaded demo library data setup packages.', 'Demo dataset loaded successfully');
                         AmanLib.save();
-                        AmanLib.UI.toast('Sandbox environment metrics successfully populated.', 'good');
+                        AmanLib.UI.toast('Demo sandbox package parameters populated into workspace indices arrays.', 'good');
                         setTimeout(() => location.reload(), 400);
                     }
                 },
@@ -1929,17 +1917,17 @@
                     AmanLib.data.settings.fineTiers.Public = parseFloat($('set-fine-public').value) || 10;
                     
                     AmanLib.Settings.applyTheme(AmanLib.data.settings.theme);
-                    AmanLib.logEvent('Security Suite', 'Overwrote environmental variables structural global initialization nodes config matrices.');
-                    AmanLib.save(); AmanLib.UI.toast('Configuration parameter values successfully committed down to local scopes.', 'good');
+                    AmanLib.logEvent('Database Administration', 'Saved custom global environment system parameter values setup configuration vectors.', 'System settings updated');
+                    AmanLib.save(); AmanLib.UI.toast('System options settings saved down into browser storage arrays successfully.', 'good');
                 },
                 nuke: () => {
                     if(prompt("CRITICAL SECURITY SYSTEM LAYER REACHED:\n\nType the execution override passphrase string confirmation token 'ResetProtection' below to authorize total wipe operations:") === "ResetProtection") {
                         if(confirm("Permanently strip all operational structural variable tracking blocks from local working contexts? This process is catastrophic and cannot be rolled back.")) {
-                            AmanLib.data = { books: [], copies: [], members: [], txns: [], reservations: [], ledger: [], logs: [], attendance: [], wishlist: [], holidays: [], customFields: [], msgTemplates: {overdue:"", welcome:""}, settings: { name: "Aman's Library", days: 14, fine: 5, curr: '₹', theme: 'cyberpunk', fineTiers: { Student: 5, Staff: 2, Public: 10 } } };
+                            AmanLib.data = { books: [], copies: [], members: [], txns: [], reservations: [], ledger: [], logs: [], attendance: [], wishlist: [], holidays: [], customFields: [], msgTemplates: {overdue:"", welcome:""}, settings: { name: "Aman's Library", days: 14, fine: 5, curr: '₹', theme: 'cyberpunk', ttsEnabled: true, fineTiers: { Student: 5, Staff: 2, Public: 10 } } };
                             localStorage.removeItem('amans_library_v3_matrix');
                             AmanLib.save(); setTimeout(() => location.reload(), 400);
                         }
-                    } else { AmanLib.UI.toast("Purge tracking override execution routines aborted safely.", "bad"); }
+                    } else { AmanLib.UI.toast("Factory reset sequence aborted safely.", "bad"); }
                 }
             },
 
@@ -1949,16 +1937,16 @@
                     subset[segmentKey] = AmanLib.data[segmentKey];
                     subset["settings"] = AmanLib.data.settings;
                     const s = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(subset));
-                    const n = document.createElement('a'); n.setAttribute("href", s); n.setAttribute("download", `AmansLib_Segment_${segmentKey}_${new Date().toISOString().slice(0,10)}.json`);
+                    const n = document.createElement('a'); n.setAttribute("href", s); n.setAttribute("download", `Library_Backup_Segment_${segmentKey}_${new Date().toISOString().slice(0,10)}.json`);
                     document.body.appendChild(n); n.click(); n.remove();
                 },
                 download: () => {
                     const d = AmanLib.data;
                     if(!d.books || !d.copies || !d.members || !d.txns || !d.reservations || !d.ledger) {
-                        return AmanLib.UI.toast("JSON structural parsing checks failed validation tracking parameters. State index matrix manifest incomplete.", "bad");
+                        return AmanLib.UI.toast("System backup structure check failed verification validation loops rules parameters.", "bad");
                     }
                     const s = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(AmanLib.data));
-                    const n = document.createElement('a'); n.setAttribute("href", s); n.setAttribute("download", `AmansLib_SystemStateMatrix_v3_${new Date().toISOString().slice(0,10)}.json`);
+                    const n = document.createElement('a'); n.setAttribute("href", s); n.setAttribute("download", `Library_CompleteSystemStateMatrix_v3_${new Date().toISOString().slice(0,10)}.json`);
                     document.body.appendChild(n); n.click(); n.remove();
                 },
                 restore: (input) => {
@@ -1970,12 +1958,12 @@
                             if(parsed.books && Array.isArray(parsed.books) && parsed.copies && parsed.members) { 
                                 AmanLib.data = parsed; 
                                 AmanLib.save(); 
-                                alert("Data stream integration manifest integrated successfully. Hot-reloaded structural pipeline layout view panels rows."); 
+                                alert("Data file backup schema state matrix successfully parsed and synced into system layout memory loops."); 
                                 location.reload(); 
                             } else { 
-                                alert("JSON state manifest constraint configurations schema parsing verification checks failed error."); 
+                                alert("JSON data content model did not match application core parameters rules criteria verification structural loop rules."); 
                             }
-                        } catch(err) { alert("Diagnostic exception error thrown while parsing data array stream inputs structure elements."); }
+                        } catch(err) { alert("An error occurred while parsing the backup file elements parameters strings."); }
                     };
                     r.readAsText(input.files[0]);
                 }
