@@ -1748,17 +1748,35 @@
                 }
             },
 
-            Return: {
+         Return: {
             check: () => {
-                // Fix: Convert input to uppercase and do a case-insensitive comparison
-                const cid = $('ret-id').value.trim().toUpperCase(); 
-                const tx = AmanLib.data.txns.find(t => t.copyId.toUpperCase() === cid && t.status === 'OPEN');
+                let inp = $('ret-id').value.trim().toUpperCase();
+                if (!inp) return AmanLib.UI.toast('Please enter a Copy ID or ISBN.', 'warn');
                 
-                if(!tx) return AmanLib.UI.toast('No active borrowed record found matching copy ID tracking string indices.', 'bad');
+                // 1. Fix: Parse the scanned QR code format if it contains ISBN and SHELF data
+                if (inp.includes("ISBN:") && inp.includes("SHELF:")) {
+                    inp = inp.split('|')[0].split(':')[1].trim();
+                }
                 
-                const b = AmanLib.data.books.find(x => x.isbn === tx.isbn); const m = AmanLib.data.members.find(x => x.id === tx.memId);
-                $('rp-title').innerText = b ? b.title : 'Book info unmapped'; $('rp-mem').innerText = m ? m.name : 'Member record unmapped'; $('rp-due').innerText = tx.dueDate;
-                const due = new Date(tx.dueDate); const today = new Date(); let fine = 0;
+                // 2. Fix: Multi-match across active open transactions by either Copy ID OR ISBN
+                const tx = AmanLib.data.txns.find(t => 
+                    t.status === 'OPEN' && 
+                    ((t.copyId && t.copyId.toUpperCase() === inp) || (t.isbn && t.isbn.toUpperCase() === inp))
+                );
+                
+                if(!tx) return AmanLib.UI.toast('No active borrowed record found matching this Copy ID or ISBN.', 'bad');
+                
+                AmanLib.temp.retTxn = tx;
+                const b = AmanLib.data.books.find(x => x.isbn === tx.isbn); 
+                const m = AmanLib.data.members.find(x => x.id === tx.memId);
+                
+                $('rp-title').innerText = b ? b.title : 'Book info unmapped'; 
+                $('rp-mem').innerText = m ? m.name : 'Member record unmapped'; 
+                $('rp-due').innerText = tx.dueDate;
+                
+                const due = new Date(tx.dueDate); 
+                const today = new Date(); 
+                let fine = 0;
                 if(today > due) {
                     let days = Math.floor((today - due) / (1000*60*60*24));
                     if(AmanLib.data.holidays && AmanLib.data.holidays.length > 0) {
@@ -1773,7 +1791,9 @@
                     let rate = AmanLib.data.settings.fineTiers[m?.type || "Student"] || AmanLib.data.settings.fine;
                     fine = days * rate;
                 }
-                $('rp-fine').innerText = AmanLib.data.settings.curr + fine; $('rp-paid').value = fine; $('rp-waived').value = 0;
+                $('rp-fine').innerText = AmanLib.data.settings.curr + fine; 
+                $('rp-paid').value = fine; 
+                $('rp-waived').value = 0;
                 $('ret-panel').classList.remove('hidden');
             },
                 calcWaiver: () => {
