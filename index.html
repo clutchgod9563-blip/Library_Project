@@ -1749,10 +1749,10 @@
                         return `<div class="glass" style="position:relative; border-top:3px solid ${m.status==='Suspended'?'var(--accent-pink)':'var(--accent-purple)'}">
                             <div class="flex between"><div style="font-weight:bold; font-size:16px; color:#fff">${m.name}</div><span class="tag ${m.status==='Suspended'?'t-bad':'t-ok'}">${m.status||'Active'}</span></div>
                             <div class="mono text-xs mb-2" style="color:var(--text-mute); margin-top:2px;">${m.id}</div>
-                            <div style="font-size:11px; margin-bottom:12px; color:var(--accent-gold);" class="mono">Valid Until Calendar: ${m.expiryDate||'-'}</div>
+                            <div style="font-size:11px; margin-bottom:12px; color:var(--accent-gold);" class="mono">Valid Until Date: ${m.expiryDate||'-'}</div>
                             <div class="flex between">
                                 <span class="tag t-info">${m.type}</span>
-                                <span class="tag ${act>0?'t-warn':'t-ok'}">${act} Open Active Loans</span>
+                                <span class="tag ${act>0?'t-warn':'t-ok'}">${act} Open Active Books</span>
                             </div>
                             <div class="flex" style="margin-top:16px; gap:4px; flex-wrap:wrap;">
                                 <button class="btn btn-sec" style="font-size:11px; padding:6px; height:auto; flex:1;" onclick="AmanLib.Members.card('${m.id}')" title="Print Membership ID Card Badge"><i class="ph ph-identification-card"></i> Card</button>
